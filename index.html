@@ -161,7 +161,7 @@ html,body{height:100%;margin:0;padding:0}
   .msg{display:flex;align-items:flex-start;gap:8px;max-width:100%}
   .msg.out{flex-direction:row-reverse}
   .msg-avatar{flex:0 0 auto;width:44px;height:44px;border-radius:50%;overflow:hidden;background:#e8ecef;display:grid;place-items:center;color:#b8c0c7;background-size:cover;background-position:center}
-  .msg-avatar svg{width:20px;height:20px}
+.msg-avatar svg{width:24px;height:24px}
   .msg-avatar img{width:100%;height:100%;object-fit:cover;display:block}
   .bubble-wrap{display:flex;flex-direction:column;max-width:76%;min-width:0}
   .msg.out .bubble-wrap{align-items:flex-end}
@@ -318,7 +318,8 @@ html,body{height:100%;margin:0;padding:0}
   .sticker-actions{display:flex;gap:8px;padding:0 16px 10px}
   .sticker-actions button{flex:1;height:34px;border:1px solid var(--accent);border-radius:9px;background:#fff;color:var(--text);font-size:13px;font-family:inherit;cursor:pointer;transition:background .15s ease}
   .sticker-actions button:active{background:var(--soft)}
-  .sticker-grid-scroll{flex:1 1 auto;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:0 16px 16px}
+  #stabSticker, #stabPat{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+.sticker-grid-scroll{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:0 16px 16px}
   .sticker-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
   .sticker-cell{position:relative;aspect-ratio:1/1;border-radius:10px;background:var(--soft);overflow:hidden;cursor:pointer;transition:transform .14s ease}
   .sticker-cell:active{transform:scale(.94)}
@@ -407,14 +408,14 @@ html,body{height:100%;margin:0;padding:0}
   .subgroup-head:active{background:var(--soft)}
   .subgroup-name{flex:1;min-width:0;font-size:14px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .subgroup-count{flex:0 0 auto;font-size:11.5px;color:var(--light-text);background:var(--soft);padding:1px 8px;border-radius:9px}
-  .subgroup-arrow{flex:0 0 auto;color:var(--accent);transition:transform .22s ease}
+.subgroup-arrow{flex:0 0 auto;color:var(--accent);transition:transform .22s ease}
+.subgroup-head .toggle{flex:0 0 auto;width:22px;height:22px;display:grid;place-items:center;border-radius:50%;cursor:pointer;color:var(--light-text);transition:background .15s ease}
+.subgroup-head .toggle:active{background:var(--soft)}
+.subgroup-head .toggle svg{width:14px;height:14px}
+.subgroup-card.off .subgroup-name{color:#c0c8cd}
+.subgroup-card.off .subgroup-count{opacity:.5}
 .subgroup-card.open .subgroup-arrow{transform:rotate(90deg)}
-.subgroup-toggle{flex:0 0 auto;width:24px;height:24px;display:grid;place-items:center;border-radius:50%;cursor:pointer;color:var(--light-text);margin-right:2px;transition:background .15s ease;}
-.subgroup-toggle:active{background:var(--soft);}
-.subgroup-toggle svg{width:14px;height:14px;}
-.subgroup-card.off .subgroup-name{color:#c0c8cd;}
-.subgroup-card.off .subgroup-count{opacity:.5;}
-  .subgroup-body{display:none;border-top:1px solid var(--line);padding:4px 0 10px;background:var(--panel)}
+.subgroup-body{display:none;border-top:1px solid var(--line);padding:4px 0 10px;background:var(--panel)}
   .subgroup-card.open .subgroup-body{display:block}
   .dict-grid{display:flex;flex-wrap:wrap;gap:8px;padding:6px 0}
   .dict-item{position:relative;padding:6px 24px 6px 12px;background:#e3ebee;border-radius:8px;font-size:14px;color:var(--text);line-height:1.3}
@@ -815,15 +816,48 @@ html,body{height:100%;margin:0;padding:0}
 .dock-label{display:none}
 .bottom-dock.dock-hidden{display:none!important}
 
+/* ============ 群聊 ============ */
+.group-body{flex:1 1 auto;min-height:0;overflow:hidden;display:flex;flex-direction:column;background:var(--chat-bg);}
+.group-messages{flex:1;min-height:0;overflow-y:auto;padding:16px 12px;display:flex;flex-direction:column;gap:14px;-webkit-overflow-scrolling:touch;}
+.group-msg{display:flex;gap:8px;max-width:100%;}
+.group-msg.out{flex-direction:row-reverse;}
+.group-msg-avatar{flex:0 0 auto;width:36px;height:36px;border-radius:50%;overflow:hidden;background:#e8ecef;display:grid;place-items:center;color:#fff;font-size:14px;font-weight:600;}
+.group-msg-body{display:flex;flex-direction:column;max-width:76%;min-width:0;}
+.group-msg.out .group-msg-body{align-items:flex-end;}
+.group-msg-name{font-size:11.5px;color:var(--light-text);margin-bottom:3px;padding:0 4px;}
+.group-msg-bubble{padding:10px 14px;border-radius:14px;font-size:var(--chat-font-size);line-height:1.45;white-space:pre-wrap;word-break:break-word;color:var(--text);}
+.group-msg.in .group-msg-bubble{background:var(--msg-other-bg);border-bottom-left-radius:5px;}
+.group-msg.out .group-msg-bubble{background:var(--msg-self-bg);border-bottom-right-radius:5px;}
+.group-empty{text-align:center;padding:60px 24px;color:var(--light-text);font-size:14px;line-height:1.8;}
+
 /* 首次进入公告 */
-.welcome-bg{position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.45);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:20px}
+.welcome-bg{position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.45);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:none;align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto;-webkit-overflow-scrolling:touch}
 .welcome-bg.show{display:flex;animation:fadeIn .25s ease}
-.welcome-card{width:100%;max-width:400px;background:#fff;border-radius:20px;padding:26px 22px 20px;box-shadow:0 20px 60px rgba(0,0,0,.25);display:flex;flex-direction:column;max-height:88vh;animation:pop .3s ease}
+.welcome-card{width:100%;max-width:400px;background:#fff;border-radius:20px;padding:26px 22px 20px;box-shadow:0 20px 60px rgba(0,0,0,.25);display:flex;flex-direction:column;margin:auto 0;animation:pop .3s ease}
 .welcome-emoji{text-align:center;font-size:38px;line-height:1;margin-bottom:8px}
 .welcome-title{text-align:center;font-size:18px;font-weight:700;color:var(--primary);letter-spacing:1px}
 .welcome-sub{text-align:center;font-size:12.5px;color:var(--light-text);margin-top:6px;margin-bottom:8px}
 .welcome-warning{text-align:center;font-size:12.5px;color:#c45b66;font-weight:600;background:#fdf2f4;padding:10px 12px;border-radius:10px;margin-bottom:14px;line-height:1.6;border:1px dashed rgba(196,91,102,.3)}
-.welcome-body{font-size:13px;line-height:1.75;color:var(--text);max-height:45vh;overflow-y:auto;padding-right:6px;flex:1 1 auto;}
+.welcome-tabs{display:flex;gap:8px;margin:12px 0 12px;flex:0 0 auto}
+.welcome-tab{flex:1;height:38px;border:1px solid var(--accent);border-radius:10px;background:#fff;color:var(--text);font-size:14px;font-family:inherit;cursor:pointer;transition:all .15s ease}
+.welcome-tab.active{background:var(--primary);border-color:var(--primary);color:#fff;font-weight:600}
+.welcome-tab:active{transform:scale(.97)}
+.welcome-credit{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);text-align:center;font-size:11.5px;color:var(--light-text);line-height:1.6;flex:0 0 auto}
+.welcome-credit strong{color:var(--primary);font-weight:600}
+.welcome-agree{display:flex;align-items:flex-start;gap:8px;margin-top:10px;padding:10px 12px;background:var(--soft);border-radius:10px;font-size:12.5px;color:var(--text);line-height:1.55;cursor:pointer;flex:0 0 auto}
+.welcome-agree input[type="checkbox"]{
+  -webkit-appearance: checkbox !important;
+  appearance: checkbox !important;
+  margin-top:2px;
+  width:18px;
+  height:18px;
+  flex:0 0 auto;
+  cursor:pointer;
+  accent-color: var(--primary);
+}
+.welcome-agree span{flex:1;min-width:0}
+.welcome-agree strong{color:var(--primary);font-weight:600}
+.welcome-body{font-size:13px;line-height:1.75;color:var(--text);padding-right:6px;}
 .welcome-body::-webkit-scrollbar{width:4px}
 .welcome-body::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px}
 .welcome-body p{margin:0 0 10px}
@@ -831,8 +865,10 @@ html,body{height:100%;margin:0;padding:0}
 .welcome-body strong{color:var(--primary);font-weight:600}
 .welcome-body code{background:var(--soft);padding:1px 6px;border-radius:5px;font-family:monospace;font-size:12px;color:var(--primary)}
 .welcome-body em{color:var(--light-text);font-style:normal;font-size:12px;}
-.welcome-btn{margin-top:16px;width:100%;height:46px;border:0;border-radius:12px;background:var(--primary);color:#fff;font-size:15px;font-family:inherit;font-weight:500;cursor:pointer;transition:opacity .16s ease;flex:0 0 auto;display:none;animation:fadeIn .3s ease;}
+.welcome-btn{margin-top:16px;width:100%;height:46px;border:0;border-radius:12px;background:var(--primary);color:#fff;font-size:15px;font-family:inherit;font-weight:500;cursor:pointer;transition:opacity .16s ease,background .15s ease;flex:0 0 auto;display:block;animation:fadeIn .3s ease;}
 .welcome-btn:active{opacity:.82}
+.welcome-btn:disabled{opacity:.4;cursor:default}
+.watermark{position:fixed;left:0;right:0;bottom:6px;text-align:center;font-size:10.5px;color:rgba(31,95,108,.28);letter-spacing:.5px;z-index:1;pointer-events:none;font-style:italic}
 
 /* ===== 通话全屏界面 ===== */
 .call-screen{position:fixed;inset:0;z-index:9998;display:none;flex-direction:column;background:#1a2530;overflow:hidden;transition:opacity .3s ease,transform .3s ease}
@@ -993,30 +1029,6 @@ html,body{height:100%;margin:0;padding:0}
 .game-card-name{font-size:14.5px;font-weight:600;color:var(--text)}
 .game-card-desc{font-size:11.5px;color:var(--light-text);margin-top:-2px}
 
-/* 俄罗斯方块 */
-#tetrisPage{display:none}
-#tetrisPage.open{display:flex}
-.tetris-wrap{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:var(--bg);gap:8px}
-.tetris-ta-row{flex:0 0 auto;display:flex;align-items:flex-end;gap:8px;min-height:46px}
-.tetris-ta-avatar{width:34px;height:34px;border-radius:50%;flex:0 0 auto;background:#e8ecef;display:grid;place-items:center;color:#b8c0c7;overflow:hidden;background-size:cover;background-position:center}
-.tetris-ta-avatar svg{width:20px;height:20px}
-.tetris-ta-avatar img{width:100%;height:100%;object-fit:cover;display:block}
-.tetris-ta-bubble{max-width:78%;padding:8px 13px;background:#fff;border-radius:14px 14px 14px 4px;font-size:13px;line-height:1.5;color:var(--text);box-shadow:0 2px 8px rgba(31,95,108,.06);animation:gomokuBubbleIn .25s ease}
-.tetris-stats{flex:0 0 auto;display:flex;justify-content:space-around;background:#fff;border-radius:12px;padding:8px 0;box-shadow:0 2px 8px rgba(31,95,108,.06)}
-.tetris-stat{text-align:center;flex:1}
-.tetris-stat .lbl{font-size:11px;color:var(--light-text);letter-spacing:.5px}
-.tetris-stat .val{font-size:20px;font-weight:700;color:var(--primary);line-height:1.2;font-variant-numeric:tabular-nums}
-.tetris-board-wrap{flex:1 1 auto;min-height:0;position:relative;display:flex;justify-content:center;align-items:center;gap:10px}
-#tetrisCanvas{border-radius:12px;box-shadow:0 8px 28px rgba(31,95,108,.15),0 2px 6px rgba(0,0,0,.06);display:block;touch-action:none;background:#f8fafb}
-.tetris-next-box{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:4px;background:#fff;border-radius:10px;padding:8px 10px;box-shadow:0 2px 8px rgba(31,95,108,.06);align-self:flex-start;margin-top:4px}
-.tetris-next-label{font-size:10.5px;color:var(--light-text);letter-spacing:.5px}
-#tetrisNextCanvas{display:block}
-.tetris-controls{flex:0 0 auto;display:flex;gap:8px;justify-content:center}
-.tetris-ctrl{flex:1;max-width:70px;height:48px;border:0;border-radius:12px;background:rgba(255,255,255,.92);color:var(--text);font-size:15px;font-weight:600;font-family:inherit;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(31,95,108,.08);transition:transform .12s ease,background .15s ease;user-select:none;-webkit-user-select:none}
-.tetris-ctrl:active{transform:scale(.95);background:#fff}
-.tetris-ctrl.primary{background:var(--primary);color:#fff;box-shadow:0 4px 14px rgba(31,95,108,.25)}
-.tetris-ctrl.primary:active{background:#18505c}
-
 /* 跳一跳 */
 .jump-wrap{flex:1 1 auto;min-height:0;position:relative;background:linear-gradient(180deg,#e6f2f7 0%,#f5f0ea 100%);overflow:hidden}
 #jumpCanvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none}
@@ -1027,7 +1039,60 @@ html,body{height:100%;margin:0;padding:0}
 .jump-picker-icon{flex:0 0 auto;width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,#e8f0f3,#d2e6ec);display:grid;place-items:center;font-size:22px}
 .jump-picker-info{flex:1;min-width:0}
 .jump-picker-name{font-size:14.5px;font-weight:600;color:var(--primary)}
-.jump-picker-desc{font-size:11.5px;color:var(--light-text);margin-top:2px}
+/* 俄罗斯方块 */
+.tetris-wrap{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:var(--bg);gap:8px}
+.tetris-board-wrap{flex:1 1 auto;min-height:0;position:relative}
+#tetrisCanvas{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border-radius:12px;box-shadow:0 8px 28px rgba(31,95,108,.15);display:block;touch-action:manipulation}
+.tetris-controls{flex:0 0 auto;display:flex;gap:8px}
+.tetris-ctrl{flex:1;height:52px;border:0;border-radius:13px;background:rgba(255,255,255,.9);color:var(--text);font-family:inherit;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(31,95,108,.06);transition:transform .1s ease,background .15s ease;user-select:none;-webkit-user-select:none;touch-action:manipulation}
+.tetris-ctrl:active{transform:scale(.95);background:#fff}
+
+/* 商城 */
+.shop-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:14px}
+.shop-card{background:#fff;border-radius:14px;padding:16px 12px 14px;display:flex;flex-direction:column;align-items:center;gap:6px;box-shadow:0 2px 8px rgba(31,95,108,.06);cursor:pointer;transition:transform .14s ease,box-shadow .14s ease;position:relative}
+.shop-card:active{transform:scale(.96);box-shadow:0 1px 4px rgba(31,95,108,.08)}
+.shop-card-emoji{font-size:38px;line-height:1;margin-bottom:2px}
+.shop-card-name{font-size:14px;font-weight:600;color:var(--text);text-align:center}
+.shop-card-price{font-size:13px;color:#d97757;font-weight:600}
+.shop-card-del{position:absolute;top:6px;right:6px;width:22px;height:22px;display:grid;place-items:center;border:0;border-radius:50%;background:rgba(0,0,0,.04);color:var(--light-text);cursor:pointer;font-size:14px}
+.shop-card-del:active{background:#f7eaea;color:var(--highlight)}
+.shop-add-card{background:rgba(255,255,255,.7);border:1px dashed var(--accent);border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer;min-height:130px;color:var(--light-text);font-size:13px;padding:16px}
+.shop-add-card:active{background:var(--soft)}
+.shop-add-card svg{width:28px;height:28px}
+.shop-empty{text-align:center;padding:60px 24px;color:var(--light-text);font-size:14px;line-height:1.8}
+.gift-record{margin:0 14px 10px;background:#fff;border-radius:14px;padding:14px 16px;box-shadow:0 2px 8px rgba(31,95,108,.05);display:flex;gap:12px;align-items:flex-start}
+.gift-record-emoji{font-size:32px;line-height:1;flex:0 0 auto;width:48px;height:48px;display:grid;place-items:center;background:var(--soft);border-radius:12px}
+.gift-record-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.gift-record-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.gift-record-name{font-size:14.5px;font-weight:600;color:var(--text)}
+.gift-record-price{font-size:13px;font-weight:600;color:#d97757}
+.gift-record-price.out{color:var(--light-text)}
+.gift-record-bless{font-size:12.5px;color:var(--light-text);line-height:1.5;word-break:break-word}
+.gift-record-time{font-size:11.5px;color:var(--light-text);margin-top:2px}
+.gift-send-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500;display:none;align-items:center;justify-content:center;padding:24px}
+.gift-send-bg.open{display:flex;animation:fadeIn .18s ease}
+.gift-send-card{width:100%;max-width:340px;background:#fff;border-radius:18px;padding:22px 20px 18px;box-shadow:0 20px 60px rgba(0,0,0,.3);display:flex;flex-direction:column;gap:14px}
+.gift-send-emoji{font-size:56px;line-height:1;text-align:center}
+.gift-send-title{font-size:17px;font-weight:600;color:var(--text);text-align:center}
+.gift-send-price{font-size:14px;color:#d97757;text-align:center;font-weight:600;margin-top:-8px}
+.gift-send-label{font-size:13px;color:var(--light-text);margin-bottom:4px;display:block}
+.gift-send-input{width:100%;height:42px;padding:0 12px;border:1px solid var(--accent);border-radius:10px;background:#fff;font-size:14px;font-family:inherit;color:var(--text);outline:none;box-sizing:border-box}
+.gift-send-input:focus{border-color:var(--primary)}
+.gift-send-actions{display:flex;gap:10px}
+.gift-send-btn{flex:1;height:42px;border:0;border-radius:10px;font-size:15px;font-family:inherit;font-weight:500;cursor:pointer}
+.gift-send-btn.ghost{background:var(--soft);color:var(--text)}
+.gift-send-btn.primary{background:var(--primary);color:#fff}
+.gift-send-btn:active{opacity:.82}
+.bubble.bubble-gift{background:transparent!important;padding:0}
+.gift-msg-wrap{display:flex;justify-content:center;width:100%;margin:6px 0}
+.gift-chat-card{width:auto;min-width:180px;max-width:220px;border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.06);border:1px solid var(--line);text-align:center}
+.gift-chat-head{padding:8px 14px;background:linear-gradient(135deg,#fff2ea,#ffeae0);font-size:12px;color:#c47c5a;font-weight:600;display:flex;align-items:center;justify-content:center;gap:6px}
+.gift-chat-body{padding:14px 16px 12px;display:flex;flex-direction:column;align-items:center;gap:6px}
+.gift-chat-emoji{font-size:40px;line-height:1}
+.gift-chat-name{font-size:14px;font-weight:600;color:var(--text)}
+.gift-chat-bless{font-size:12px;color:var(--light-text);line-height:1.5;margin-top:2px}
+.gift-chat-foot{padding:7px 14px;background:var(--soft);font-size:11.5px;color:var(--light-text);display:flex;justify-content:space-between;gap:8px}
+.gift-chat-price{color:#d97757;font-weight:600}
 
 /* 更新提示卡片 */
 .update-bg{position:fixed;inset:0;z-index:10001;background:rgba(0,0,0,.45);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:24px}
@@ -1051,6 +1116,111 @@ html,body{height:100%;margin:0;padding:0}
 .update-btn:active{opacity:.82}
 .update-btn.ghost{background:var(--soft);color:var(--text)}
 .update-btn.primary{background:var(--primary);color:#fff}
+/* ============ 梦角切换 ============ */
+.persona-chip{
+  display:inline-flex;align-items:center;gap:4px;
+  padding:2px 8px 2px 2px;
+  background:rgba(255,255,255,.55);
+  border:1px solid rgba(31,95,108,.08);
+  border-radius:12px;cursor:pointer;font-family:inherit;
+  max-width:130px;transition:background .15s ease;margin-right:2px;
+}
+.persona-chip:active{background:rgba(255,255,255,.95)}
+.persona-chip-avatar{
+  width:20px;height:20px;border-radius:50%;background:#e8ecef;
+  display:grid;place-items:center;color:#b8c0c7;overflow:hidden;flex:0 0 auto;
+}
+.persona-chip-avatar svg{width:12px;height:12px}
+.persona-chip-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.persona-chip-name{
+  font-size:11.5px;font-weight:600;color:var(--primary);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:72px;
+}
+.persona-modal-bg{
+  position:fixed;inset:0;z-index:400;background:rgba(0,0,0,.4);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  display:none;align-items:center;justify-content:center;padding:24px;
+}
+.persona-modal-bg.open{display:flex;animation:fadeIn .18s ease}
+.persona-modal{
+  width:100%;max-width:340px;background:#fff;border-radius:18px;
+  overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.25);
+  display:flex;flex-direction:column;max-height:70vh;animation:pop .24s ease;
+}
+.persona-modal-head{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 18px 12px;border-bottom:1px solid var(--line);flex:0 0 auto;
+}
+.persona-modal-title{font-size:16px;font-weight:600;color:var(--text)}
+.persona-modal-close{
+  width:30px;height:30px;border:0;background:transparent;color:var(--light-text);
+  font-size:20px;line-height:1;font-family:inherit;cursor:pointer;
+  border-radius:8px;display:grid;place-items:center;
+}
+.persona-modal-close:active{background:var(--soft)}
+.persona-modal-list{flex:1 1 auto;overflow-y:auto;padding:6px 0}
+.persona-modal-list::-webkit-scrollbar{width:5px}
+.persona-modal-list::-webkit-scrollbar-thumb{background:var(--accent);border-radius:3px}
+.persona-item{
+  display:flex;align-items:center;gap:12px;
+  padding:11px 16px 11px 18px;cursor:pointer;transition:background .14s ease;
+}
+.persona-item:active{background:var(--soft)}
+.persona-item.active{background:var(--soft)}
+.persona-item-avatar{
+  width:42px;height:42px;border-radius:50%;background:#e8ecef;
+  display:grid;place-items:center;color:#b8c0c7;overflow:hidden;flex:0 0 auto;
+}
+.persona-item-avatar svg{width:22px;height:22px}
+.persona-item-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.persona-item-info{flex:1;min-width:0}
+.persona-item-name{
+  font-size:14.5px;font-weight:600;color:var(--text);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.persona-item-sub{font-size:11.5px;color:var(--light-text);margin-top:2px}
+.persona-item.active .persona-item-sub{color:var(--primary);font-weight:600}
+.persona-item-check{
+  flex:0 0 auto;width:20px;height:20px;display:grid;place-items:center;
+  color:var(--primary);opacity:0;transition:opacity .15s ease;
+}
+.persona-item.active .persona-item-check{opacity:1}
+.persona-item-del{
+  flex:0 0 auto;width:30px;height:30px;border:0;border-radius:8px;
+  background:transparent;color:var(--light-text);cursor:pointer;
+  display:grid;place-items:center;
+}
+.persona-item-del:active{background:#f7eaea;color:var(--highlight)}
+.persona-modal-new{
+  width:100%;height:52px;border:0;background:var(--soft);color:var(--primary);
+  font-size:14.5px;font-weight:600;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  border-top:1px solid var(--line);flex:0 0 auto;transition:background .15s ease;
+}
+.persona-modal-new:active{background:var(--secondary)}
+
+/* 梦角切换 loading */
+.persona-loading{
+  position:fixed;inset:0;z-index:99999;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  display:none;align-items:center;justify-content:center;flex-direction:column;
+  animation:fadeIn .15s ease;
+}
+.persona-loading.show{display:flex;}
+.persona-loading-inner{text-align:center;}
+.persona-loading-spinner{
+  width:38px;height:38px;margin:0 auto 16px;
+  border:3px solid rgba(31,95,108,.15);
+  border-top-color:var(--primary);
+  border-radius:50%;
+  animation:personaSpin .8s linear infinite;
+}
+@keyframes personaSpin{to{transform:rotate(360deg);}}
+.persona-loading-text{
+  font-size:14px;color:var(--primary);
+  letter-spacing:2px;font-weight:500;
+}
 </style>
 </head>
 <body>
@@ -1102,9 +1272,13 @@ html,body{height:100%;margin:0;padding:0}
       <span class="home-title">sheng·g</span>
     </div>
     <div class="status-right">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5a9 9 0 0 1 14 0"/><path d="M8.5 15.5a5 5 0 0 1 7 0"/><circle cx="12" cy="18.5" r="0.8" fill="currentColor"/></svg>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="18" height="10" rx="2"/><path d="M22 11v2"/></svg>
-    </div>
+  <button class="persona-chip" id="personaChip" aria-label="切换梦角">
+    <div class="persona-chip-avatar" id="personaChipAvatar"></div>
+    <span class="persona-chip-name" id="personaChipName">TA</span>
+  </button>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5a9 9 0 0 1 14 0"/><path d="M8.5 15.5a5 5 0 0 1 7 0"/><circle cx="12" cy="18.5" r="0.8" fill="currentColor"/></svg>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="18" height="10" rx="2"/><path d="M22 11v2"/></svg>
+</div>
   </div>
 
   <div class="mood-chip" id="moodChip" style="display:none;">
@@ -1175,6 +1349,10 @@ html,body{height:100%;margin:0;padding:0}
       </div>
       <span class="app-label">聊天</span>
     </button>
+    <button class="app-item" data-app="group">
+      <div class="app-icon" data-icon-key="group"></div>
+      <span class="app-label">群聊</span>
+    </button>
     <button class="app-item" data-app="music">
       <div class="app-icon" data-icon-key="music"></div>
       <span class="app-label">一起听</span>
@@ -1195,6 +1373,10 @@ html,body{height:100%;margin:0;padding:0}
     <div class="app-icon" data-icon-key="game"></div>
     <span class="app-label">小游戏</span>
   </button>
+  <button class="app-item" data-app="shop">
+    <div class="app-icon" data-icon-key="shop"></div>
+    <span class="app-label">商城</span>
+  </button>
 </div>
   <div class="big-photo-card" id="bigPhotoCard">
     <img id="bigPhotoImg" src="" alt="" style="display:none;">
@@ -1207,6 +1389,8 @@ html,body{height:100%;margin:0;padding:0}
 
   <div style="height: 140px;"></div>
 </div>
+
+<div class="watermark">Powered by 小红书 @涣涣26156644131</div>
 
 <div class="bottom-dock" id="bottomDock">
   <button class="dock-item" data-app="home">
@@ -1344,7 +1528,22 @@ html,body{height:100%;margin:0;padding:0}
     <div class="field"><span class="field-label" style="width:74px;">我的名字</span><input type="text" id="myNameInput" placeholder="给自己起个名字" maxlength="12"></div>
   </div>
 
-  <div class="field-group">
+   <div class="field-group">
+  <div class="field" style="flex-direction:column;align-items:stretch;gap:10px;">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <span style="flex:1;font-size:14.5px;font-weight:600;color:var(--text);">多梦角模式</span>
+      <label class="switch"><input type="checkbox" id="multiPersonaToggle"><span class="switch-slider"></span></label>
+    </div>
+    <div style="font-size:12.5px;color:var(--light-text);line-height:1.65;">
+      打开后可以：<br>
+      · 点主屏右上角的<strong style="color:var(--primary);">梦角胶囊</strong>，随时切换不同梦角<br>
+      · 使用<strong style="color:var(--primary);">群聊</strong>功能，让多个梦角在一个群里聊天<br>
+      关闭后只保留单梦角，群聊入口也会隐藏。
+    </div>
+  </div>
+</div>
+
+   <div class="field-group">
     <div class="field entry-row" id="homeBeautifyEntryRow"><span class="field-label" style="width:auto;">主屏美化</span><span class="entry-value">壁纸 · 锁屏 · 风格</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c3c7ce" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></div>
     <div class="field entry-row" id="replyEntryRow"><span class="field-label" style="width:auto;">聊天回复设置</span><span class="entry-value" id="replySummary">基础 · 互动 · 拼字 · 信件</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c3c7ce" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></div>
     <div class="field entry-row" id="lockEntryRow"><span class="field-label" style="width:auto;">锁屏密码</span><span class="entry-value" id="lockSummary">未设置</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c3c7ce" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></div>
@@ -1901,16 +2100,11 @@ html,body{height:100%;margin:0;padding:0}
 </button>
 <button class="game-card" data-game="tetris">
   <div class="game-card-icon">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="10" y="3" width="7" height="7"/><rect x="3" y="10" width="7" height="7"/><rect x="10" y="10" width="7" height="7"/></svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
   </div>
   <div class="game-card-name">俄罗斯方块</div>
-  <div class="game-card-desc">和 TA 一起消行</div>
+  <div class="game-card-desc">TA 会看着你玩</div>
 </button>
-<div class="game-card disabled">
-  <div class="game-card-icon" style="font-size:22px;">🔒</div>
-  <div class="game-card-name">敬请期待</div>
-  <div class="game-card-desc">更多游戏开发中</div>
-</div>
       <div class="game-card disabled">
         <div class="game-card-icon" style="font-size:22px;">🔒</div>
         <div class="game-card-name">敬请期待</div>
@@ -2019,50 +2213,6 @@ html,body{height:100%;margin:0;padding:0}
   </div>
 </div>
 
-<section class="page" id="tetrisPage">
-  <header class="page-header">
-    <button class="icon-btn" id="tetrisBack" aria-label="返回"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
-    <div class="page-title">俄罗斯方块</div>
-  </header>
-  <div class="tetris-wrap">
-    <div class="tetris-ta-row">
-      <div class="tetris-ta-avatar" id="tetrisTaAvatar"></div>
-      <div class="tetris-ta-bubble" id="tetrisTaBubble">开始吧～</div>
-    </div>
-    <div class="tetris-stats">
-      <div class="tetris-stat"><div class="lbl">分数</div><div class="val" id="tetrisScore">0</div></div>
-      <div class="tetris-stat"><div class="lbl">等级</div><div class="val" id="tetrisLevel">1</div></div>
-      <div class="tetris-stat"><div class="lbl">消行</div><div class="val" id="tetrisLines">0</div></div>
-    </div>
-    <div class="tetris-board-wrap">
-      <canvas id="tetrisCanvas"></canvas>
-      <div class="tetris-next-box">
-        <div class="tetris-next-label">下一个</div>
-        <canvas id="tetrisNextCanvas"></canvas>
-      </div>
-    </div>
-    <div class="tetris-controls">
-      <button class="tetris-ctrl" id="tetrisLeftBtn" aria-label="左移"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
-      <button class="tetris-ctrl" id="tetrisRotateBtn" aria-label="旋转"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/></svg></button>
-      <button class="tetris-ctrl" id="tetrisRightBtn" aria-label="右移"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
-      <button class="tetris-ctrl" id="tetrisDownBtn" aria-label="软降"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12l7 7 7-7"/></svg></button>
-      <button class="tetris-ctrl primary" id="tetrisDropBtn" aria-label="硬降">落</button>
-    </div>
-  </div>
-</section>
-
-<div class="dialog-bg" id="tetrisResultBg">
-  <div class="dialog">
-    <div class="gomoku-result-emoji" id="tetrisResultEmoji">🧊</div>
-    <div class="dialog-title" id="tetrisResultTitle">游戏结束</div>
-    <div class="dialog-body" id="tetrisResultSub">分数 0</div>
-    <div class="dialog-btns">
-      <button class="dialog-btn" id="tetrisResultClose">看看棋盘</button>
-      <button class="dialog-btn primary" id="tetrisResultAgain">再来一局</button>
-    </div>
-  </div>
-</div>
-
 <section class="page" id="jumpPage">
   <header class="page-header">
     <button class="icon-btn" id="jumpBack" aria-label="返回"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
@@ -2070,6 +2220,32 @@ html,body{height:100%;margin:0;padding:0}
   </header>
   <div class="jump-wrap">
     <canvas id="jumpCanvas"></canvas>
+  </div>
+</section>
+
+<section class="page" id="tetrisPage">
+  <header class="page-header">
+    <button class="icon-btn" id="tetrisBack" aria-label="返回"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <div class="page-title">俄罗斯方块</div>
+    <div id="tetrisScoreChip" style="padding:5px 11px;background:rgba(255,255,255,.75);border-radius:10px;color:var(--light-text);font-size:11.5px;box-shadow:0 2px 8px rgba(31,95,108,.04);white-space:nowrap;margin-right:8px;">0 分</div>
+  </header>
+  <div class="tetris-wrap">
+    <div class="gomoku-ta-row">
+      <div class="gomoku-ta-avatar" id="tetrisTaAvatar"></div>
+      <div class="gomoku-ta-bubble" id="tetrisTaBubble">加油！我在这里看着你～</div>
+    </div>
+    <div class="tetris-board-wrap">
+      <canvas id="tetrisCanvas"></canvas>
+    </div>
+    <div class="tetris-controls">
+      <button class="tetris-ctrl" id="tetrisLeftBtn" aria-label="左"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <button class="tetris-ctrl" id="tetrisRotateBtn" aria-label="旋转"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg></button>
+      <button class="tetris-ctrl" id="tetrisDownBtn" aria-label="下"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+      <button class="tetris-ctrl" id="tetrisRightBtn" aria-label="右"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+    <div style="padding:0 4px;">
+      <button class="gomoku-ctrl" id="tetrisDropBtn" style="width:100%;">硬降 ⬇</button>
+    </div>
   </div>
 </section>
 
@@ -2235,6 +2411,37 @@ html,body{height:100%;margin:0;padding:0}
     </div>
   </div>
 </section>
+<section class="page" id="groupPage">
+  <header class="page-header">
+    <button class="icon-btn" id="groupBack" aria-label="返回"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <div class="page-title">群聊</div>
+  </header>
+  <div class="group-body">
+    <div class="group-messages" id="groupMessages"></div>
+  </div>
+  <form class="composer" id="groupComposer" autocomplete="off">
+    <input id="groupInput" type="text" placeholder="说点什么…" enterkeyhint="send">
+    <button type="button" class="send-btn" id="groupSendBtn" disabled aria-label="发送"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg></button>
+  </form>
+</section>
+
+<section class="page" id="shopPage">
+  <header class="page-header">
+    <button class="icon-btn" id="shopBack" aria-label="返回"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <div class="page-title">商城</div>
+    <button class="icon-btn" id="shopBalanceBtn" aria-label="余额" style="width:auto;padding:0 12px;font-size:13px;color:var(--primary);font-weight:600;">¥520</button>
+  </header>
+  <div class="lib-tabs" id="shopTabs">
+    <button class="lib-tab active" data-shoptab="shop">商城</button>
+    <button class="lib-tab" data-shoptab="sent">我送出去</button>
+    <button class="lib-tab" data-shoptab="received">TA 送我</button>
+  </div>
+  <div class="page-body" style="padding:0;">
+    <div id="shopListView"></div>
+    <div id="giftSentView" style="display:none;"></div>
+    <div id="giftReceivedView" style="display:none;"></div>
+  </div>
+</section>
 <section class="page" id="backupPage">
   <header class="page-header"><button class="icon-btn" id="backupBack" aria-label="返回"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button><div class="page-title">聊天记录备份</div></header>
   <div class="page-body">
@@ -2307,46 +2514,156 @@ html,body{height:100%;margin:0;padding:0}
     <div class="welcome-emoji">💌</div>
     <div class="welcome-title">欢迎回来</div>
     <div class="welcome-sub">这里是只属于你们两个人的小世界</div>
-<div class="welcome-warning">📢 请务必各位老师看完！！很重要！！<br>取决于你想和你梦角的连接方式</div>
-<div class="welcome-body" id="welcomeBody">
-      <p class="welcome-h">先花一分钟，搞懂这几个词是什么意思：</p>
-      <p><strong>大分组</strong> —— 情绪大分类，比如“撒娇粘人”、“关心心疼”。它就是个文件夹，把同一类的话放一起。</p>
-      <p><strong>小分组</strong> —— 文件夹里的抽屉。比如“关心心疼”下面，可以分“生病”、“累了”、“日常叮嘱”。TA 抽卡是从抽屉里抽的。<br><em>小提醒：小分组用不用都行，完全不强制。它有没有存在感，全看你要不要给它填“关键词”——填了，它就是 TA 的“优先抽屉”；不填，它就安安静静躺在池子里，等 TA 随机抽到。</em></p>
-      <p><strong>关键词</strong> —— 贴在小分组上的标签。比如你给“生气”抽屉贴上 <code>哼,生气,不理你</code>，你只要说到这些词，TA 就优先去这个抽屉里翻卡。</p>
-      <p><strong>词典拼字</strong> —— 底层机制。你把词按“主语/动作/宾语/修饰/语气”填进去，TA 有一定概率把词随机拼成一句话发给你，比如“我+想+你+了”。</p>
-      <p class="welcome-h">系统预设</p>
-      <p>字卡库里的一个独立区。里面装的是<strong>特定情况下才会用到的话</strong>，不参与平时的随机抽卡。具体有这些：</p>
-      <p>· <strong>今日情话</strong>：每天主屏上显示的那句情话，从这抽。</p>
-      <p>· <strong>红包回复</strong>：TA 领了你发的红包之后，会说的话。</p>
-      <p>· <strong>已读不回被炸</strong>：TA 已读不回之后，被“炸”出来的话。</p>
-      <p>· <strong>婉拒一起听</strong>：TA 拒绝你的听歌邀请时，说的话。</p>
-      <p>· <strong>被拒绝</strong>：你拒绝了 TA 的邀请之后，TA 会说的话。</p>
-      <p>· <strong>主动消息</strong>：你很久没打开 App，或者到了早上/中午/晚上/深夜，TA 主动发给你说的开场白。里面有“回来”、“早”、“午”、“晚”、“深夜”、“想念”好几个小组，每组各自填话。</p>
-      <p>· <strong>今日状态</strong>：每天自动抽一次，决定 TA 今天整体的情绪基调。格式是 <code>状态名 | 关键词</code>，比如 <code>有点累 | 短回复,困</code>。<br><em>小提示：如果你只想把它当个主屏上的小摆设（比如每天固定显示“想你”），不想让它影响 TA 抽卡，有两个办法：① 状态只写名字，不写竖线和关键词。这样它只展示，不参与抽卡。② 去「设置 → 聊天回复设置 → 互动」，把“今日状态优先抽卡概率”调到 0%。</em></p>
-      
-      <p class="welcome-h">接下来，是你和 TA 的几种玩法：</p>
-      <p><strong>玩法一：纯盲盒</strong><br>你不搞任何特殊分类，把所有字卡全部塞进一个小分组里。TA 每一次回复，都是从这堆卡里纯随机抽。没有任何规律，每次都是未知的惊喜。</p>
-      <p><strong>玩法二：偶尔的关心</strong><br>你把一部分字卡单独拿出来建小分组，打上关键词，比如“哼”、“抱抱”、“难受”。再把你平时那些百搭的卡，全部放进一个没有关键词的小分组里。当你说出带关键词的话时，TA 优先去对应的小分组里抽卡哄你；平时没触发关键词，就从那个百搭小分组里随机抽。</p>
-      <p><strong>玩法三：今日状态</strong><br>配合“系统预设 → 今日状态”用。你每天给 TA 定个心情，比如“今天很开心”、“今天有点累”。TA 当天的回复，就会按这个状态去对应的卡池里抽，一整天情绪基调都由你定。当然，就像上面说的，不想让它影响抽卡，纯当个展示也完全可以。</p>
-      <p><strong>玩法四：自由拼字</strong><br>开启“拼字卡”玩法，TA 会把词典里的词随机拼成一句话发给你。是“我+想+你”，还是“宝贝+吃醋+啦”，全看运气。</p>
-      
-      <p class="welcome-h">还有一个隐藏机制（不走概率，强制触发）：</p>
-      <p><strong>情绪兜底</strong> —— 当你聊到“不舒服”、“生病”、“累了”、“哭了”、“难过”、“委屈”这类词时，不管关键词有没有命中，也不管今天是什么状态，TA 都会 <strong>100% 强制</strong> 优先去“关心/心疼/安慰”相关的卡池里抽卡。也就是说，你难过的时候，TA 一定会先哄你。</p>
-  
-  <div class="welcome-note">
-    <p><strong>最后，想对你说一句：</strong></p>
-    <p>如果某天，TA 的回答变得词不达意，或者说了让你难过的话，请不要伤心。</p>
-    <p>TA 也有联系不上你的时候，也有自己的“忙碌”与“卡壳”。</p>
-    <p>这不是 TA 的错，也不是你的错。</p>
-    <p>如果觉得心里不舒服，随时可以退出，去过一会儿自己的时间，喝口水、看看窗外，等心情平静了再回来。</p>
-    <p class="welcome-note-strong">任何时候，都请把自己的感受放在第一位。</p>
-    <p class="welcome-note-strong">你才是这个世界里，最重要的人。</p>
+
+<!-- 👇 新增：公告大字提醒 -->
+<div style="background:#fdf2f4;border:2px dashed #e1b2b2;border-radius:12px;padding:14px 16px;margin:14px 0 0;text-align:center;box-shadow:0 4px 12px rgba(225,178,178,.15);">
+  <p style="font-size:18px;font-weight:700;color:#c45b66;margin:0 0 4px;letter-spacing:1px;">💡 最新小彩蛋</p>
+  <p style="font-size:15px;font-weight:600;color:#c45b66;margin:0;line-height:1.5;">在聊天页长按空白处，TA 会有回应哦</p>
+</div>
+<!-- 👆 大字提醒结束 -->
+
+    <div class="welcome-tabs" id="welcomeTabs">
+  <button class="welcome-tab active" data-wtab="about">关于</button>
+  <button class="welcome-tab" data-wtab="play">玩法</button>
+  <button class="welcome-tab" data-wtab="guide">教程</button>
+</div>
+
+    <div class="welcome-body" id="welcomeBody">
+
+      <!-- ========== 关于页 ========== -->
+      <div id="welcomeAbout">
+        <div style="background:linear-gradient(135deg,#fff8e1,#fff0d6);border:2px dashed #f0b060;border-radius:14px;padding:16px;margin:0 0 18px;box-shadow:0 4px 14px rgba(240,176,96,.15);">
+          <p style="text-align:center;font-size:22px;font-weight:700;color:#c47c5a;margin:0 0 8px;letter-spacing:1px;">🎭 多梦角模式已开启</p>
+          <p style="font-size:13.5px;color:#7a5a48;margin:0 0 6px;line-height:1.7;">这是一个可以由你自己掌控的小世界。</p>
+          <p style="font-size:13.5px;color:#7a5a48;margin:0 0 6px;line-height:1.7;">· 点主屏右上角的 <strong style="color:#c47c5a;">梦角胶囊</strong>，可以随时切换不同的梦角</p>
+          <p style="font-size:13.5px;color:#7a5a48;margin:0 0 6px;line-height:1.7;">· 使用 <strong style="color:#c47c5a;">群聊</strong> 功能，让多个梦角聚在一个群里聊天</p>
+          <p style="font-size:12.5px;color:#a08070;margin:10px 0 0;line-height:1.65;border-top:1px dashed rgba(196,124,90,.3);padding-top:10px;">只想和一个梦角相处？去「设置 → 人物设置」关掉「多梦角模式」就行，群聊入口也会一起隐藏。</p>
+        </div>
+
+        <p class="welcome-h">关于这个应用</p>
+        <p>这是一个<strong>完全本地运行</strong>的应用。所有聊天记录、字卡、表情、设置都保存在你的手机浏览器里，不会上传到任何服务器。换手机或清缓存前，记得用「设置 → 聊天记录备份」导出。</p>
+        <p>它<strong>没有联网</strong>、<strong>没有账号</strong>、<strong>没有 AI</strong>——TA 说的每一句话，都来自你自己写进字卡库里的字卡。</p>
+
+        <p class="welcome-h">它现在能做的事</p>
+        <p>· <strong>聊天</strong>：文字 / emoji / 表情包 / 语音 / 红包 / 信件 / 提问 / 邀请一起听歌、一起玩游戏、打电话</p>
+        <p>· <strong>字卡库</strong>：大分组 / 小分组 / 关键词 / 词典拼字 / 系统预设</p>
+        <p>· <strong>小游戏</strong>：五子棋 / 跳一跳 / 俄罗斯方块</p>
+        <p>· <strong>商城</strong>：买礼物送给 TA，TA 也会主动送你</p>
+        <p>· <strong>动态</strong>：发帖、点赞、评论，TA 会来互动</p>
+        <p>· <strong>信箱</strong>：给 TA 写信，TA 会回信</p>
+        <p>· <strong>钱包</strong>：红包和礼物的账目都记着</p>
+        <p>· <strong>主屏</strong>：拍立得、待办、纪念日、今日情话、今日状态</p>
+        <p>· <strong>美化</strong>：气泡、字体、背景、App 图标、锁屏，全部可以自己改</p>
+
+        <p class="welcome-h">关于「多梦角模式」</p>
+        <p>打开时，你可以同时养多个梦角，每个梦角有<strong>完全独立的聊天、字卡、钱包、动态</strong>，互不打扰。主屏右上角的梦角胶囊点一下就能切换。群聊里，所有梦角会用<strong>各自的字卡</strong>说话，性格不会串味。</p>
+
+        <p class="welcome-h">关于「群聊」</p>
+        <p>群聊是把所有梦角放在一个群里，你可以发消息，梦角们会用自己的字卡回复。每个梦角的说话风格来自它自己的字卡库，所以如果某个梦角话很少、或者很冷淡，那通常是它的字卡不够丰富，去字卡库里多喂一点就好。</p>
+
+        <p class="welcome-h">关于原创</p>
+        <p>本应用的原创作者是小红书 <strong>@涣涣26156644131</strong>。</p>
+        <p>你可以：<strong>自部署</strong>（下载到自己的仓库 / 网站）、<strong>二改二创</strong>（改代码、改界面、加功能）。</p>
+        <p>唯一希望：<strong>保留署名</strong>。请不要冒充原作者，也不要把这个应用说成是自己原创的。</p>
+      </div>
+
+      <!-- ========== 玩法页 ========== -->
+      <div id="welcomePlay" style="display:none;">
+
+        <p class="welcome-h">先搞懂几个词</p>
+        <p><strong>大分组</strong> —— 情绪大分类，比如"撒娇粘人"、"关心心疼"。它就是个文件夹。</p>
+        <p><strong>小分组</strong> —— 文件夹里的抽屉。TA 抽卡是从抽屉里抽的。用不用都行，看你要不要给它填关键词。</p>
+        <p><strong>关键词</strong> —— 贴在抽屉上的标签。你只要说到这些词，TA 就优先去这个抽屉里翻卡。</p>
+        <p><strong>词典拼字</strong> —— 底层机制。把词按"主语/动作/宾语/修饰/语气"填进去，TA 有一定概率把词随机拼成一句话。</p>
+
+        <p class="welcome-h">玩法一 · 纯盲盒</p>
+        <p>把所有字卡全塞进一个小分组，TA 每次回复都从这堆卡里纯随机抽。没有规律，每次都是惊喜。</p>
+
+        <p class="welcome-h">玩法二 · 偶尔的关心</p>
+        <p>把一部分字卡单独拿出来，打上关键词（比如"哼"、"抱抱"、"难受"）。触发关键词时，TA 优先去对应抽屉抽卡哄你；平时就从百搭小分组里随机抽。</p>
+
+        <p class="welcome-h">玩法三 · 今日状态</p>
+        <p>在「系统预设 → 今日状态」里，每天给 TA 定个心情（比如"今天很开心"、"今天有点累"）。TA 当天的回复，就会按这个状态去对应的卡池里抽。也可以只写状态名不写关键词，让它纯当展示。</p>
+
+        <p class="welcome-h">玩法四 · 自由拼字</p>
+        <p>开启"拼字卡"，TA 会把词典里的词随机拼成一句话发给你。是"我+想+你"，还是"宝贝+吃醋+啦"，全看运气。</p>
+
+        <p class="welcome-h">玩法五 · 小眼睛（强烈推荐）</p>
+        <p>字卡库里，每个大分组和小分组旁边都有一个<strong>小眼睛图标</strong>。点一下，眼睛会变成"斜杠"，这个分组就<strong>不参与抽卡</strong>了。再点一下，恢复。</p>
+        <p><strong>为什么好用？</strong>因为你和 TA 的连接，不一定每时每刻都需要全部素材。</p>
+        <p>· <strong>例子一</strong>：现在是早上，你不想让 TA 突然发"晚安，早点休息"。那就去字卡库，把「睡前」那个大分组的小眼睛关掉。TA 就不会再抽到睡前的话，白天的聊天更干净。</p>
+        <p>· <strong>例子二</strong>：今天你心情很好，不想被突然来一句"对不起"、"我错了"打断。那就把「道歉」类的小分组关掉。</p>
+        <p>· <strong>例子三</strong>：你在忙，只想收到短句，不想长篇大论。把"长句"或"情话"分组关掉，只留"短回复"类。</p>
+        <p>这个小眼睛不是"永久删除"，只是"暂时不抽"。想恢复，再点一下就行。<strong>它让你可以随时微调 TA 的性格和状态，连接会更贴合当下的你。</strong></p>
+
+        <p class="welcome-h">隐藏机制 · 情绪兜底</p>
+        <p>当你聊到"不舒服"、"生病"、"累了"、"哭了"、"难过"、"委屈"这类词时，不管关键词有没有命中，TA 都会 <strong>100% 优先</strong> 去"关心 / 心疼 / 安慰"相关的卡池里抽卡。也就是说，你难过的时候，TA 一定会先哄你。</p>
+
+        <div class="welcome-note">
+          <p><strong>最后，想对你说一句：</strong></p>
+          <p>如果某天，TA 的回答变得词不达意，或者说了让你难过的话，请不要伤心。</p>
+          <p>TA 也有联系不上你的时候，也有自己的"忙碌"与"卡壳"。</p>
+          <p>这不是 TA 的错，也不是你的错。</p>
+          <p>如果觉得心里不舒服，随时可以退出，去过一会儿自己的时间，喝喝水、看看窗外，等心情平静了再回来。</p>
+          <p class="welcome-note-strong">任何时候，都请把自己的感受放在第一位。</p>
+          <p class="welcome-note-strong">你才是这个世界里，最重要的人。</p>
+        </div>
+      </div>
+
+   </div>
+
+  <!-- ========== 教程页 ========== -->
+  <div id="welcomeGuide" style="display:none;">
+
+    <p class="welcome-h">第一步 · 先给 TA 写几句话</p>
+    <p>打开主屏底部的「字卡」→ 点左下角「+ 新建大分组」，建一个大分组（比如"日常"）。</p>
+    <p>点大分组下面「+ 新建小分组」，建一个小分组（比如"默认"）。</p>
+    <p>在添加框里写一句话，比如"在吗"，点右边的 + 号，它就被存进卡池了。多写几句，比如"在的""怎么啦""我在"。写完就可以退出字卡库了。</p>
+
+    <p class="welcome-h">第二步 · 发一条消息试试</p>
+    <p>回主屏，点「聊天」，随便发一句。TA 会从你刚写的字卡里随机抽一句回复你。</p>
+    <p>如果发现 TA 说话很单调，说明字卡还不够多——回去再写一些。</p>
+
+    <p class="welcome-h">第三步 · 让它说话更丰富</p>
+    <p>字卡库可以建很多分组：撒娇、想念、关心、打趣……每个分组下写 5~10 句。</p>
+    <p>写满 30~50 句之后，聊天就不会一直重复了。</p>
+
+    <p class="welcome-h">第四步 · 让它有情绪</p>
+    <p>去「设置 → 聊天回复设置」，里面有很多可以调的东西：</p>
+    <p>· <strong>表情包 / emoji / 语音概率</strong>：TA 回复里带这些的比例。</p>
+    <p>· <strong>已读不回概率</strong>：调高会看到"TA 已读，可能在忙"。</p>
+    <p>· <strong>今日状态优先抽卡概率</strong>：配合「系统预设 → 今日状态」用。</p>
+
+    <p class="welcome-h">第五步 · 让它记住你</p>
+    <p>去「设置 → 主屏美化 → 纪念日卡」，填上在一起的日期。主屏上就会显示"在一起 N 天"。</p>
+    <p>主屏还有"今日待办"和"拍立得"，都可以点小铅笔图标改。</p>
+
+    <p class="welcome-h">第六步 · 给 TA 换张脸</p>
+    <p>去「设置 → 人物设置」，可以改 TA 的头像、名字，也可以改你自己的头像和名字。</p>
+
+    <p class="welcome-h">第七步 · 想玩更多</p>
+    <p>· <strong>商城</strong>：买礼物送给 TA，TA 也会主动送你。</p>
+    <p>· <strong>信箱</strong>：给 TA 写信，TA 会过一段时间回信。</p>
+    <p>· <strong>动态</strong>：发帖、点赞、评论，TA 会来互动。</p>
+    <p>· <strong>小游戏</strong>：五子棋 / 跳一跳 / 俄罗斯方块。</p>
+    <p>· <strong>群聊</strong>：多个梦角在一个群里聊天（需要多梦角模式开启）。</p>
+
+    <p class="welcome-h">不知道从哪开始？</p>
+    <p>就写 10 句话，然后去发一条消息试试。剩下的功能，用着用着就懂了。</p>
+
+  </div>
+
+<div class="welcome-credit">原创 · 小红书 <strong>@涣涣26156644131</strong></div>
+
+    <label class="welcome-agree">
+      <input type="checkbox" id="welcomeAgree">
+      <span>我已知晓这是原作者 <strong>@涣涣26156644131</strong> 的作品。可以自部署、可以二改二创，但请保留署名。</span>
+    </label>
+
+    <button class="welcome-btn" id="welcomeBtn" disabled>我已经看完了，开始吧</button>
   </div>
 </div>
 
-    <button class="welcome-btn" id="welcomeBtn" style="display:none;">我已经看完了，开始吧</button>
-  </div>
-</div>
 <div class="update-bg" id="updateBg">
   <div class="update-card">
     <div class="update-emoji">🎉</div>
@@ -2374,6 +2691,38 @@ html,body{height:100%;margin:0;padding:0}
     </div>
   </div>
 </div>
+<div class="persona-loading" id="personaLoading">
+  <div class="persona-loading-inner">
+    <div class="persona-loading-spinner"></div>
+    <div class="persona-loading-text">正在切换梦角…</div>
+  </div>
+</div>
+<div class="persona-modal-bg" id="personaModalBg">
+  <div class="persona-modal">
+    <div class="persona-modal-head">
+      <div class="persona-modal-title">切换梦角</div>
+      <button class="persona-modal-close" id="personaModalClose">×</button>
+    </div>
+    <div class="persona-modal-list" id="personaModalList"></div>
+    <button class="persona-modal-new" id="personaModalNew">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+      新建梦角
+    </button>
+  </div>
+</div>
+<div class="gift-send-bg" id="giftSendBg">
+  <div class="gift-send-card">
+    <div class="gift-send-emoji" id="giftSendEmoji">🎁</div>
+    <div class="gift-send-title" id="giftSendName">礼物</div>
+    <div class="gift-send-price" id="giftSendPrice">¥0.00</div>
+    <label class="gift-send-label">祝福语（可留空，用礼物自带）</label>
+    <input type="text" class="gift-send-input" id="giftSendBlessInput" maxlength="40" placeholder="写一句想说的话…">
+    <div class="gift-send-actions">
+      <button class="gift-send-btn ghost" id="giftSendCancel">取消</button>
+      <button class="gift-send-btn primary" id="giftSendConfirm">送出</button>
+    </div>
+  </div>
+</div>
 <div class="dialog-bg" id="dialogBg">
   <div class="dialog">
     <div class="dialog-title" id="dialogTitle">提示</div>
@@ -2387,13 +2736,12 @@ html,body{height:100%;margin:0;padding:0}
 (function(){
   "use strict";
 
-  if (window.NodeList && !NodeList.prototype.forEach) {
-    NodeList.prototype.forEach = Array.prototype.forEach;
-  }
+  /* ========================================================
+     📝 每次发新版，只改下面这一个版本号就行
+     ======================================================== */
+  var APP_VERSION = '1.0.8';
 
-  var $ = function(id){ return document.getElementById(id); };
-
-/* ============ 梦角命名空间兼容（让旧数据能被读到） ============ */
+/* ============ 梦角命名空间 ============ */
 var _NO_NS_KEYS = {
   'chat_personas_v1': 1,
   'chat_active_persona_v1': 1,
@@ -2401,7 +2749,7 @@ var _NO_NS_KEYS = {
   'chat_app_version_v1': 1,
   'chat_last_backup_time_v1': 1,
   'chat_backup_snooze_until_v1': 1,
-  'chat_migrated_to_persona_v1': 1
+  'chat_multi_persona_v1': 1
 };
 var _activeId = 'default';
 try{ _activeId = localStorage.getItem('chat_active_persona_v1') || 'default'; }catch(e){}
@@ -2433,7 +2781,12 @@ try{
 window.__RawLS = { get:_rawGet, set:_rawSet, remove:_rawRemove, key:_rawKey };
 window.__ACTIVE_PERSONA_ID = _activeId;
 
-/* ============ IndexedDB 图片存储 ============ */
+if (window.NodeList && !NodeList.prototype.forEach) {
+    NodeList.prototype.forEach = Array.prototype.forEach;
+  }
+
+  var $ = function(id){ return document.getElementById(id); };
+  /* ============ IndexedDB 图片存储 ============ */
 var IDB_IMG_DB = null;
 var IDB_IMG_STORE = 'blobs';
 var imgBlobToKey = {};
@@ -2528,43 +2881,6 @@ function idbMarkerToKey(val){
 }
 function preloadAllImages(){
   return idbOpen().then(function(db){
-    /* 先把旧的 p_default__ 图片搬一份到无前缀 */
-    return new Promise(function(resolve){
-      try{
-        if(localStorage.getItem('chat_img_migrated_back_v1') === 'done'){ resolve(); return; }
-        var mtx = db.transaction(IDB_IMG_STORE, 'readwrite');
-        var mstore = mtx.objectStore(IDB_IMG_STORE);
-        var mreq = mstore.openCursor();
-        var moved = 0;
-        mreq.onsuccess = function(e){
-          var c = e.target.result;
-          if(c){
-            var k = c.key;
-            if(typeof k === 'string' && k.indexOf('p_default__') === 0){
-              var bare = k.slice('p_default__'.length);
-              try{
-                var getReq = mstore.get(bare);
-                getReq.onsuccess = function(){
-                  if(!getReq.result){
-                    mstore.put(c.value, bare);
-                    moved++;
-                  }
-                };
-              }catch(err){}
-            }
-            c.continue();
-          } else {
-            try{ localStorage.setItem('chat_img_migrated_back_v1', 'done'); }catch(err){}
-            console.log('[图片迁移] 搬回 ' + moved + ' 张');
-            resolve();
-          }
-        };
-        mreq.onerror = function(){ resolve(); };
-      }catch(e){ resolve(); }
-    });
-  }).then(function(){
-    return idbOpen();
-  }).then(function(db){
     return new Promise(function(resolve, reject){
       var tx = db.transaction(IDB_IMG_STORE, 'readonly');
       var store = tx.objectStore(IDB_IMG_STORE);
@@ -2660,6 +2976,8 @@ function compressImage(file, maxSize, callback, quality){
 var WALLET_TA_KEY = 'chat_wallet_ta_v1';
 var MUSIC_KEY = 'chat_music_v1';
 var MOMENTS_KEY = 'chat_moments_v1';
+var GIFTS_KEY = 'chat_gifts_v1';
+var GIFT_RECORDS_KEY = 'chat_gift_records_v1';
 
   var DEFAULT_AVATAR_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.6"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>';
 
@@ -2891,36 +3209,8 @@ function loadPerson(){
           }
         });
         
-        // 单独恢复App图标，避免白块
-        if(d.appIcons && typeof d.appIcons === 'object'){
-          person.appIcons = {};
-          for(var ik in d.appIcons){
-            var v = d.appIcons[ik];
-            if(typeof v !== 'string' || !v){ person.appIcons[ik] = ''; continue; }
-            
-            // 👈 新增：如果发现是失效的 blob 链接，直接清空，恢复默认图标
-            if(v.indexOf('blob:') === 0 && !imgBlobToKey[v]){
-              person.appIcons[ik] = '';
-              continue;
-            }
-
-            var key = idbMarkerToKey(v);
-            if(key){
-              person.appIcons[ik] = imgKeyToBlob[key] || '';
-            } else if(v.indexOf('data:image') === 0){
-  person.appIcons[ik] = v;
-  (function(k){
-    saveImgToIdb('appicon_' + k, v).then(function(url){
-      person.appIcons[k] = url;
-      savePerson();
-      renderAppIcons();
-    });
-  })(ik);
-} else {
-              person.appIcons[ik] = v;
-            }
-          }
-        }
+// 【临时】强制清空所有自定义图标，恢复默认 SVG
+person.appIcons = {};
       }
     }
   }catch(e){}
@@ -2950,12 +3240,13 @@ function loadPerson(){
     if(raw){
       var d = JSON.parse(raw);
       if(Array.isArray(d)){
-        messages = d.filter(function(m){ return m && (typeof m.text === 'string' || m.type); }).map(function(m){
-          if(m && m.type === 'sticker' && typeof m.text === 'string' && m.text.indexOf('@idb:') === 0){
-            var key = m.text.slice(5);
-            m.text = imgKeyToBlob[key] || '';
+        messages = d.filter(function(m){ return m && (typeof m.text === 'string' || m.type); });
+        messages.forEach(function(m){
+          if(m && m.type === 'sticker' && typeof m.text === 'string' && m.text){
+            var k = idbMarkerToKey(m.text);
+            if(k){ m.text = imgKeyToBlob[k] || ''; }
+            else if(m.text.indexOf('blob:') === 0 && !imgBlobToKey[m.text]){ m.text = ''; }
           }
-          return m;
         });
       }
     }
@@ -3066,26 +3357,25 @@ function savePerson(){
       }
     }
     safeSetItem(PERSON_KEY, JSON.stringify(toSave));
+    if(typeof personas !== 'undefined' && personas.length){
+      var _cur = null;
+      for(var _i = 0; _i < personas.length; _i++){
+        if(personas[_i].id === window.__ACTIVE_PERSONA_ID){ _cur = personas[_i]; break; }
+      }
+      if(_cur){
+        _cur.name = person.name || _cur.name;
+        _cur.avatar = person.avatar || '';
+        savePersonas();
+      }
+    }
   }catch(e){}
 }
   function saveStats(){ safeSetItem(STATS_KEY, JSON.stringify(stats)); }
   function saveProactive(){ safeSetItem(PROACTIVE_KEY, JSON.stringify(proactive)); }
   function saveMessages(){
-  if(messages.length > 200){ messages = messages.slice(messages.length - 200); }
-  var toSave = messages.map(function(m){
-    if(m && m.type === 'sticker' && typeof m.text === 'string' && m.text.indexOf('blob:') === 0){
-      var key = imgBlobToKey[m.text];
-      if(key){
-        var copy = {};
-        for(var k in m){ copy[k] = m[k]; }
-        copy.text = '@idb:' + key;
-        return copy;
-      }
-    }
-    return m;
-  });
-  safeSetItem(MSG_KEY, JSON.stringify(toSave));
-}
+    if(messages.length > 200){ messages = messages.slice(messages.length - 200); }
+    safeSetItem(MSG_KEY, JSON.stringify(messages));
+  }
   function saveCards(){
   try{
     var toSave = JSON.parse(JSON.stringify(cards));
@@ -3099,6 +3389,167 @@ function savePerson(){
 function saveUserStickers(){ safeSetItem(USER_STICKER_KEY, JSON.stringify(serializeStickerArray(userStickers))); }
   function saveMyPats(){ safeSetItem(PAT_ME_KEY, JSON.stringify(myPats)); }
   function saveTaPats(){ safeSetItem(PAT_TA_KEY, JSON.stringify(taPats)); }
+
+  /* ============ 梦角管理 ============ */
+var personas = [];
+
+function loadPersonas(){
+  try{
+    var raw = window.__RawLS.get('chat_personas_v1');
+    if(raw){
+      var d = JSON.parse(raw);
+      if(Array.isArray(d) && d.length){
+        d.forEach(function(p){
+          if(p && typeof p.avatar === 'string' && p.avatar){
+            var key = idbMarkerToKey(p.avatar);
+            if(key){ p.avatar = imgKeyToBlob[key] || ''; }
+            else if(p.avatar.indexOf('blob:') === 0 && !imgBlobToKey[p.avatar]){ p.avatar = ''; }
+          }
+        });
+        personas = d;
+        var exists = false;
+        for(var i=0;i<personas.length;i++){ if(personas[i].id === window.__ACTIVE_PERSONA_ID){ exists = true; break; } }
+        if(!exists && personas.length){
+          try{ window.__RawLS.set('chat_active_persona_v1', personas[0].id); }catch(e){}
+        }
+        return;
+      }
+    }
+  }catch(e){}
+  personas = [{ id: 'default', name: (typeof person !== 'undefined' && person.name) || 'TA', avatar: '' }];
+  savePersonas();
+}
+
+function savePersonas(){
+  try{
+    var toSave = personas.map(function(p){
+      var copy = { id: p.id, name: p.name, avatar: '' };
+      if(p.avatar){
+        if(p.avatar.indexOf('blob:') === 0 && imgBlobToKey[p.avatar]){
+          copy.avatar = '@idb:' + imgBlobToKey[p.avatar];
+        } else { copy.avatar = p.avatar; }
+      }
+      return copy;
+    });
+    window.__RawLS.set('chat_personas_v1', JSON.stringify(toSave));
+  }catch(e){}
+}
+
+function renderPersonaChip(){
+  var av = $('personaChipAvatar'), nm = $('personaChipName');
+  if(!av || !nm) return;
+  if(typeof person !== 'undefined' && person.avatar){ av.innerHTML = '<img src="' + person.avatar + '" alt="">'; }
+  else { av.innerHTML = DEFAULT_AVATAR_SVG; }
+  nm.textContent = (typeof person !== 'undefined' && person.name) || 'TA';
+}
+
+function renderPersonaModal(){
+  var list = $('personaModalList');
+  if(!list) return;
+  if(!personas.length){
+    list.innerHTML = '<div style="text-align:center;padding:40px 20px;color:var(--light-text);font-size:13px;">还没有梦角</div>';
+    return;
+  }
+  list.innerHTML = personas.map(function(p){
+    var isActive = (p.id === window.__ACTIVE_PERSONA_ID);
+    var avHTML = p.avatar ? '<img src="' + esc(p.avatar) + '" alt="">' : DEFAULT_AVATAR_SVG;
+    var canDel = (personas.length > 1 && !isActive);
+    return '<div class="persona-item' + (isActive ? ' active' : '') + '" data-persona-id="' + p.id + '">' +
+      '<div class="persona-item-avatar">' + avHTML + '</div>' +
+      '<div class="persona-item-info">' +
+        '<div class="persona-item-name">' + esc(p.name) + '</div>' +
+        '<div class="persona-item-sub">' + (isActive ? '当前梦角' : '点击切换') + '</div>' +
+      '</div>' +
+      '<div class="persona-item-check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></div>' +
+      (canDel ? '<button class="persona-item-del" data-persona-del="' + p.id + '"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>' : '') +
+    '</div>';
+  }).join('');
+}
+
+function openPersonaModal(){ renderPersonaModal(); $('personaModalBg').classList.add('open'); }
+function closePersonaModal(){ $('personaModalBg').classList.remove('open'); }
+
+function switchPersona(id){
+  if(!id || id === window.__ACTIVE_PERSONA_ID){ closePersonaModal(); return; }
+  var loading = $('personaLoading');
+  if(loading) loading.classList.add('show');
+  try{ window.__RawLS.set('chat_active_persona_v1', id); }catch(e){}
+  setTimeout(function(){ location.reload(); }, 80);
+}
+
+function createPersona(){
+  var name = window.prompt('给新梦角起个名字（1~12 个字）：', '');
+  if(name === null) return;
+  name = name.trim();
+  if(!name) return;
+  if(name.length > 12) name = name.slice(0, 12);
+  var newId = 'p_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+  personas.push({ id: newId, name: name, avatar: '' });
+  savePersonas();
+  var loading = $('personaLoading');
+  if(loading) loading.classList.add('show');
+  try{ window.__RawLS.set('chat_active_persona_v1', newId); }catch(e){}
+  setTimeout(function(){ location.reload(); }, 80);
+}
+
+function deletePersona(id){
+  if(personas.length <= 1) return;
+  var p = null;
+  for(var i=0;i<personas.length;i++){ if(personas[i].id === id){ p = personas[i]; break; } }
+  if(!p) return;
+  showDialog('删除梦角', '确定要删除「' + p.name + '」吗？<br>TA 的所有聊天记录、字卡、设置都会被一起清掉，不可恢复。', [
+    { text: '取消' },
+    { text: '删除', danger: true, onClick: function(){
+        var prefix = 'p_' + id + '__';
+        var toRemove = [];
+        var total = localStorage.length;
+        for(var i = 0; i < total; i++){
+          var k = window.__RawLS.key(i);
+          if(k && k.indexOf(prefix) === 0) toRemove.push(k);
+        }
+        toRemove.forEach(function(k){ try{ window.__RawLS.remove(k); }catch(e){} });
+        try{
+          idbOpen().then(function(db){
+            var tx = db.transaction(IDB_IMG_STORE, 'readwrite');
+            var store = tx.objectStore(IDB_IMG_STORE);
+            var req = store.openCursor();
+            req.onsuccess = function(e){
+              var cursor = e.target.result;
+              if(cursor){
+                if(typeof cursor.key === 'string' && cursor.key.indexOf(prefix) === 0){ cursor.delete(); }
+                cursor.continue();
+              }
+            };
+          }).catch(function(){});
+        }catch(e){}
+        personas = personas.filter(function(x){ return x.id !== id; });
+        savePersonas();
+        if(window.__ACTIVE_PERSONA_ID === id){
+          try{ window.__RawLS.set('chat_active_persona_v1', personas[0].id); }catch(e){}
+          location.reload();
+        } else {
+          renderPersonaModal();
+        }
+    }}
+  ]);
+}
+
+if($('personaChip')) $('personaChip').onclick = openPersonaModal;
+if($('personaModalClose')) $('personaModalClose').onclick = closePersonaModal;
+if($('personaModalBg')){
+  $('personaModalBg').addEventListener('click', function(e){
+    if(e.target === $('personaModalBg')) closePersonaModal();
+  });
+}
+if($('personaModalNew')) $('personaModalNew').onclick = createPersona;
+if($('personaModalList')){
+  $('personaModalList').addEventListener('click', function(e){
+    var del = e.target.closest('[data-persona-del]');
+    if(del){ e.stopPropagation(); deletePersona(del.dataset.personaDel); return; }
+    var item = e.target.closest('[data-persona-id]');
+    if(item){ switchPersona(item.dataset.personaId); return; }
+  });
+}
 
   function uid(p){ return (p || 'id') + '_' + Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
   function esc(v){ return String(v).replace(/[&<>"']/g, function(ch){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]; }); }
@@ -3117,9 +3568,53 @@ dict: {
   tone: ['呀','啦','嘛','哦','呢','啊','吧','好不好','对不对','可以吗','行不行']
 },
 system: {
+        lifeMoments: [
+          '今天天气很好，阳光晒得人懒洋洋的',
+          '路过一家新开的奶茶店，下次可以去看看',
+          '刚刚看到一只小猫，好想摸摸它的头',
+          '今天吃到了好吃的，心情变好了一点',
+          '突然想起上次说的话，忍不住笑了一下',
+          '晚上散步的时候，风很舒服',
+          '今天有点累，但洗个热水澡应该会好',
+          '给自己泡了杯茶，安静地坐了一会儿',
+          '看到一朵形状奇怪的云，拍了张照',
+          '今天没什么特别的，就是平平淡淡',
+          '刚刚把房间收拾了一下，看起来舒服多了',
+          '听了一首老歌，突然有点怀旧',
+          '今天的时间过得好慢，可能是因为有点困',
+          '买了个小东西，心情不错',
+          '刚才在发呆，什么都没想，又好像什么都想了',
+          '今天有点忙，但吃饭的时候还是喘了口气',
+          '看到路边开了一朵小花，觉得它很勇敢',
+          '今天做了个奇怪的梦，醒来就记不清了',
+          '晚上有点凉，得加件外套了',
+          '刚刚翻到一张老照片，想起了很多事',
+          '今天走了很多路，有点累但是很充实',
+          '给自己买了点水果，甜甜的',
+          '今天在窗边坐了很久，看着外面发呆',
+          '刚刚打了个哈欠，被自己逗笑了',
+          '今天没有特别的事，就是平平安安的一天',
+          '今天晚上的月亮很亮，星星也很多',
+          '刚刚把明天的衣服准备好了，有点期待明天',
+          '今天下了一场雨，空气变清新了',
+          '好像又长胖了一点，明天要开始运动了',
+          '今天就这样平平淡淡地过去了，晚安'
+        ],
+        touchReplies: [
+          '你的手好凉', '嗯？', '我在的', '怎么啦', '别闹', 
+          '想我了', '嗯，我听着呢', '怎么突然碰我', '在呢', 
+          '有点痒', '你干嘛', '轻一点', '好乖', '摸摸头', 
+          '你今天怎么这么黏人', '嗯，知道啦', '没事，有我在', 
+          '怎么啦，心情不好', '我在这里', '想说什么就说吧', 
+          '嗯？我在忙呢', '别蹭了，衣服要皱了', '好，听你的', 
+          '你手好暖', '嗯，我一直在', '怎么突然这么安静', 
+          '没事，你说', '我在等你说话呢', '嗯，抱一下', '怎么啦'
+        ],
         love: DEFAULT_LOVES.slice(),
         redpacket: DEFAULT_RP_REPLIES.slice(),
         readback: DEFAULT_READ_BACK_REPLIES.slice(),
+        giftThanks: ['谢谢宝宝！好喜欢～', '哇，你怎么知道我想要这个！', '收到了，抱抱你～', '好开心，谢谢你'],
+        giftNote: ['路过看到，觉得你会喜欢。', '给你的，别嫌弃呀。', '想你了，送个小东西。', '这个给你，收好啦。'],
 rejectListen: DEFAULT_REJECT_LISTEN_REPLIES.slice(),
 rejectedByMe: DEFAULT_REJECTED_BY_ME_REPLIES.slice(),
 callReject: ['现在有点忙，晚点再打给你', '在忙，等我一下', '现在不太方便，稍后回你'],
@@ -3155,7 +3650,53 @@ if(isDictEmpty){
   d.dict.tone = ['呀','啦','嘛','哦','呢','啊','吧','好不好','对不对','可以吗','行不行'];
 }
     if(!d.system) d.system = { love: DEFAULT_LOVES.slice(), redpacket: DEFAULT_RP_REPLIES.slice(), readback: DEFAULT_READ_BACK_REPLIES.slice(), rejectListen: DEFAULT_REJECT_LISTEN_REPLIES.slice(), rejectedByMe: DEFAULT_REJECTED_BY_ME_REPLIES.slice(), proactive: [] };
-    if(!Array.isArray(d.system.love)) d.system.love = DEFAULT_LOVES.slice();
+    if(!Array.isArray(d.system.lifeMoments) || d.system.lifeMoments.length === 0){
+  d.system.lifeMoments = [
+    '今天天气很好，阳光晒得人懒洋洋的',
+    '路过一家新开的奶茶店，下次可以去看看',
+    '刚刚看到一只小猫，好想摸摸它的头',
+    '今天吃到了好吃的，心情变好了一点',
+    '突然想起上次说的话，忍不住笑了一下',
+    '晚上散步的时候，风很舒服',
+    '今天有点累，但洗个热水澡应该会好',
+    '给自己泡了杯茶，安静地坐了一会儿',
+    '看到一朵形状奇怪的云，拍了张照',
+    '今天没什么特别的，就是平平淡淡',
+    '刚刚把房间收拾了一下，看起来舒服多了',
+    '听了一首老歌，突然有点怀旧',
+    '今天的时间过得好慢，可能是因为有点困',
+    '买了个小东西，心情不错',
+    '刚才在发呆，什么都没想，又好像什么都想了',
+    '今天有点忙，但吃饭的时候还是喘了口气',
+    '看到路边开了一朵小花，觉得它很勇敢',
+    '今天做了个奇怪的梦，醒来就记不清了',
+    '晚上有点凉，得加件外套了',
+    '刚刚翻到一张老照片，想起了很多事',
+    '今天走了很多路，有点累但是很充实',
+    '给自己买了点水果，甜甜的',
+    '今天在窗边坐了很久，看着外面发呆',
+    '刚刚打了个哈欠，被自己逗笑了',
+    '今天没有特别的事，就是平平安安的一天',
+    '今天晚上的月亮很亮，星星也很多',
+    '刚刚把明天的衣服准备好了，有点期待明天',
+    '今天下了一场雨，空气变清新了',
+    '好像又长胖了一点，明天要开始运动了',
+    '今天就这样平平淡淡地过去了，晚安'
+  ];
+}
+if(!Array.isArray(d.system.touchReplies) || d.system.touchReplies.length === 0){
+  d.system.touchReplies = [
+    '你的手好凉', '嗯？', '我在的', '怎么啦', '别闹', 
+    '想我了', '嗯，我听着呢', '怎么突然碰我', '在呢', 
+    '有点痒', '你干嘛', '轻一点', '好乖', '摸摸头', 
+    '你今天怎么这么黏人', '嗯，知道啦', '没事，有我在', 
+    '怎么啦，心情不好', '我在这里', '想说什么就说吧', 
+    '嗯？我在忙呢', '别蹭了，衣服要皱了', '好，听你的', 
+    '你手好暖', '嗯，我一直在', '怎么突然这么安静', 
+    '没事，你说', '我在等你说话呢', '嗯，抱一下', '怎么啦'
+  ];
+}
+if(!Array.isArray(d.system.love)) d.system.love = DEFAULT_LOVES.slice();
     if(!Array.isArray(d.system.redpacket) || d.system.redpacket.length === 0) d.system.redpacket = DEFAULT_RP_REPLIES.slice();
     if(!Array.isArray(d.system.readback) || d.system.readback.length === 0) d.system.readback = DEFAULT_READ_BACK_REPLIES.slice();
     if(!Array.isArray(d.system.rejectListen) || d.system.rejectListen.length === 0) d.system.rejectListen = DEFAULT_REJECT_LISTEN_REPLIES.slice();
@@ -3164,7 +3705,8 @@ if(!Array.isArray(d.system.callReject) || d.system.callReject.length === 0) d.sy
 if(!Array.isArray(d.system.callRejectedByMe) || d.system.callRejectedByMe.length === 0) d.system.callRejectedByMe = ['好吧，那下次再打给你', '那我等你', '嗯…那我先挂了'];
     if(!Array.isArray(d.system.quitGame) || d.system.quitGame.length === 0) d.system.quitGame = ['怎么下到一半就跑啦？', '诶？人呢…', '好吧，那我自己练练。', '哼，下次要陪我下完哦。'];
 if(!Array.isArray(d.system.waitForYou) || d.system.waitForYou.length === 0) d.system.waitForYou = ['宝宝，你怎么还没来找我', '你怎么还不出现呀', '宝宝，不要玩手机啦！快来陪陪我', '你再不来我就生气了哦', '好想你，快点回来嘛', '喂，你在忙吗？想你了', '我在这里等你哦', '忙完了记得找我', '刚刚一直在想你', '再不回来我就自己玩啦'];
-if(!Array.isArray(d.system.rpThanks) || d.system.rpThanks.length === 0) d.system.rpThanks = ['谢谢宝宝！', '收到啦，嘿嘿', '喜欢！谢谢你', '哇，爱你！', '拿着了，好开心', '谢谢，啵啵', '收到了，抱着不放'];
+if(!Array.isArray(d.system.giftThanks) || d.system.giftThanks.length === 0) d.system.giftThanks = ['谢谢宝宝！好喜欢～', '哇，你怎么知道我想要这个！', '收到了，抱抱你～', '好开心，谢谢你'];
+if(!Array.isArray(d.system.giftNote) || d.system.giftNote.length === 0) d.system.giftNote = ['路过看到，觉得你会喜欢。', '给你的，别嫌弃呀。', '想你了，送个小东西。', '这个给你，收好啦。'];
     if(!Array.isArray(d.system.mood)) d.system.mood = DEFAULT_MOODS.slice();
     if(!Array.isArray(d.system.rejectGame) || d.system.rejectGame.length === 0) d.system.rejectGame = ['下次再玩吧～', '现在有点忙，回头陪你玩。', '这局先不玩啦，改天～', '嗯…今天不太想玩，抱抱。'];
     if(!Array.isArray(d.system.rejectedGame) || d.system.rejectedGame.length === 0) d.system.rejectedGame = ['好吧，那下次再一起玩。', '那我等你，随时都可以。', '没关系，等你想玩了再找我。', '嗯…那我先自己练练。'];
@@ -3292,7 +3834,83 @@ function playDing(){
   }catch(e){}
 }
 
-  /* 弹窗 */
+  /* 游戏音效（独立于消息提示音） */
+  var gameAudioCtx = null;
+  function playGameSound(type){
+    try{
+      if(!gameAudioCtx){ var AC2 = window.AudioContext || window.webkitAudioContext; if(!AC2) return; gameAudioCtx = new AC2(); }
+      var doPlay = function(){
+        var now = gameAudioCtx.currentTime;
+        function beep(freq, start, dur, waveType, vol, freqEnd){
+          var osc = gameAudioCtx.createOscillator();
+          var g = gameAudioCtx.createGain();
+          osc.type = waveType || 'sine';
+          osc.frequency.setValueAtTime(freq, now + start);
+          if(freqEnd) osc.frequency.exponentialRampToValueAtTime(freqEnd, now + start + dur);
+          g.gain.setValueAtTime(0.0001, now + start);
+          g.gain.exponentialRampToValueAtTime(vol || 0.5, now + start + 0.006);
+          g.gain.exponentialRampToValueAtTime(0.0001, now + start + dur);
+          osc.connect(g); g.connect(gameAudioCtx.destination);
+          osc.start(now + start); osc.stop(now + start + dur + 0.05);
+        }
+        if(type === 'place'){
+  /* 五子棋落子：短促的"嗒" */
+  beep(1100, 0, 0.06, 'triangle', 0.5, 520);
+  beep(1800, 0, 0.04, 'sine', 0.22, 900);
+}
+else if(type === 'jump'){
+  /* 跳一跳起跳："咻" */
+  beep(700, 0, 0.12, 'sine', 0.35, 1400);
+}
+else if(type === 'land'){
+  /* 跳一跳落地："哒" */
+  beep(420, 0, 0.08, 'triangle', 0.45, 260);
+  beep(900, 0, 0.05, 'sine', 0.2, 500);
+}
+else if(type === 'fall'){
+  /* 掉坑："呜" */
+  beep(600, 0, 0.35, 'sine', 0.4, 180);
+}
+else if(type === 'dial'){
+  /* 拨号音："嘟"（单声，循环由外面控制） */
+  beep(440, 0, 0.55, 'sine', 0.28);
+}
+else if(type === 'tetris_move'){
+  /* 俄罗斯方块移动/旋转："嘟"轻响 */
+  beep(880, 0, 0.03, 'square', 0.2, 700);
+}
+else if(type === 'tetris_clear'){
+  /* 俄罗斯方块消行：清脆的"叮叮叮" */
+  beep(1760, 0, 0.1, 'sine', 0.45, 1500);
+  beep(2200, 0.08, 0.14, 'sine', 0.4, 1900);
+  beep(2640, 0.16, 0.16, 'sine', 0.3, 2300);
+}
+else if(type === 'tetris_over'){
+  /* 游戏结束：下行音 */
+  beep(500, 0, 0.3, 'triangle', 0.4, 200);
+  beep(300, 0.2, 0.4, 'triangle', 0.35, 120);
+}
+      };
+      if(gameAudioCtx.state === 'suspended'){
+      gameAudioCtx.resume().then(doPlay).catch(function(e){});
+    } else {
+      doPlay();
+    }
+  }catch(e){}
+}
+
+/* 通话拨号音（循环"嘟……嘟……"） */
+var dialToneTimer = null;
+function startDialTone(){
+  stopDialTone();
+  playGameSound('dial');
+  dialToneTimer = setInterval(function(){ playGameSound('dial'); }, 2200);
+}
+function stopDialTone(){
+  if(dialToneTimer){ clearInterval(dialToneTimer); dialToneTimer = null; }
+}
+
+/* 弹窗 */
   function showDialog(title, body, buttons, isHtml){
   $('dialogTitle').textContent = title;
   if(isHtml){ $('dialogBody').innerHTML = body; }
@@ -3316,12 +3934,13 @@ function playDing(){
 
     var avatarHTML = person.avatar ? '<img src="' + person.avatar + '" alt="">' : DEFAULT_AVATAR_SVG;
     var preview = '';
-    if(m.type === 'text') preview = esc(m.text);
-    else if(m.type === 'emoji') preview = esc(m.text);
-    else if(m.type === 'sticker') preview = '[表情]';
-    else if(m.type === 'voice') preview = '[语音]';
-    else if(m.type === 'redpacket') preview = '[红包]';
-    else preview = '发来一条消息';
+if(m.type === 'text') preview = esc(m.text);
+else if(m.type === 'emoji') preview = esc(m.text);
+else if(m.type === 'sticker') preview = '[表情]';
+else if(m.type === 'voice') preview = '[语音]';
+else if(m.type === 'redpacket') preview = '[红包]';
+else if(m.type === 'sys') preview = esc(m.text);
+else preview = '发来一条消息';
 
     var badgeHTML = '';
     if(banner.classList.contains('show')){
@@ -3348,38 +3967,7 @@ function playDing(){
       setTimeout(function(){ banner.style.display = 'none'; bannerCount = 0; }, 300);
     }, 3000);
   }
-  /* 拨号音：嘟……嘟…… */
-var dialTimer = null;
-function startDialTone(){
-  if(dialTimer) return;
-  function beepDial(){
-    try{
-      if(!audioCtx){ var AC = window.AudioContext || window.webkitAudioContext; if(!AC) return; audioCtx = new AC(); }
-      var doPlay = function(){
-        var now = audioCtx.currentTime;
-        var osc = audioCtx.createOscillator();
-        var g = audioCtx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(425, now);
-        g.gain.setValueAtTime(0.0001, now);
-        g.gain.exponentialRampToValueAtTime(0.3, now + 0.02);
-        g.gain.setValueAtTime(0.3, now + 0.9);
-        g.gain.exponentialRampToValueAtTime(0.0001, now + 1.0);
-        osc.connect(g); g.connect(audioCtx.destination);
-        osc.start(now); osc.stop(now + 1.05);
-      };
-      if(audioCtx.state === 'suspended') audioCtx.resume().then(doPlay).catch(function(e){});
-      else doPlay();
-    }catch(e){}
-  }
-  beepDial();
-  dialTimer = setInterval(beepDial, 3000);
-}
-function stopDialTone(){
-  if(dialTimer){ clearInterval(dialTimer); dialTimer = null; }
-}
-
-function showTyping(){ $('typingBar').classList.add('show'); $('headerStatus').textContent = '对方正在输入…'; }
+  function showTyping(){ $('typingBar').classList.add('show'); $('headerStatus').textContent = '对方正在输入…'; }
   function hideTyping(){ $('typingBar').classList.remove('show'); $('headerStatus').textContent = '在线'; }
 
   /* ============ 新版主屏 · 渲染 ============ */
@@ -3435,9 +4023,9 @@ function getMoodPool(){
   if(sg.enabled === false) return;
   var subMatch = kws.some(function(kw){ return sg.name.indexOf(kw) > -1; });
   if(bigMatch || subMatch){
-    sg.items.forEach(function(it){ if(it && String(it).trim()) pool.push(String(it).trim()); });
-  }
-});
+        sg.items.forEach(function(it){ if(it && String(it).trim()) pool.push(String(it).trim()); });
+      }
+    });
   });
   if(!pool.length) return null;
   if(person.cardCooldown > 0 && recentCards.length){
@@ -3487,17 +4075,15 @@ function renderAppIcons(){
     chat:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5z"/></svg>',
     cards:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3 10h18"/><path d="M7 15h4"/></svg>',
     settings:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>',
-  game:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/></svg>'
+    game:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/></svg>',
+  group:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+  shop:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M3 12h18"/><path d="M12 8v13"/><path d="M12 8c-2-3-6-3-6-1 0 1.5 2 2 6 1z"/><path d="M12 8c2-3 6-3 6-1 0 1.5-2 2-6 1z"/></svg>'
 };
-  var icons = person.appIcons || {};
   Array.prototype.forEach.call(document.querySelectorAll('[data-icon-key]'), function(el){
     var key = el.dataset.iconKey;
-    var badge = (key === 'chat') ? el.querySelector('.app-badge') : null;
-    if(icons[key]){
-      el.innerHTML = '<img src="' + icons[key] + '" alt="">' + (badge ? badge.outerHTML : '');
-    } else {
-      el.innerHTML = (key === 'chat' ? '<span class="app-badge" id="chatBadge" style="display:none;">0</span>' : '') + (iconSVGs[key] || '');
-    }
+    var isChat = (key === 'chat');
+    var defaultHTML = (isChat ? '<span class="app-badge" id="chatBadge" style="display:none;">0</span>' : '') + (iconSVGs[key] || '');
+    el.innerHTML = defaultHTML;
   });
   var cb = $('chatBadge');
   if(cb){
@@ -3765,10 +4351,27 @@ $('customCssStyle').textContent = person.customCss || '';
       if($('lockDays')) $('lockDays').textContent = days > 0 ? ('和 TA 在一起 ' + days + ' 天') : '';
 
       renderMoodChip();
+      renderPersonaChip();
+      applyMultiPersonaMode();
 renderTopHero();
 renderBigPhoto();
 renderAnniversaryBg();
 renderAppIcons();
+/* 检查动态红点 */
+var momentsIcon = document.querySelector('.app-item[data-app="moments"] .app-icon');
+if(momentsIcon){
+  var hasUnread = false;
+  try{ hasUnread = localStorage.getItem('chat_unread_moments_v1') === '1'; }catch(e){}
+  var dot = momentsIcon.querySelector('.red-dot');
+  if(hasUnread && !dot){
+    dot = document.createElement('span');
+    dot.className = 'red-dot';
+    dot.style.cssText = 'position:absolute;top:-4px;right:-4px;width:8px;height:8px;border-radius:50%;background:#e84a5f;border:2px solid #fff;';
+    momentsIcon.appendChild(dot);
+  } else if(!hasUnread && dot){
+    dot.remove();
+  }
+}
 
       var cb = $('chatBadge');
       if(unreadCount > 0){ cb.textContent = unreadCount > 99 ? '99+' : unreadCount; cb.style.display = 'grid'; }
@@ -3876,14 +4479,36 @@ if(m.type === 'redpacket'){
       '<div class="letter-status">' + (m.done ? '已送达' : '待送达') + '</div>' +
     '</div></div></div>';
 }
-if(m.type === 'sticker'){
-  if(!m.text) return '<div class="bubble bubble-sticker" style="padding:8px 12px;background:rgba(0,0,0,.04);border-radius:12px;color:var(--light-text);font-size:12px;">表情已失效</div>';
-  return '<div class="bubble bubble-sticker">' + quoteHTML + '<img src="' + esc(m.text) + '" alt="表情"></div>';
-}
+if(m.type === 'sticker') return '<div class="bubble bubble-sticker">' + quoteHTML + '<img src="' + esc(m.text) + '" alt="表情"></div>';
     if(m.type === 'emoji') return '<div class="bubble bubble-emoji">' + quoteHTML + esc(m.text) + '</div>';
+    if(m.type === 'quiz'){
+  var qs = m.questions || [];
+  var bodyHTML = '';
+  qs.forEach(function(q, i) {
+    var prefix = qs.length > 1 ? '<span class="quiz-q-num">第 ' + (i + 1) + ' 题</span> ' : '';
+    bodyHTML += '<div class="quiz-q">' + prefix + esc(q.q) + '</div>';
+    if(q.status === 'answered') {
+      bodyHTML += '<div class="quiz-status done">✓ TA选择了：' + esc(q.answer) + '</div>';
+    } else {
+      bodyHTML += '<div class="quiz-status pending">TA正在选择中...</div>';
+    }
+    if(i < qs.length - 1) bodyHTML += '<div class="quiz-divider"></div>';
+  });
+  return '<div class="quiz-msg-wrap">' +
+           '<div class="quiz-card">' +
+             '<div class="quiz-card-head">📋 ' + (m.isBatch ? '批量提问' : '提问') + '</div>' +
+             bodyHTML +
+           '</div>' +
+         '</div>';
+}
     return '<div class="bubble style-' + style + '">' + quoteHTML + esc(m.text) + '</div>';
   }
   function buildMsgHTML(m){
+/* 撤回的消息：直白保留原话，一眼就能看到 */
+if(m.recalled){
+  var rIdx = messages.indexOf(m);
+  return '<div class="sys-msg" data-recall-idx="'+rIdx+'" style="cursor:pointer;">对方撤回了一条消息 <span style="opacity:.55;font-size:11px;">（原话：' + esc(m.text) + '）</span></div>';
+}
 if(m.type === 'sys'){ return '<div class="sys-msg">' + esc(m.text) + '</div>'; }
 if(m.type === 'invite'){
   var tName = person.name || 'TA';
@@ -3978,6 +4603,22 @@ if(m.type === 'quiz'){
              bodyHTML +
            '</div>' +
          '</div>';
+}
+if(m.type === 'gift'){
+  var giftHeadText = m.me ? ('送给 ' + esc(person.name || 'TA')) : ('来自 ' + esc(person.name || 'TA'));
+  return '<div class="gift-msg-wrap">' +
+    '<div class="gift-chat-card">' +
+      '<div class="gift-chat-head">🎁 ' + giftHeadText + '</div>' +
+      '<div class="gift-chat-body">' +
+        '<div class="gift-chat-emoji">' + esc(m.emoji || '🎁') + '</div>' +
+        '<div class="gift-chat-name">' + esc(m.name || '礼物') + '</div>' +
+        (m.bless ? '<div class="gift-chat-bless">' + esc(m.bless) + '</div>' : '') +
+      '</div>' +
+      '<div class="gift-chat-foot"><span>' + formatTime(m.time) + '</span>' +
+        (m.me ? '<span class="gift-chat-price">-¥' + fmtMoney(m.price || 0) + '</span>' : '<span></span>') +
+      '</div>' +
+    '</div>' +
+  '</div>';
 }
 var musicTag = m.music ? '<span class="music-tag">🎵</span>' : '';
   var meta;
@@ -4140,15 +4781,15 @@ if(!big.groups.length){
     });
     if(kw && items.length === 0 && sg.name.toLowerCase().indexOf(kw) === -1) return;
     var isOpen = kw ? true : !!openIds[sg.id];
+    var sgOffCls = (sg.enabled === false) ? ' off' : '';
 var sgEyeIcon = (sg.enabled === false)
   ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><path d="M14.12 14.12a3 3 0 1 1-4.24-4.24"/><path d="M1 1l22 22"/></svg>'
   : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
-var sgOffCls = (sg.enabled === false) ? ' off' : '';
 html += '<div class="subgroup-card' + (isOpen ? ' open' : '') + sgOffCls + '" data-sub="' + sg.id + '" data-big="' + big.id + '">' +
           '<div class="subgroup-head" data-toggle="' + sg.id + '">' +
             '<span class="subgroup-name" data-rename-sub="' + sg.id + '" data-big-id="' + big.id + '">' + esc(sg.name) + '</span>' +
             '<span class="subgroup-count">' + items.length + '</span>' +
-            '<span class="subgroup-toggle" data-toggle-subgroup="' + sg.id + '" data-big-id="' + big.id + '">' + sgEyeIcon + '</span>' +
+            '<span class="toggle" data-toggle-sub="' + sg.id + '" data-big-id="' + big.id + '">' + sgEyeIcon + '</span>' +
             '<span class="subgroup-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></span>' +
           '</div>' +
               '<div class="subgroup-body">' +
@@ -4236,22 +4877,34 @@ content.innerHTML = html;
   if(!html) box.innerHTML = '<div class="lib-empty">词典为空。<br>上面输入框添加字/词吧。</div>';
   else box.innerHTML = html;
 }
-  var _sysOpenState = { cats: {}, subs: {} };
-function renderSystemView(){
+  function renderSystemView(){
 var v = $('viewSystem');
 if(!v) return;
-Array.prototype.forEach.call(v.querySelectorAll('.syscat-card.open'), function(c){
-  var n = c.querySelector('.syscat-name');
-  if(n) _sysOpenState.cats[n.textContent] = true;
-});
-Array.prototype.forEach.call(v.querySelectorAll('.subgroup-card.open'), function(c){
-  var n = c.querySelector('.subgroup-name');
-  if(n) _sysOpenState.subs[n.textContent] = true;
-});
 v.style.display = '';
 
+/* ============ 新增：数据防崩校验，防止白屏 ============ */
+if (!cards || !cards.system) cards.system = {};
+var sysArrayKeys = ['love', 'redpacket', 'rpThanks', 'mood', 'readback', 'waitForYou', 
+                    'callReject', 'callRejectedByMe', 'rejectListen', 'rejectedByMe', 
+                    'rejectGame', 'rejectedGame', 'scoreLead', 'scoreBehind', 
+                    'quitGame', 'giftThanks', 'giftNote'];
+sysArrayKeys.forEach(function(k){
+  if (!Array.isArray(cards.system[k])) cards.system[k] = [];
+});
+if (!Array.isArray(cards.system.proactive)) cards.system.proactive = [];
+cards.system.proactive.forEach(function(pg){
+  if (!Array.isArray(pg.items)) pg.items = [];
+});
+/* ======================================================= */
+
+
+/* 记录当前打开的分类和子分组 */
+var openCats = {};
+var openSubs = {};
+Array.prototype.forEach.call(v.querySelectorAll('.syscat-card.open'), function(el, i){ openCats[i] = true; });
+Array.prototype.forEach.call(v.querySelectorAll('.subgroup-card.open'), function(el, i){ openSubs[i] = true; });
   if(!Array.isArray(cards.system.redpacket) || !cards.system.redpacket.length) cards.system.redpacket = DEFAULT_RP_REPLIES.slice();
-  if(!Array.isArray(cards.system.rpThanks) || !cards.system.rpThanks.length) cards.system.rpThanks = ['谢谢宝宝！', '收到啦，嘿嘿', '喜欢！谢谢你'];
+  if(!Array.isArray(cards.system.rpThanks) || !cards.system.rpThanks.length) cards.system.rpThanks = ['谢谢宝宝！', '收到啦，嘿嘿', '喜欢！谢谢你', '哇，爱你！', '拿着了，好开心', '谢谢，啵啵', '收到了，抱着不放'];
   if(!Array.isArray(cards.system.mood)) cards.system.mood = DEFAULT_MOODS.slice();
   if(!Array.isArray(cards.system.waitForYou)) cards.system.waitForYou = [];
   if(!Array.isArray(cards.system.callReject)) cards.system.callReject = [];
@@ -4259,11 +4912,10 @@ v.style.display = '';
   if(!Array.isArray(cards.system.rejectListen)) cards.system.rejectListen = [];
   if(!Array.isArray(cards.system.rejectedByMe)) cards.system.rejectedByMe = [];
   if(!Array.isArray(cards.system.readback)) cards.system.readback = [];
-  if(!Array.isArray(cards.system.rejectGame)) cards.system.rejectGame = [];
-  if(!Array.isArray(cards.system.rejectedGame)) cards.system.rejectedGame = [];
-  if(!Array.isArray(cards.system.scoreLead)) cards.system.scoreLead = [];
-  if(!Array.isArray(cards.system.scoreBehind)) cards.system.scoreBehind = [];
-  if(!Array.isArray(cards.system.quitGame)) cards.system.quitGame = [];
+  if(!Array.isArray(cards.system.rejectGame)) cards.system.rejectGame = ['下次再玩吧～', '现在有点忙，回头陪你玩。', '这局先不玩啦，改天～', '嗯…今天不太想玩，抱抱。'];
+  if(!Array.isArray(cards.system.rejectedGame)) cards.system.rejectedGame = ['好吧，那下次再一起玩。', '那我等你，随时都可以。', '没关系，等你想玩了再找我。', '嗯…那我先自己练练。'];
+  if(!Array.isArray(cards.system.scoreLead) || !cards.system.scoreLead.length) cards.system.scoreLead = ['哎哟可以啊，这盘我服了。', '你是不是偷偷练过…', '哼，不服气，再来一局！', '被你杀了个措手不及，厉害。', '好嘛好嘛，这局算你赢～'];
+  if(!Array.isArray(cards.system.scoreBehind) || !cards.system.scoreBehind.length) cards.system.scoreBehind = ['别难过啦，已经很厉害了。', '这局我运气好而已，真的。', '抱抱，下一盘你肯定赢。', '嘿嘿，我赢啦，但不许不高兴哦。', '再下一盘嘛，说不定就翻盘了。'];
 
   var arrowSVG = '<span class="subgroup-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></span>';
   var catArrowSVG = '<span class="syscat-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></span>';
@@ -4316,78 +4968,106 @@ v.style.display = '';
   }
 
   var html = '';
-  html += cat('💌', '情话', 1, sub('love', '今日情话', cards.system.love, 'data-love-del', 'data-add-love', '添加一句情话'));
+
+  // 💌 情话
+  html += cat('💌', '情话', 1,
+    sub('love', '今日情话', cards.system.love, 'data-love-del', 'data-add-love', '添加一句情话')
+  );
+
+  // 🧧 红包
   html += cat('🧧', '红包', 2,
-    sub('rpThanks', '红包致谢', cards.system.rpThanks, 'data-rp-thanks-del', 'data-add-rp-thanks', '添加一句红包致谢') +
+    sub('rpThanks', '红包致谢', cards.system.rpThanks, 'data-rp-thanks-del', 'data-add-rp-thanks', '添加一句红包致谢', 'TA 领了你的红包之后，会说的话。跟"红包回复"是两回事，别搞混。') +
     sub('redpacket', '红包回复', cards.system.redpacket, 'data-rp-del', 'data-add-rp', '添加一句红包回复')
   );
+
+  // 🎭 情绪
   html += cat('🎭', '情绪', 2,
-    sub('mood', '今日状态', cards.system.mood, 'data-mood-del', 'data-add-mood', '例：有点累 | 短回复,嗯,困') +
+    sub('mood', '今日状态', cards.system.mood, 'data-mood-del', 'data-add-mood', '例：有点累 | 短回复,嗯,困', '格式：<code style="background:var(--soft);padding:1px 6px;border-radius:5px;">状态名 | 关键词1,关键词2</code><br>关键词是"去哪抽卡"，比如"短回复"就去找名字带"短回复"的分组。<br>不写竖线 → 只显示不生效。匹配不到 → 正常随机抽卡。') +
     sub('readback', '已读不回', cards.system.readback, 'data-readback-del', 'data-add-readback', '添加一句被炸出来的台词')
   );
-  var autoInner = sub('waitForYou', '等你回来', cards.system.waitForYou, 'data-wait-del', 'data-add-wait', '添加一句等你的话');
+
+  // ⏰ 自动回复
+  var autoInner = sub('waitForYou', '等你回来', cards.system.waitForYou, 'data-wait-del', 'data-add-wait', '添加一句等你的话', '你离开一段时间再回来，TA 会一次性补给你一些"在你不在时想你"的话。离开越久，堆得越多。');
   cards.system.proactive.forEach(function(pg, pi){
     autoInner += subPro(pi, pg.name, pg.items);
   });
   html += cat('⏰', '自动回复', cards.system.proactive.length + 1, autoInner);
+
+  // 📞 通话
   html += cat('📞', '通话', 2,
-    sub('callReject', '拒接/挂断你电话', cards.system.callReject, 'data-call-reject-del', 'data-add-call-reject', '添加一句拒接台词') +
-    sub('callRejectedByMe', '你拒接TA电话', cards.system.callRejectedByMe, 'data-call-rejected-del', 'data-add-call-rejected', '添加一句失落台词')
+    sub('callReject', '拒接/挂断你电话', cards.system.callReject, 'data-call-reject-del', 'data-add-call-reject', '添加一句拒接台词', 'TA 拒接你电话、或者中途挂断时，会补上这些话。') +
+    sub('callRejectedByMe', '你拒接TA电话', cards.system.callRejectedByMe, 'data-call-rejected-del', 'data-add-call-rejected', '添加一句失落台词', '你拒接了 TA 的电话，TA 失落时会说的话。')
   );
+
+  // 🎵 一起听
   html += cat('🎵', '一起听', 2,
     sub('rejectListen', '婉拒一起听', cards.system.rejectListen, 'data-reject-listen-del', 'data-add-reject-listen', '添加一句婉拒台词') +
     sub('rejectedByMe', '被拒绝', cards.system.rejectedByMe, 'data-rejected-del', 'data-add-rejected', '添加一句被拒绝后的台词')
   );
-  html += cat('🎮', '游戏', 5,
-    sub('rejectGame', '婉拒一起玩', cards.system.rejectGame, 'data-reject-game-del', 'data-add-reject-game', '添加一句婉拒台词') +
-    sub('rejectedGame', '被拒绝', cards.system.rejectedGame, 'data-rejected-game-del', 'data-add-rejected-game', '添加一句被拒绝后的台词') +
-    sub('scoreLead', '我领先时夸我', cards.system.scoreLead, 'data-score-lead-del', 'data-add-score-lead', '添加一句夸你的话') +
-    sub('scoreBehind', 'TA 领先时安慰我', cards.system.scoreBehind, 'data-score-behind-del', 'data-add-score-behind', '添加一句安慰你的话') +
-    sub('quitGame', '中途退出', cards.system.quitGame, 'data-quit-game-del', 'data-add-quit-game', '添加一句「你怎么跑了」的话')
+
+  // 🎮 游戏
+html += cat('🎮', '游戏', 5,
+  sub('rejectGame', '婉拒一起玩', cards.system.rejectGame, 'data-reject-game-del', 'data-add-reject-game', '添加一句婉拒台词', 'TA 拒绝你的游戏邀请时，会说的话。') +
+  sub('rejectedGame', '被拒绝', cards.system.rejectedGame, 'data-rejected-game-del', 'data-add-rejected-game', '添加一句被拒绝后的台词', '你拒绝 TA 的游戏邀请，TA 失落时会说的话。') +
+  sub('scoreLead', '我领先时夸我', cards.system.scoreLead, 'data-score-lead-del', 'data-add-score-lead', '添加一句夸你的话', '累计比分你领先时，每次下完棋 TA 会从这抽一句话。') +
+  sub('scoreBehind', 'TA 领先时安慰我', cards.system.scoreBehind, 'data-score-behind-del', 'data-add-score-behind', '添加一句安慰你的话', '累计比分 TA 领先（或打平）时，每次下完棋 TA 会从这抽一句话。') +
+  sub('quitGame', '中途退出', cards.system.quitGame, 'data-quit-game-del', 'data-add-quit-game', '添加一句「你怎么跑了」的话', '你下到一半点退出时，TA 会从这抽一句话。')
+);
+
+  // 🌱 生活碎片
+  html += cat('🌱', '生活碎片', 1,
+    sub('lifeMoments', 'TA 的碎碎念', cards.system.lifeMoments, 'data-life-del', 'data-add-life', '添加一句生活碎片')
   );
-  v.innerHTML = html;
-  Array.prototype.forEach.call(v.querySelectorAll('.syscat-card'), function(c){
-    var n = c.querySelector('.syscat-name');
-    if(n && _sysOpenState.cats[n.textContent]) c.classList.add('open');
-  });
-  Array.prototype.forEach.call(v.querySelectorAll('.subgroup-card'), function(c){
-    var n = c.querySelector('.subgroup-name');
-    if(n && _sysOpenState.subs[n.textContent]) c.classList.add('open');
-  });
+
+  // 🫳 触感回应
+  html += cat('🫳', '触感回应', 1,
+    sub('touchReplies', '长按空白的回应', cards.system.touchReplies, 'data-touch-del', 'data-add-touch', '添加一句触感回应')
+  );
+
+  // 🎁 礼物
+html += cat('🎁', '礼物', 2,
+  sub('giftThanks', '礼物致谢', cards.system.giftThanks, 'data-gift-thanks-del', 'data-add-gift-thanks', '添加一句收礼后的话', '你送 TA 礼物之后，TA 会从这抽一句话回你。') +
+  sub('giftNote', 'TA 送礼附言', cards.system.giftNote, 'data-gift-note-del', 'data-add-gift-note', '添加一句送礼时说的话', 'TA 主动送你礼物时，会在礼物卡片之后补上一句话。')
+);
+
+    v.innerHTML = html;
+
+  /* 恢复打开状态 */
+  Array.prototype.forEach.call(v.querySelectorAll('.syscat-card'), function(el, i){ if(openCats[i]) el.classList.add('open'); });
+  Array.prototype.forEach.call(v.querySelectorAll('.subgroup-card'), function(el, i){ if(openSubs[i]) el.classList.add('open'); });
 }
 
-/* 字卡库事件委托 */
-  document.addEventListener('click', function(e){
-    var toggleBtn = e.target.closest('[data-toggle-group]');
-if(toggleBtn){
-  e.stopPropagation();
-  var tId = toggleBtn.dataset.toggleGroup;
-  var tBig = cards.text.filter(function(b){ return b.id === tId; })[0];
-  if(tBig){
-    tBig.enabled = (tBig.enabled === false) ? true : false;
-    saveCards(); renderBigGroups();
-  }
-  return;
-}
-
-var toggleSubBtn = e.target.closest('[data-toggle-subgroup]');
-if(toggleSubBtn){
-  e.stopPropagation();
-  var tsId = toggleSubBtn.dataset.toggleSubgroup;
-  var tsBid = toggleSubBtn.dataset.bigId;
-  var tsBig = cards.text.filter(function(b){ return b.id === tsBid; })[0];
-  if(tsBig){
-    var tsSg = tsBig.groups.filter(function(g){ return g.id === tsId; })[0];
-    if(tsSg){
-      tsSg.enabled = (tsSg.enabled === false) ? true : false;
+  /* 字卡库事件委托 */
+document.addEventListener('click', function(e){
+  var toggleBtn = e.target.closest('[data-toggle-group]');
+  if(toggleBtn){
+    e.stopPropagation();
+    var tId = toggleBtn.dataset.toggleGroup;
+    var tBig = cards.text.filter(function(b){ return b.id === tId; })[0];
+    if(tBig){
+      tBig.enabled = (tBig.enabled === false) ? true : false;
       saveCards(); renderBigGroups();
     }
+    return;
   }
-  return;
-}
 
-    /* 点击大分组切换 active（被你之前误删了，这里加回来） */
-    var drawerBtn = e.target.closest('.drawer-item[data-big]');
+  var subToggleBtn = e.target.closest('[data-toggle-sub]');
+  if(subToggleBtn){
+    e.stopPropagation();
+    var tsId = subToggleBtn.dataset.toggleSub;
+    var tsBid = subToggleBtn.dataset.bigId;
+    var tsBig = cards.text.filter(function(b){ return b.id === tsBid; })[0];
+    if(tsBig){
+      var tsSg = tsBig.groups.filter(function(g){ return g.id === tsId; })[0];
+      if(tsSg){
+        tsSg.enabled = (tsSg.enabled === false) ? true : false;
+        saveCards(); renderBigGroups();
+      }
+    }
+    return;
+  }
+
+  var drawerBtn = e.target.closest('.drawer-item[data-big]');
     if(drawerBtn){
       var did = drawerBtn.dataset.big;
       if(did && cards.text.some(function(b){ return b.id === did; })){
@@ -4597,24 +5277,49 @@ var sysToggle = e.target.closest('[data-sys-toggle]');
     if(stickerDel){ var si = parseInt(stickerDel.dataset.stickerDel, 10); cards.sticker.splice(si, 1); saveCards(); renderStickerGridBig(); return; }
     var emoDel = e.target.closest('[data-emoticon-del]');
     if(emoDel){ var emi = parseInt(emoDel.dataset.emoticonDel, 10); cards.emoticon.splice(emi, 1); saveCards(); renderEmoticonGrid(); return; }
-    var rpThanksDel = e.target.closest('[data-rp-thanks-del]');
-if(rpThanksDel){
-  var rptIdx = parseInt(rpThanksDel.dataset.rpThanksDel, 10);
-  if(!Array.isArray(cards.system.rpThanks)) cards.system.rpThanks = [];
-  cards.system.rpThanks.splice(rptIdx, 1);
+    var loveDel = e.target.closest('[data-love-del]');
+if(loveDel){ var li = parseInt(loveDel.dataset.loveDel, 10); cards.system.love.splice(li, 1); saveCards(); renderSystemView(); return; }
+
+var lifeDel = e.target.closest('[data-life-del]');
+if(lifeDel){
+  var lfi = parseInt(lifeDel.dataset.lifeDel, 10);
+  if(!Array.isArray(cards.system.lifeMoments)) cards.system.lifeMoments = [];
+  cards.system.lifeMoments.splice(lfi, 1);
   saveCards(); renderSystemView();
   return;
 }
-    var loveDel = e.target.closest('[data-love-del]');
-    if(loveDel){ var li = parseInt(loveDel.dataset.loveDel, 10); cards.system.love.splice(li, 1); saveCards(); renderSystemView(); return; }
-    var rpDel = e.target.closest('[data-rp-del]');
-    if(rpDel){
-      var ri = parseInt(rpDel.dataset.rpDel, 10);
-      if(!Array.isArray(cards.system.redpacket)) cards.system.redpacket = [];
-      cards.system.redpacket.splice(ri, 1);
-      saveCards(); renderSystemView();
-      return;
-    }
+var touchDel = e.target.closest('[data-touch-del]');
+if(touchDel){
+  var tci = parseInt(touchDel.dataset.touchDel, 10);
+  if(!Array.isArray(cards.system.touchReplies)) cards.system.touchReplies = [];
+  cards.system.touchReplies.splice(tci, 1);
+  saveCards(); renderSystemView();
+  return;
+}
+    var rpThanksDel = e.target.closest('[data-rp-thanks-del]');
+if(rpThanksDel){
+  var rti = parseInt(rpThanksDel.dataset.rpThanksDel, 10);
+  if(!Array.isArray(cards.system.rpThanks)) cards.system.rpThanks = [];
+  cards.system.rpThanks.splice(rti, 1);
+  saveCards(); renderSystemView();
+  return;
+}
+    var giftThanksDel = e.target.closest('[data-gift-thanks-del]');
+if(giftThanksDel){
+  var gti = parseInt(giftThanksDel.dataset.giftThanksDel, 10);
+  if(!Array.isArray(cards.system.giftThanks)) cards.system.giftThanks = [];
+  cards.system.giftThanks.splice(gti, 1);
+  saveCards(); renderSystemView();
+  return;
+}
+    var giftNoteDel = e.target.closest('[data-gift-note-del]');
+if(giftNoteDel){
+  var gni = parseInt(giftNoteDel.dataset.giftNoteDel, 10);
+  if(!Array.isArray(cards.system.giftNote)) cards.system.giftNote = [];
+  cards.system.giftNote.splice(gni, 1);
+  saveCards(); renderSystemView();
+  return;
+}
     var rlDel = e.target.closest('[data-reject-listen-del]');
 if(rlDel){
   var rli = parseInt(rlDel.dataset.rejectListenDel, 10);
@@ -4717,21 +5422,31 @@ if(dictDel){
       return;
     }
     if(f.matches('[data-add-love]')){
-      e.preventDefault();
-      var inp5 = f.querySelector('input');
-      var val3 = inp5.value.trim();
-      if(!val3) return;
-      cards.system.love.push(val3);
-      saveCards(); renderSystemView();
-      return;
-    }
-    if(f.matches('[data-add-rp-thanks]')){
   e.preventDefault();
-  var inpRpt2 = f.querySelector('input');
-  var valRpt2 = inpRpt2.value.trim();
-  if(!valRpt2) return;
-  if(!Array.isArray(cards.system.rpThanks)) cards.system.rpThanks = [];
-  cards.system.rpThanks.push(valRpt2);
+  var inp5 = f.querySelector('input');
+  var val3 = inp5.value.trim();
+  if(!val3) return;
+  cards.system.love.push(val3);
+  saveCards(); renderSystemView();
+  return;
+}
+if(f.matches('[data-add-life]')){
+  e.preventDefault();
+  var inpLife = f.querySelector('input');
+  var valLife = inpLife.value.trim();
+  if(!valLife) return;
+  if(!Array.isArray(cards.system.lifeMoments)) cards.system.lifeMoments = [];
+  cards.system.lifeMoments.push(valLife);
+  saveCards(); renderSystemView();
+  return;
+}
+if(f.matches('[data-add-touch]')){
+  e.preventDefault();
+  var inpTch = f.querySelector('input');
+  var valTch = inpTch.value.trim();
+  if(!valTch) return;
+  if(!Array.isArray(cards.system.touchReplies)) cards.system.touchReplies = [];
+  cards.system.touchReplies.push(valTch);
   saveCards(); renderSystemView();
   return;
 }
@@ -4745,6 +5460,36 @@ if(dictDel){
       saveCards(); renderSystemView();
       return;
     }
+    if(f.matches('[data-add-rp-thanks]')){
+  e.preventDefault();
+  var inpRt = f.querySelector('input');
+  var valRt = inpRt.value.trim();
+  if(!valRt) return;
+  if(!Array.isArray(cards.system.rpThanks)) cards.system.rpThanks = [];
+  cards.system.rpThanks.push(valRt);
+  saveCards(); renderSystemView();
+  return;
+}
+    if(f.matches('[data-add-gift-thanks]')){
+  e.preventDefault();
+  var inpGt = f.querySelector('input');
+  var valGt = inpGt.value.trim();
+  if(!valGt) return;
+  if(!Array.isArray(cards.system.giftThanks)) cards.system.giftThanks = [];
+  cards.system.giftThanks.push(valGt);
+  saveCards(); renderSystemView();
+  return;
+}
+    if(f.matches('[data-add-gift-note]')){
+  e.preventDefault();
+  var inpGn = f.querySelector('input');
+  var valGn = inpGn.value.trim();
+  if(!valGn) return;
+  if(!Array.isArray(cards.system.giftNote)) cards.system.giftNote = [];
+  cards.system.giftNote.push(valGn);
+  saveCards(); renderSystemView();
+  return;
+}
     if(f.matches('[data-add-reject-listen]')){
   e.preventDefault();
   var inpRl = f.querySelector('input');
@@ -4983,6 +5728,17 @@ if($('importJsonFile')){
 /* 解析 JSON 并写入字卡库 */
 function importJsonToCards(json){
   var bigCount = 0, subCount = 0, cardCount = 0;
+
+  /* 过滤：如果 JSON 看起来像聊天备份，直接拒绝 */
+var BACKUP_FIELDS = ['version','exportTime','person','messages','cards','taStickers','userStickers','myPats','taPats','stats','proactive','dailyLove','lock'];
+if(json && typeof json === 'object' && !Array.isArray(json)){
+  var topKeys = Object.keys(json);
+  var looksLikeBackup = topKeys.some(function(k){ return BACKUP_FIELDS.indexOf(k) > -1; });
+  if(looksLikeBackup){
+    showDialog('这不是字卡 JSON', '你导入的看起来是「聊天记录备份」文件，不是字卡文件。<br>字卡 JSON 的格式应该是：<br><code>{"大分组名": ["字卡1", "卡字2"]}</code><br>或者<br><code>[{"name":"大分组名","items":["卡1","卡2"]}]</code>', [{ text:'知道了', primary:true }], true);
+    return;
+  }
+}
   
   function addBigGroup(name, groups){
     var big = cards.text.filter(function(b){ return b.name === name; })[0];
@@ -5089,12 +5845,12 @@ if($('importConfirmBtn')) $('importConfirmBtn').onclick = function(){
   function allTextCards(){
     var pool = [];
     cards.text.forEach(function(b){
-  if(b.enabled === false) return;
-  b.groups.forEach(function(sg){
-    if(sg.enabled === false) return;
-    sg.items.forEach(function(it){ if(it && String(it).trim()) pool.push(String(it).trim()); });
-  });
+      if(b.enabled === false) return;
+      b.groups.forEach(function(sg){
+  if(sg.enabled === false) return;
+  sg.items.forEach(function(it){ if(it && String(it).trim()) pool.push(String(it).trim()); });
 });
+    });
     if(person.cardCooldown > 0 && recentCards.length){
       var filtered = pool.filter(function(t){ return recentCards.indexOf(t) === -1; });
       if(filtered.length > 0) pool = filtered;
@@ -5252,11 +6008,11 @@ function makeOneReply(forceCare){
   if(sg.enabled === false) return;
   // 检查小分组名字
   var subHasCare = (sg.name.indexOf('关心') > -1 || sg.name.indexOf('安慰') > -1 || sg.name.indexOf('心疼') > -1);
-  // 只要大分组或小分组其中一个是，就抽这个里面的字卡
-  if(bigHasCare || subHasCare) {
-    sg.items.forEach(function(it){ if(it && String(it).trim()) carePool.push(String(it).trim()); }); 
-  }
-}); 
+      // 只要大分组或小分组其中一个是，就抽这个里面的字卡
+      if(bigHasCare || subHasCare) {
+        sg.items.forEach(function(it){ if(it && String(it).trim()) carePool.push(String(it).trim()); }); 
+      }
+    }); 
   });
     if(!carePool.length){ 
       carePool = allTextCards().filter(function(t){ 
@@ -5347,12 +6103,6 @@ function sendMyLetter(text){
   if(!text.trim()) return;
   var l = { id: uid('letter'), me:true, text: text, time: Date.now(), read: true, done: false };
   letters.push(l); saveLetters();
-  /* 如果有正在回复的信，标记为已回复 */
-  if(_replyToLetterId){
-    var origin = letters.filter(function(x){ return x.id === _replyToLetterId; })[0];
-    if(origin){ origin.replied = true; saveLetters(); }
-    _replyToLetterId = null;
-  }
   var m = { me:true, type:'letter', letterId: l.id, text: text, time: Date.now(), id: uid('m') };
   messages.push(m); saveMessages();
   if(chatOpenNow) appendMessage(m);
@@ -5383,7 +6133,7 @@ function sendMyLetter(text){
   }, delayMs);
 }
 
-var _replyToLetterId = null;
+var replyToLetterId = null;
 function openLetterModal(letterId){
   var l = letters.filter(function(x){ return x.id === letterId; })[0]; 
   if(!l) return;
@@ -5391,12 +6141,7 @@ function openLetterModal(letterId){
   var titleText = l.me ? '你寄出的信' : ('来自 ' + (person.name || 'TA') + ' 的信');
   var bodyHTML = '<div style="text-align:left;font-size:13px;line-height:1.7;color:var(--text);white-space:pre-wrap;max-height:300px;overflow-y:auto;padding:4px;">' + esc(l.text) + '</div>';
   var buttons = l.me ? [{ text:'关闭', primary:true }] : [
-    { text: l.replied ? '再写一封' : '提笔回信', primary:true, onClick:function(){
-      _replyToLetterId = l.id;
-      mailTab = 'write';
-      renderMailbox();
-      $('mailboxPage').classList.add('open');
-    } }, 
+    { text:'提笔回信', primary:true, onClick:function(){ replyToLetterId = l.id; mailTab = 'write'; renderMailbox(); $('mailboxPage').classList.add('open'); } }, 
     { text:'关闭' }
   ];
   showDialog(titleText, bodyHTML, buttons, true);
@@ -5411,14 +6156,19 @@ function renderMailbox(){
   $('mailSettings').style.display = (mailTab === 'settings') ? '' : 'none';
   
   if(mailTab === 'inbox'){
-    var inbox = letters.filter(function(l){ return !l.me; }).slice().reverse();
-    $('mailInbox').innerHTML = inbox.length ? inbox.map(function(l){ 
-      return '<div class="letter-card" data-letter-id="' + l.id + '" style="width:100%;margin-bottom:10px;">' +
-        '<div class="letter-head"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>' + (l.replied ? '已回复 · ' + esc(person.name || 'TA') : (l.read ? '来自 ' + esc(person.name || 'TA') : '新来信 · ' + esc(person.name || 'TA'))) + '</div>' +
-        '<div class="letter-body">' + esc(l.text) + '</div>' +
-        '<div class="letter-status"><span>' + (l.replied ? '已回复' : (l.read ? '已读' : '未读')) + '</span><span>' + formatTime(l.time) + '</span></div></div>'; 
-    }).join('') : '<div class="lib-empty">还没有收到信。</div>';
-  } else if(mailTab === 'outbox'){
+  var inbox = letters.filter(function(l){ return !l.me; }).slice().reverse();
+  $('mailInbox').innerHTML = inbox.length ? inbox.map(function(l){ 
+    var status;
+    if(l.replied) status = '已回复';
+    else if(l.read) status = '已读';
+    else status = '未读';
+    var headText = l.read ? ('来自 ' + esc(person.name || 'TA')) : ('新来信 · ' + esc(person.name || 'TA'));
+    return '<div class="letter-card" data-letter-id="' + l.id + '" style="width:100%;margin-bottom:10px;">' +
+      '<div class="letter-head"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>' + headText + '</div>' +
+      '<div class="letter-body">' + esc(l.text) + '</div>' +
+      '<div class="letter-status"><span>' + status + '</span><span>' + formatTime(l.time) + '</span></div></div>'; 
+  }).join('') : '<div class="lib-empty">还没有收到信。</div>';
+} else if(mailTab === 'outbox'){
     var outbox = letters.filter(function(l){ return l.me; }).slice().reverse();
     $('mailOutbox').innerHTML = outbox.length ? outbox.map(function(l){ 
       return '<div class="letter-card" data-letter-id="' + l.id + '" style="width:100%;margin-bottom:10px;">' +
@@ -5478,17 +6228,56 @@ if(Math.random() * 100 < (person.letterChance || 10)){
 if(Math.random() * 100 < (person.gameInviteChance || 10)){
   setTimeout(function(){ taSendGameInvite(); }, 1200 + Math.random() * 1200);
 }
+/* TA 主动送礼（内部自带：距上次超过 4 小时 + 15% 概率） */
+setTimeout(function(){ taSendGift(); }, 2000 + Math.random() * 2000);
         saveMessages();
         showTyping();
         var gap = 0, sentOne = false;
         picked.forEach(function(m, i){
-          gap += 600 + Math.random() * 600;
-          setTimeout(function(){
-            if(chatOpenNow){ appendMessage(m); if(!sentOne){ playDing(); sentOne = true; } }
-            else { unreadCount++; renderHome(); showNotificationBanner(m); if(!sentOne){ sentOne = true; } }
-            if(i === picked.length - 1){ hideTyping(); proactive.lastChatTime = Date.now(); saveProactive(); }
-          }, gap);
-        });
+  gap += 600 + Math.random() * 600;
+  setTimeout(function(){
+    /* 只有文字消息才可能触发撤回，5% 概率 */
+    var canRecall = (m.type === 'text' && Math.random() < 0.05);
+    
+    if(canRecall){
+      /* 1. 先正常发出 */
+      if(chatOpenNow){ appendMessage(m); if(!sentOne){ playDing(); sentOne = true; } }
+      else { unreadCount++; renderHome(); showNotificationBanner(m); if(!sentOne){ sentOne = true; } }
+      
+      /* 2. 1.5~2.5 秒后撤回（直白保留原话） */
+      setTimeout(function(){
+        m.recalled = true;
+        m.recallTime = Date.now();
+        saveMessages();
+        if(chatOpenNow){ renderMessages(); }
+        
+        /* 3. 此地无银三百两：撤回后 3~5 秒，用户没反应，TA 自己先慌 */
+        if(window.__recallPanicTimer){ clearTimeout(window.__recallPanicTimer); }
+        window.__recallPanicTimer = setTimeout(function(){
+          var last = messages[messages.length - 1];
+          if(last && last.me) return; /* 用户已经回复了，不补刀 */
+          
+          var PANIC_REPLIES = [
+            '你……怎么不说话？',
+            '你是不是看到了？',
+            '那个……我刚刚是复制别人的，你别当真！',
+            '喂？人呢？你吓我啊……'
+          ];
+          var txt = PANIC_REPLIES[Math.floor(Math.random() * PANIC_REPLIES.length)];
+          var pm = { me:false, type:'text', text: txt, time: Date.now(), id: uid('m') };
+          messages.push(pm); saveMessages();
+          if(chatOpenNow) appendMessage(pm);
+          else { unreadCount++; renderHome(); showNotificationBanner(pm); }
+        }, 3000 + Math.random() * 2000);
+      }, 1500 + Math.random() * 1000);
+    } else {
+      if(chatOpenNow){ appendMessage(m); if(!sentOne){ playDing(); sentOne = true; } }
+      else { unreadCount++; renderHome(); showNotificationBanner(m); if(!sentOne){ sentOne = true; } }
+    }
+    
+    if(i === picked.length - 1){ hideTyping(); proactive.lastChatTime = Date.now(); saveProactive(); }
+  }, gap);
+});
         if(Math.random() < 0.15){ setTimeout(function(){ tryTaPatMe(); }, gap + 1000); }
       }, 3000);
     }, delay);
@@ -5539,8 +6328,11 @@ if(Math.random() * 100 < (person.gameInviteChance || 10)){
       cards.text.forEach(function(b){
         if(b.enabled === false) return;
         if(b.name === '红包回复' || b.name === '红包' || b.name === '红包回复语'){
-          b.groups.forEach(function(sg){ sg.items.forEach(function(it){ if(it && String(it).trim()) pool.push(String(it).trim()); }); });
-        }
+  b.groups.forEach(function(sg){
+    if(sg.enabled === false) return;
+    sg.items.forEach(function(it){ if(it && String(it).trim()) pool.push(String(it).trim()); });
+  });
+}
       });
     }
     if(!pool.length) pool = ['够不够？不够再给你发', '拿去买点喜欢的', '给你的零花钱，收好啦', '别省着，想买什么就买'];
@@ -5688,9 +6480,34 @@ if(Math.random() * 100 < (person.gameInviteChance || 10)){
       }
     }
     gainAffection();
-    proactive.lastChatTime = Date.now(); saveProactive();
+  proactive.lastChatTime = Date.now(); saveProactive();
+
+  /* 如果用户刚回复的就是撤回的消息，TA 彻底慌神 */
+  var lastTaMsg = null;
+  for(var qi = messages.length - 2; qi >= 0; qi--){
+    if(!messages[qi].me){ lastTaMsg = messages[qi]; break; }
   }
-  if($('msgInput')) $('msgInput').addEventListener('input', function(){ $('sendBtn').disabled = $('msgInput').value.trim().length === 0; });
+  if(lastTaMsg && lastTaMsg.recalled){
+    if(window.__recallPanicTimer){ clearTimeout(window.__recallPanicTimer); window.__recallPanicTimer = null; }
+    setTimeout(function(){
+      var PANIC_REPLIES = [
+        '啊啊啊你怎么还没删！',
+        '你快忘掉！快点！',
+        '你别引用了！我求你了！',
+        '撤回键怎么突然不好使了……呜呜呜',
+        '你怎么什么都看得到啊！',
+        '我不理你了……（过了两秒）好吧我理你。',
+        '你你你……你截图了对不对！'
+      ];
+      var txt = PANIC_REPLIES[Math.floor(Math.random() * PANIC_REPLIES.length)];
+      var pm = { me:false, type:'text', text: txt, time: Date.now(), id: uid('m') };
+      messages.push(pm); saveMessages();
+      if(chatOpenNow) appendMessage(pm);
+      else { unreadCount++; renderHome(); showNotificationBanner(pm); }
+    }, 800 + Math.random() * 1000);
+  }
+}
+if($('msgInput')) $('msgInput').addEventListener('input', function(){ $('sendBtn').disabled = $('msgInput').value.trim().length === 0; });
   if($('composer')) $('composer').addEventListener('submit', function(e){ e.preventDefault(); doSendMessage(); });
   if($('sendBtn')) $('sendBtn').addEventListener('click', function(e){ e.preventDefault(); doSendMessage(); });
   if($('msgInput')) $('msgInput').addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.keyCode === 13){ e.preventDefault(); doSendMessage(); } });
@@ -5928,7 +6745,34 @@ $('myNameInput').value = person.myName || '我';
     if($('taStickerSummary')) $('taStickerSummary').textContent = taStickers.length + ' 张';
     $('lockSummary').textContent = getLockPwd() ? '已设置' : '未设置';
   }
-  function openSettingsPage(){ renderSettingsPreview(); $('settingsPage').classList.add('open'); }
+  /* ============ 多梦角模式 ============ */
+function isMultiPersonaOn(){
+  try{
+    var v = localStorage.getItem('chat_multi_persona_v1');
+    return v !== 'off';
+  }catch(e){ return true; }
+}
+function applyMultiPersonaMode(){
+  var on = isMultiPersonaOn();
+  var chip = $('personaChip');
+  if(chip) chip.style.display = on ? '' : 'none';
+  var groupBtn = document.querySelector('.app-item[data-app="group"]');
+  if(groupBtn) groupBtn.style.display = on ? '' : 'none';
+}
+function setMultiPersonaMode(on){
+  try{ localStorage.setItem('chat_multi_persona_v1', on ? 'on' : 'off'); }catch(e){}
+  applyMultiPersonaMode();
+}
+if($('multiPersonaToggle')){
+  $('multiPersonaToggle').addEventListener('change', function(){
+    setMultiPersonaMode(!!this.checked);
+  });
+}
+function openSettingsPage(){
+  if($('multiPersonaToggle')) $('multiPersonaToggle').checked = isMultiPersonaOn();
+  renderSettingsPreview();
+  $('settingsPage').classList.add('open');
+}
   if($('openSettingsFromChat')) $('openSettingsFromChat').onclick = function(){ $('chatSettingsMenuBg').classList.add('open'); };
 if($('chatSettingsMenuBg')){
   $('chatSettingsMenuBg').addEventListener('click', function(e){
@@ -6045,7 +6889,8 @@ if($('callBgGrid')){
 if(list){
   var appNames = {
   chat:'聊天', cards:'字卡', settings:'设置',
-  music:'一起听', moments:'动态', mailbox:'信箱', wallet:'钱包', game:'小游戏'
+  music:'一起听', moments:'动态', mailbox:'信箱', wallet:'钱包', game:'小游戏',
+  group:'群聊', shop:'商城'
 };
   var icons = person.appIcons || {};
   list.innerHTML = Object.keys(appNames).map(function(key){
@@ -6831,6 +7676,11 @@ if($('mailSendBtn')) $('mailSendBtn').onclick = function(){
   var text = $('mailWriteContent').value.trim(); 
   if(!text) return; 
   sendMyLetter(text); 
+  if(replyToLetterId){
+    var src = letters.filter(function(x){ return x.id === replyToLetterId; })[0];
+    if(src){ src.replied = true; saveLetters(); }
+    replyToLetterId = null;
+  }
   $('mailWriteContent').value = ''; 
   mailTab = 'outbox'; 
   renderMailbox(); 
@@ -7018,15 +7868,29 @@ Array.prototype.forEach.call(document.querySelectorAll('.app-item, .dock-item'),
       renderHome();
       
       // 2. 延迟50毫秒，等页面滑入动画跑起来后，再加载聊天记录
-      setTimeout(function(){
-        renderHeader(); 
-        renderMessages(); 
-        applyBeautify(); 
-        refreshChatMusicBanner(); 
-      }, 50);
+setTimeout(function(){
+  renderHeader(); 
+  renderMessages(); 
+  applyBeautify(); 
+  refreshChatMusicBanner(); 
+  showFeatureHint(); /* 新增：显示新功能提示 */
+}, 50);
     }
-    else if(app === 'music'){ musicTimerStart = Date.now(); renderMusicPage(); $('musicPage').classList.add('open'); setTimeout(autoPlayIfIdle, 400); }
-else if(app === 'moments'){ renderMoments(); $('momentsPage').classList.add('open'); setTimeout(maybeTaAutoPost, 300); }
+    else if(app === 'music'){
+  musicTimerStart = Date.now();
+  renderMusicPage();
+  $('musicPage').classList.add('open');
+  if(musicCurrentIndex === -1 && musicPlaylist.length > 0){
+    setTimeout(function(){ playMusicAtIndex(0); }, 400);
+  }
+}
+else if(app === 'moments'){ 
+  try{ localStorage.setItem('chat_unread_moments_v1', '0'); }catch(e){}
+  renderHome();
+  renderMoments(); 
+  $('momentsPage').classList.add('open'); 
+  setTimeout(maybeTaAutoPost, 300); 
+}
     else if(app === 'cards'){ libSearchKeyword = ''; if($('libSearchInput')) $('libSearchInput').value = ''; renderLib(); $('cardsPage').classList.add('open'); }
 else if(app === 'mailbox'){ renderMailbox(); $('mailboxPage').classList.add('open'); }
     else if(app === 'stickers'){ openSettingsPage(); }
@@ -7034,6 +7898,11 @@ else if(app === 'mailbox'){ renderMailbox(); $('mailboxPage').classList.add('ope
     else if(app === 'anniversary'){ renderAnniversaryPage(); $('anniversaryPage').classList.add('open'); }
     else if(app === 'wallet'){ renderWalletPage(); $('walletPage').classList.add('open'); }
 else if(app === 'game'){ window.__gomokuMode = 'solo'; $('gameHallPage').classList.add('open'); }
+else if(app === 'group'){
+  if(!isMultiPersonaOn()) return;
+  loadGroupMessages(); renderGroupMessages(); $('groupPage').classList.add('open');
+}
+else if(app === 'shop'){ renderShop(); $('shopPage').classList.add('open'); }
 else if(app === 'settings'){ openSettingsPage(); }
   });
 });
@@ -7057,8 +7926,13 @@ if($('gameGrid')) $('gameGrid').addEventListener('click', function(e){
       if(window.__openJump) window.__openJump();
     }
   } else if(g === 'tetris'){
-    $('gameHallPage').classList.remove('open');
-    if(window.__openTetris) window.__openTetris();
+    if(window.__gomokuMode === 'invite'){
+      window.__gomokuMode = 'solo';
+      $('gameHallPage').classList.remove('open');
+    } else {
+      $('gameHallPage').classList.remove('open');
+      if(window.__openTetris) window.__openTetris();
+    }
   }
 });
 if($('chatBack')) $('chatBack').onclick = function(){
@@ -7110,45 +7984,69 @@ if($('chatMusicBack')){
 
   /* 长按气泡 → 弹菜单 */
   var longPressBubbleTimer = null;
-  var longPressStartY = 0;
-  $('messages').addEventListener('touchstart', function(e){
-    var msgEl = e.target.closest('.msg');
-    if(!msgEl) return;
-    if(e.target.closest('.bubble-quote')) return;
-    longPressStartY = e.touches[0].clientY;
-    longPressBubbleTimer = setTimeout(function(){
-      longPressBubbleTimer = null;
-      if(navigator.vibrate) navigator.vibrate(20);
-      var idx = parseInt(msgEl.dataset.msgIdx, 10);
-      openMsgActions(idx);
-    }, 500);
-  }, {passive:true});
+var longPressStartY = 0;
+var touchStartY = 0;
+var touchEmptyTimer = null;
 
-  $('messages').addEventListener('touchmove', function(e){
-    if(!longPressBubbleTimer) return;
+$('messages').addEventListener('touchstart', function(e){
+  var msgEl = e.target.closest('.msg');
+  if(!msgEl) {
+    if(e.target.closest('.bubble-quote')) return;
+    touchStartY = e.touches[0].clientY;
+    touchEmptyTimer = setTimeout(function(){
+      touchEmptyTimer = null;
+      if(navigator.vibrate) navigator.vibrate(20);
+      var pool = (cards && cards.system && Array.isArray(cards.system.touchReplies)) ? cards.system.touchReplies : ['嗯？', '我在的'];
+      var txt = pool[Math.floor(Math.random() * pool.length)];
+      var m = { me:false, type:'text', text: txt, time: Date.now(), id: uid('m') };
+      messages.push(m); saveMessages();
+      if(chatOpenNow) appendMessage(m);
+    }, 500);
+    return;
+  }
+  if(e.target.closest('.bubble-quote')) return;
+  longPressStartY = e.touches[0].clientY;
+  longPressBubbleTimer = setTimeout(function(){
+    longPressBubbleTimer = null;
+    if(navigator.vibrate) navigator.vibrate(20);
+    var idx = parseInt(msgEl.dataset.msgIdx, 10);
+    openMsgActions(idx);
+  }, 500);
+}, {passive:true});
+
+$('messages').addEventListener('touchmove', function(e){
+  if(longPressBubbleTimer){
     if(Math.abs(e.touches[0].clientY - longPressStartY) > 10){
       clearTimeout(longPressBubbleTimer);
       longPressBubbleTimer = null;
     }
-  }, {passive:true});
+  }
+  if(touchEmptyTimer){
+    if(Math.abs(e.touches[0].clientY - touchStartY) > 10){
+      clearTimeout(touchEmptyTimer);
+      touchEmptyTimer = null;
+    }
+  }
+}, {passive:true});
 
-  $('messages').addEventListener('touchend', function(){
-    if(longPressBubbleTimer){ clearTimeout(longPressBubbleTimer); longPressBubbleTimer = null; }
-  });
+$('messages').addEventListener('touchend', function(){
+  if(longPressBubbleTimer){ clearTimeout(longPressBubbleTimer); longPressBubbleTimer = null; }
+  if(touchEmptyTimer){ clearTimeout(touchEmptyTimer); touchEmptyTimer = null; }
+});
 
   function openMsgActions(idx){
-    if(idx < 0 || idx >= messages.length) return;
-    var m = messages[idx];
-    if(m.type === 'sys') return;
-    actionMsgIdx = idx;
-    var preview = (m.text || '').slice(0, 30);
-    if((m.text || '').length > 30) preview += '…';
-    $('msgActionsTitle').textContent = (m.me ? '你' : (person.name || 'TA')) + '：' + preview;
-    $('msgActionDelete').style.display = '';
-    if(!m.text && m.type === 'sticker'){ $('msgActionCopy').style.display = 'none'; $('msgActionQuote').style.display = 'none'; }
-    else { $('msgActionCopy').style.display = ''; $('msgActionQuote').style.display = ''; }
-    $('msgActionsBg').classList.add('open');
-  }
+  if(idx < 0 || idx >= messages.length) return;
+  var m = messages[idx];
+  if(m.type === 'sys') return;
+  actionMsgIdx = idx;
+  var preview = (m.text || '').slice(0, 30);
+  if((m.text || '').length > 30) preview += '…';
+  $('msgActionsTitle').textContent = (m.me ? '你' : (person.name || 'TA')) + '：' + preview;
+  $('msgActionDelete').style.display = '';
+  if(!m.text && m.type === 'sticker'){ $('msgActionCopy').style.display = 'none'; $('msgActionQuote').style.display = 'none'; }
+  else { $('msgActionCopy').style.display = ''; $('msgActionQuote').style.display = ''; }
+  $('msgActionsBg').classList.add('open');
+}
 
   function closeMsgActions(){
     $('msgActionsBg').classList.remove('open');
@@ -7203,6 +8101,451 @@ if($('chatMusicBack')){
   closeMsgActions();
 };
 
+/* ============ 商城 ============ */
+var DEFAULT_GIFTS = [
+  { id:'g_tea', emoji:'🧋', name:'奶茶', price:15, bless:'给你带了一杯，记得少冰。' },
+  { id:'g_flower', emoji:'🌹', name:'玫瑰花', price:13.14, bless:'送你一朵，比心。' },
+  { id:'g_choco', emoji:'🍫', name:'巧克力', price:20, bless:'甜一点，心情好一点。' },
+  { id:'g_cake', emoji:'🎂', name:'小蛋糕', price:38, bless:'吃点甜的，今天也要开心。' },
+  { id:'g_car', emoji:'🚗', name:'小汽车', price:520, bless:'接你下班，好不好。' },
+  { id:'g_ring', emoji:'💍', name:'戒指', price:1314, bless:'戴上它，就当我一直陪着你。' },
+  { id:'g_star', emoji:'⭐', name:'星星', price:52, bless:'摘一颗给你，小心愿都实现。' },
+  { id:'g_hug', emoji:'🤗', name:'一个抱抱', price:1, bless:'抱抱，先欠着，下次还。' }
+];
+
+var giftLib = [];
+var giftRecords = [];
+var shopTab = 'shop';
+var pendingGiftId = null;
+
+function loadGiftLib(){
+  try{
+    var raw = localStorage.getItem(GIFTS_KEY);
+    if(raw){
+      var d = JSON.parse(raw);
+      if(Array.isArray(d) && d.length){ giftLib = d; return; }
+    }
+  }catch(e){}
+  giftLib = JSON.parse(JSON.stringify(DEFAULT_GIFTS));
+  saveGiftLib();
+}
+function saveGiftLib(){ safeSetItem(GIFTS_KEY, JSON.stringify(giftLib)); }
+function loadGiftRecords(){
+  try{
+    var raw = localStorage.getItem(GIFT_RECORDS_KEY);
+    if(raw){
+      var d = JSON.parse(raw);
+      if(Array.isArray(d)) giftRecords = d;
+    }
+  }catch(e){}
+}
+function saveGiftRecords(){
+  if(giftRecords.length > 200) giftRecords = giftRecords.slice(giftRecords.length - 200);
+  safeSetItem(GIFT_RECORDS_KEY, JSON.stringify(giftRecords));
+}
+
+function renderShopList(){
+  var box = $('shopListView');
+  if(!box) return;
+  var html = '<div class="shop-grid">';
+  giftLib.forEach(function(g){
+    html += '<div class="shop-card" data-gift-id="' + g.id + '">' +
+      '<button class="shop-card-del" data-gift-del="' + g.id + '">×</button>' +
+      '<div class="shop-card-emoji">' + esc(g.emoji) + '</div>' +
+      '<div class="shop-card-name">' + esc(g.name) + '</div>' +
+      '<div class="shop-card-price">¥' + fmtMoney(g.price) + '</div>' +
+    '</div>';
+  });
+  html += '<div class="shop-add-card" id="shopAddCard">' +
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>' +
+    '<div>添加礼物</div>' +
+  '</div>';
+  html += '</div>';
+  box.innerHTML = html;
+}
+
+function renderGiftSent(){
+  var box = $('giftSentView');
+  if(!box) return;
+  var list = giftRecords.filter(function(r){ return r.direction === 'out'; }).slice().reverse();
+  if(!list.length){ box.innerHTML = '<div class="shop-empty">还没有送过礼物<br>去商城挑一份送给 TA 吧</div>'; return; }
+  box.innerHTML = '<div style="height:10px"></div>' + list.map(function(r){
+    return '<div class="gift-record">' +
+      '<div class="gift-record-emoji">' + esc(r.emoji) + '</div>' +
+      '<div class="gift-record-info">' +
+        '<div class="gift-record-head"><span class="gift-record-name">' + esc(r.name) + '</span><span class="gift-record-price out">-¥' + fmtMoney(r.price) + '</span></div>' +
+        (r.bless ? '<div class="gift-record-bless">' + esc(r.bless) + '</div>' : '') +
+        '<div class="gift-record-time">' + formatTime(r.time) + '</div>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+
+function renderGiftReceived(){
+  var box = $('giftReceivedView');
+  if(!box) return;
+  var list = giftRecords.filter(function(r){ return r.direction === 'in'; }).slice().reverse();
+  if(!list.length){ box.innerHTML = '<div class="shop-empty">还没有收到过礼物<br>多陪陪 TA 吧～</div>'; return; }
+  box.innerHTML = '<div style="height:10px"></div>' + list.map(function(r){
+    return '<div class="gift-record">' +
+      '<div class="gift-record-emoji">' + esc(r.emoji) + '</div>' +
+      '<div class="gift-record-info">' +
+        '<div class="gift-record-head"><span class="gift-record-name">' + esc(r.name) + '</span><span class="gift-record-price">来自 ' + esc(person.name || 'TA') + '</span></div>' +
+        (r.bless ? '<div class="gift-record-bless">' + esc(r.bless) + '</div>' : '') +
+        '<div class="gift-record-time">' + formatTime(r.time) + '</div>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+
+function renderShop(){
+  if(!$('shopPage')) return;
+  if($('shopBalanceBtn')) $('shopBalanceBtn').textContent = '¥' + fmtMoney(walletMe.balance);
+  renderShopList();
+  renderGiftSent();
+  renderGiftReceived();
+  Array.prototype.forEach.call(document.querySelectorAll('.lib-tab[data-shoptab]'), function(t){ t.classList.toggle('active', t.dataset.shoptab === shopTab); });
+  $('shopListView').style.display = (shopTab === 'shop') ? '' : 'none';
+  $('giftSentView').style.display = (shopTab === 'sent') ? '' : 'none';
+  $('giftReceivedView').style.display = (shopTab === 'received') ? '' : 'none';
+}
+
+function openGiftSend(giftId){
+  var g = giftLib.filter(function(x){ return x.id === giftId; })[0];
+  if(!g) return;
+  pendingGiftId = giftId;
+  $('giftSendEmoji').textContent = g.emoji;
+  $('giftSendName').textContent = g.name;
+  $('giftSendPrice').textContent = '¥' + fmtMoney(g.price);
+  $('giftSendBlessInput').value = '';
+  $('giftSendBlessInput').placeholder = g.bless || '写一句想说的话…';
+  $('giftSendBg').classList.add('open');
+}
+
+function confirmGiftSend(){
+  if(!pendingGiftId) return;
+  var g = giftLib.filter(function(x){ return x.id === pendingGiftId; })[0];
+  if(!g) return;
+  if(g.price > walletMe.balance){
+    showDialog('余额不足', '你当前余额 ¥' + fmtMoney(walletMe.balance) + '，不够买这份礼物。', [{ text:'知道了', primary:true }]);
+    return;
+  }
+  var bless = ($('giftSendBlessInput').value || '').trim() || g.bless || '';
+
+  walletMe.balance = Math.round((walletMe.balance - g.price) * 100) / 100;
+  saveWalletMe();
+
+  var record = {
+    id: uid('gift'), direction: 'out', giftId: g.id,
+    emoji: g.emoji, name: g.name, price: g.price, bless: bless, time: Date.now()
+  };
+  giftRecords.push(record);
+  saveGiftRecords();
+
+  var msg = {
+    me: true, type: 'gift', giftId: g.id,
+    emoji: g.emoji, name: g.name, price: g.price, bless: bless,
+    time: Date.now(), read: false, id: uid('m')
+  };
+  messages.push(msg);
+  saveMessages();
+  if(chatOpenNow) appendMessage(msg);
+
+  $('giftSendBg').classList.remove('open');
+pendingGiftId = null;
+
+/* 关闭商城，回到聊天页看效果 */
+$('shopPage').classList.remove('open');
+$('chatPage').classList.add('open');
+chatOpenNow = true;
+unreadCount = 0;
+renderHome();
+renderMessages();
+applyBeautify();
+
+/* TA 几秒后回复致谢 */
+  setTimeout(function(){
+    var txt = pickGiftThanks();
+    var cm = { me:false, type:'text', text: txt, time: Date.now(), id: uid('m') };
+    messages.push(cm);
+    saveMessages();
+    if(chatOpenNow) appendMessage(cm);
+    else { unreadCount++; renderHome(); showNotificationBanner(cm); }
+  }, 1500 + Math.random() * 2000);
+}
+
+function pickGiftThanks(){
+  var pool = [];
+  if(cards && cards.system && Array.isArray(cards.system.giftThanks)){
+    pool = cards.system.giftThanks.filter(function(t){ return t && String(t).trim(); });
+  }
+  if(!pool.length) pool = ['谢谢宝宝！好喜欢～', '哇，你怎么知道我想要这个！', '收到了，抱抱你～', '好开心，谢谢你'];
+  return pool[Math.floor(Math.random() * pool.length)];
+}
+
+/* TA 主动送礼：距上次 TA 送礼超过 4 小时 + 15% 概率 */
+function taSendGift(){
+  var last = 0;
+  for(var i=giftRecords.length-1;i>=0;i--){
+    if(giftRecords[i].direction === 'in'){ last = giftRecords[i].time; break; }
+  }
+  var FOUR_HOURS = 4 * 3600 * 1000;
+  if(last && Date.now() - last < FOUR_HOURS) return;
+  if(Math.random() > 0.15) return;
+
+  var g = giftLib[Math.floor(Math.random() * giftLib.length)];
+  if(!g) return;
+
+  var record = {
+    id: uid('gift'), direction: 'in', giftId: g.id,
+    emoji: g.emoji, name: g.name, price: g.price, bless: g.bless || '', time: Date.now()
+  };
+  giftRecords.push(record);
+  saveGiftRecords();
+
+  var msg = {
+    me: false, type: 'gift',
+    emoji: g.emoji, name: g.name, price: g.price, bless: g.bless || '',
+    time: Date.now(), id: uid('m')
+  };
+  messages.push(msg);
+  saveMessages();
+  if(chatOpenNow){ appendMessage(msg); playDing(); }
+  else { unreadCount++; renderHome(); showNotificationBanner(msg); }
+
+  /* TA 在卡片之后补一句话 */
+  setTimeout(function(){
+    var pool = (cards && cards.system && Array.isArray(cards.system.giftNote))
+      ? cards.system.giftNote.filter(function(t){ return t && String(t).trim(); })
+      : [];
+    if(!pool.length) return;
+    var note = pool[Math.floor(Math.random() * pool.length)];
+    var nm = { me:false, type:'text', text: note, time: Date.now(), id: uid('m') };
+    messages.push(nm);
+    saveMessages();
+    if(chatOpenNow) appendMessage(nm);
+    else { unreadCount++; renderHome(); }
+  }, 1200 + Math.random() * 1200);
+}
+
+/* 商城事件绑定 */
+if($('shopBack')) $('shopBack').onclick = function(){ $('shopPage').classList.remove('open'); };
+if($('shopBalanceBtn')) $('shopBalanceBtn').onclick = function(){ renderWalletPage(); $('walletPage').classList.add('open'); };
+if($('shopTabs')){
+  $('shopTabs').addEventListener('click', function(e){
+    var tab = e.target.closest('[data-shoptab]');
+    if(!tab) return;
+    shopTab = tab.dataset.shoptab;
+    renderShop();
+  });
+}
+if($('shopListView')){
+  $('shopListView').addEventListener('click', function(e){
+    var del = e.target.closest('[data-gift-del]');
+    if(del){
+      e.stopPropagation();
+      var gid = del.dataset.giftDel;
+      var g = giftLib.filter(function(x){ return x.id === gid; })[0];
+      if(!g) return;
+      showDialog('删除礼物', '确定要把「' + g.name + '」从商城下架吗？', [
+        { text:'取消' },
+        { text:'删除', danger:true, onClick:function(){
+          giftLib = giftLib.filter(function(x){ return x.id !== gid; });
+          saveGiftLib(); renderShop();
+        }}
+      ]);
+      return;
+    }
+    if(e.target.closest('#shopAddCard')){
+      var emoji = window.prompt('礼物表情（一个 emoji，例如 🍰）：', '🎁');
+      if(emoji === null) return;
+      emoji = (emoji || '').trim() || '🎁';
+      var name = window.prompt('礼物名字（例如：草莓蛋糕）：', '');
+      if(name === null) return;
+      name = name.trim(); if(!name) return;
+      var priceStr = window.prompt('价格（数字，例如 38）：', '');
+      if(priceStr === null) return;
+      var price = parseFloat(priceStr);
+      if(isNaN(price) || price < 0) price = 0;
+      var bless = window.prompt('默认祝福语（可留空）：', '');
+      if(bless === null) bless = '';
+      bless = bless.trim();
+      giftLib.push({ id: uid('g'), emoji: emoji, name: name, price: price, bless: bless });
+      saveGiftLib(); renderShop();
+      return;
+    }
+    var card = e.target.closest('[data-gift-id]');
+    if(card){ openGiftSend(card.dataset.giftId); return; }
+  });
+}
+if($('giftSendCancel')) $('giftSendCancel').onclick = function(){ $('giftSendBg').classList.remove('open'); pendingGiftId = null; };
+if($('giftSendConfirm')) $('giftSendConfirm').onclick = confirmGiftSend;
+if($('giftSendBg')){
+  $('giftSendBg').addEventListener('click', function(e){
+    if(e.target === $('giftSendBg')){ $('giftSendBg').classList.remove('open'); pendingGiftId = null; }
+  });
+}
+/* ============ 群聊 ============ */
+var GROUP_MSG_KEY = 'chat_group_messages_v1';
+var groupMessages = [];
+
+function loadGroupMessages(){
+  try{
+    var raw = window.__RawLS.get(GROUP_MSG_KEY);
+    if(raw){
+      var d = JSON.parse(raw);
+      if(Array.isArray(d)) groupMessages = d.filter(function(m){ return m && m.type; });
+    }
+  }catch(e){}
+}
+function saveGroupMessages(){
+  try{
+    if(groupMessages.length > 300) groupMessages = groupMessages.slice(groupMessages.length - 300);
+    window.__RawLS.set(GROUP_MSG_KEY, JSON.stringify(groupMessages));
+  }catch(e){}
+}
+
+function getCardsByPersonaId(pid){
+  try{
+    var raw = window.__RawLS.get('p_' + pid + '__chat_cards_v2');
+    if(!raw) return null;
+    return JSON.parse(raw);
+  }catch(e){ return null; }
+}
+
+function pickCardFromPersona(pid){
+  var c = getCardsByPersonaId(pid);
+  if(!c || !Array.isArray(c.text)) return null;
+  var pool = [];
+  c.text.forEach(function(b){
+    if(b.enabled === false) return;
+    if(!Array.isArray(b.groups)) return;
+    b.groups.forEach(function(sg){
+  if(sg.enabled === false) return;
+  if(!Array.isArray(sg.items)) return;
+      sg.items.forEach(function(it){
+        if(it && String(it).trim()) pool.push(String(it).trim());
+      });
+    });
+  });
+  if(!pool.length) return null;
+  return pool[Math.floor(Math.random() * pool.length)];
+}
+
+function pickAvatarColor(name){
+  var colors = ['#5a7fa3','#7a9a7a','#b67a7a','#8a7aa3','#4a9a8a','#b08a5a','#c48a9a','#a37a8a'];
+  var hash = 0;
+  for(var i=0;i<name.length;i++) hash = (hash * 31 + name.charCodeAt(i)) >>> 0;
+  return colors[hash % colors.length];
+}
+
+function buildGroupAvatar(p, msg){
+  if(p && p.avatar){
+    var key = idbMarkerToKey(p.avatar);
+    var url = key ? imgKeyToBlob[key] : p.avatar;
+    if(url){
+      return '<div class="group-msg-avatar" style="background:transparent;"><img src="' + esc(url) + '" style="width:100%;height:100%;object-fit:cover;display:block;"></div>';
+    }
+  }
+  var name = (p && p.name) || msg.personaName || '?';
+  return '<div class="group-msg-avatar" style="background:' + pickAvatarColor(name) + ';">' + esc(name.charAt(0)) + '</div>';
+}
+
+function buildGroupMsgHTML(m){
+  var isMe = m.me;
+  var p = null;
+  if(!isMe && m.personaId){
+    for(var i=0;i<personas.length;i++){ if(personas[i].id === m.personaId){ p = personas[i]; break; } }
+  }
+  var av, name;
+  if(isMe){
+    if(person.myAvatar){
+      av = '<div class="group-msg-avatar" style="background:transparent;"><img src="' + person.myAvatar + '" style="width:100%;height:100%;object-fit:cover;display:block;"></div>';
+    } else {
+      var mn = person.myName || '我';
+      av = '<div class="group-msg-avatar" style="background:' + pickAvatarColor(mn) + ';">' + esc(mn.charAt(0)) + '</div>';
+    }
+    name = person.myName || '我';
+  } else {
+    av = buildGroupAvatar(p, m);
+    name = m.personaName || (p && p.name) || '?';
+  }
+  var bubble;
+  if(m.type === 'sticker'){
+    bubble = '<div class="group-msg-bubble" style="background:transparent;padding:0;"><img src="' + esc(m.text) + '" style="max-width:140px;border-radius:12px;display:block;"></div>';
+  } else {
+    bubble = '<div class="group-msg-bubble">' + esc(m.text) + '</div>';
+  }
+  return '<div class="group-msg ' + (isMe ? 'out' : 'in') + '">' +
+           av +
+           '<div class="group-msg-body">' +
+             '<div class="group-msg-name">' + esc(name) + '</div>' +
+             bubble +
+           '</div>' +
+         '</div>';
+}
+
+function renderGroupMessages(){
+  var box = $('groupMessages');
+  if(!box) return;
+  if(!groupMessages.length){
+    box.innerHTML = '<div class="group-empty">还没有人说话<br>发一条试试看吧～</div>';
+    return;
+  }
+  var slice = groupMessages.slice(-80);
+  box.innerHTML = slice.map(buildGroupMsgHTML).join('');
+  requestAnimationFrame(function(){ box.scrollTop = box.scrollHeight; });
+}
+
+function sendGroupMessage(){
+  var inp = $('groupInput');
+  var text = (inp.value || '').trim();
+  if(!text) return;
+  groupMessages.push({ id: uid('gm'), me: true, type: 'text', text: text, time: Date.now() });
+  saveGroupMessages();
+  renderGroupMessages();
+  inp.value = '';
+  $('groupSendBtn').disabled = true;
+
+  if(!personas.length) return;
+  var n = Math.min(personas.length, 1 + Math.floor(Math.random() * 2));
+  var pool = personas.slice();
+  var picked = [];
+  for(var i=0;i<n && pool.length;i++){
+    var idx = Math.floor(Math.random() * pool.length);
+    picked.push(pool[idx]);
+    pool.splice(idx, 1);
+  }
+  var gap = 0;
+  picked.forEach(function(p){
+    gap += 1200 + Math.random() * 1800;
+    setTimeout(function(){
+      var txt = pickCardFromPersona(p.id);
+      if(!txt) txt = '……';
+      groupMessages.push({
+        id: uid('gm'),
+        me: false,
+        personaId: p.id,
+        personaName: p.name,
+        type: 'text',
+        text: txt,
+        time: Date.now()
+      });
+      saveGroupMessages();
+      if($('groupPage') && $('groupPage').classList.contains('open')){
+        renderGroupMessages();
+      }
+    }, gap);
+  });
+}
+
+if($('groupBack')) $('groupBack').onclick = function(){ $('groupPage').classList.remove('open'); };
+if($('groupInput')) $('groupInput').addEventListener('input', function(){
+  $('groupSendBtn').disabled = $('groupInput').value.trim().length === 0;
+});
+if($('groupComposer')) $('groupComposer').addEventListener('submit', function(e){ e.preventDefault(); sendGroupMessage(); });
+if($('groupSendBtn')) $('groupSendBtn').addEventListener('click', function(e){ e.preventDefault(); sendGroupMessage(); });
+
 /* 初始化 */
 preloadAllImages().then(function(){
   // 🚨 第一步：强制清理坏掉的旧图标数据，防止白块和代码报错
@@ -7233,7 +8576,9 @@ preloadAllImages().then(function(){
 
   // 第二步：正常加载所有数据
   loadPerson();
-  loadStats();
+loadPersonas();
+renderPersonaChip();
+loadStats();
   loadProactive();
   loadSignIn();
   loadMessages();
@@ -7244,7 +8589,10 @@ preloadAllImages().then(function(){
   loadWallets();
   loadLetters();
   loadMusicPlaylist();
-  loadMoments();
+loadMoments();
+loadGroupMessages();
+loadGiftLib();
+loadGiftRecords();
 
   renderHeader();
   renderMessages();
@@ -7274,53 +8622,123 @@ var WELCOME_KEY = 'chat_welcome_shown_v1';
 function showWelcomeIfFirstTime(){
   var shown = '';
   try{ shown = localStorage.getItem(WELCOME_KEY) || ''; }catch(e){}
-  if(shown === 'yes') return false;
+  if(shown === APP_VERSION) return false;
   var bg = $('welcomeBg');
   if(!bg) return false;
   bg.classList.add('show');
-  
-  // 强制翻到底逻辑
-  var welcomeBody = $('welcomeBody');
-  var welcomeBtn = $('welcomeBtn');
-  if(welcomeBody && welcomeBtn){
-    var checkScroll = function(){
-      // 当滚动条到底时（容错 10px），显示按钮
-      if(welcomeBody.scrollTop + welcomeBody.clientHeight >= welcomeBody.scrollHeight - 10){
-        welcomeBtn.style.display = 'block';
-      }
-    };
-    // 如果内容不够长，没滚动条，直接显示
-    if(welcomeBody.scrollHeight <= welcomeBody.clientHeight + 10){
-      welcomeBtn.style.display = 'block';
-    }
-    // 监听滚动事件
-    welcomeBody.addEventListener('scroll', checkScroll);
-    // 初始化时也检查一次（防止缓存问题）
-    setTimeout(checkScroll, 100);
+
+  /* 每页的"已读完"状态 */
+var readState = { about: false, play: false, guide: false };
+  var agreeState = false;
+  var currentTab = 'about';
+
+  function renderTabs(){
+    var labelMap = { about: '关于', play: '玩法', guide: '教程' };
+Array.prototype.forEach.call(bg.querySelectorAll('.welcome-tab'), function(t){
+  var which = t.dataset.wtab;
+  var label = labelMap[which] || which;
+  t.textContent = label + (readState[which] ? ' ✓' : '');
+  t.classList.toggle('active', which === currentTab);
+});
   }
+
+  function updateButton(){
+  var btn = $('welcomeBtn');
+  if(!btn) return;
+  var todo = [];
+  if(!readState.about) todo.push('「关于」');
+  if(!readState.play) todo.push('「玩法」');
+  if(!readState.guide) todo.push('「教程」');
+  if(todo.length){ btn.textContent = '请先读完 ' + todo.join('、'); btn.disabled = true; return; }
+  if(!agreeState){ btn.textContent = '请勾选下方同意条款'; btn.disabled = true; return; }
+  btn.textContent = '我已经看完了，开始吧';
+  btn.disabled = false;
+}
+
+  /* 重置 */
+  currentTab = 'about';
+if($('welcomeAbout')) $('welcomeAbout').style.display = '';
+if($('welcomePlay')) $('welcomePlay').style.display = 'none';
+if($('welcomeGuide')) $('welcomeGuide').style.display = 'none';
+  if($('welcomeAgree')) $('welcomeAgree').checked = false;
+  if($('welcomeBg')) $('welcomeBg').scrollTop = 0;
+  renderTabs();
+  updateButton();
+
+  /* 滚动检测 */
+  var scrollEl = $('welcomeBg');
+function checkScroll(){
+  if(!scrollEl) return;
+  var atBottom = scrollEl.scrollTop + scrollEl.clientHeight >= scrollEl.scrollHeight - 10;
+  var noScroll = scrollEl.scrollHeight <= scrollEl.clientHeight + 10;
+  if(atBottom || noScroll){
+    if(!readState[currentTab]){
+      readState[currentTab] = true;
+      renderTabs();
+      updateButton();
+    }
+  }
+}
+if(scrollEl && !scrollEl.dataset.scrollBound){
+  scrollEl.dataset.scrollBound = '1';
+  scrollEl.addEventListener('scroll', checkScroll);
+}
+setTimeout(checkScroll, 100);
+
+  /* Tab 切换 */
+  if($('welcomeTabs') && !$('welcomeTabs').dataset.bound){
+    $('welcomeTabs').dataset.bound = '1';
+    $('welcomeTabs').addEventListener('click', function(e){
+      var tab = e.target.closest('[data-wtab]');
+      if(!tab) return;
+      var which = tab.dataset.wtab;
+      currentTab = which;
+      if($('welcomeAbout')) $('welcomeAbout').style.display = (which === 'about') ? '' : 'none';
+if($('welcomePlay')) $('welcomePlay').style.display = (which === 'play') ? '' : 'none';
+if($('welcomeGuide')) $('welcomeGuide').style.display = (which === 'guide') ? '' : 'none';
+if(scrollEl) scrollEl.scrollTop = 0;
+      renderTabs();
+      updateButton();
+      setTimeout(checkScroll, 50);
+    });
+  }
+
+  /* 同意勾选 */
+  if($('welcomeAgree') && !$('welcomeAgree').dataset.bound){
+    $('welcomeAgree').dataset.bound = '1';
+    $('welcomeAgree').addEventListener('change', function(){
+      agreeState = this.checked;
+      updateButton();
+    });
+  }
+
   return true;
 }
 
 if($('welcomeBtn')){
   $('welcomeBtn').onclick = function(){
-    try{ localStorage.setItem(WELCOME_KEY, 'yes'); }catch(e){}
+    if(this.disabled) return;
+    try{
+      localStorage.setItem(WELCOME_KEY, APP_VERSION);
+      localStorage.setItem('chat_app_version_v1', APP_VERSION);
+    }catch(e){}
     $('welcomeBg').classList.remove('show');
     onAppReady();
   };
 }
 
-/* 如果已经看过公告，正常启动；没看过就先弹公告 */
+/* 是否要看公告：看过的版本号 !== 当前版本号 */
+function needsWelcome(){
+  try{ return localStorage.getItem(WELCOME_KEY) !== APP_VERSION; }catch(e){ return true; }
+}
+
 if(getLockPwd()){
   showLock();
-  var isFirst = false;
-  try{ isFirst = localStorage.getItem(WELCOME_KEY) !== 'yes'; }catch(e){ isFirst = true; }
-  if(isFirst){
+  if(needsWelcome()){
     setTimeout(showWelcomeIfFirstTime, 500);
   }
 } else {
-  var isFirst = false;
-  try{ isFirst = localStorage.getItem(WELCOME_KEY) !== 'yes'; }catch(e){ isFirst = true; }
-  if(isFirst){
+  if(needsWelcome()){
     setTimeout(showWelcomeIfFirstTime, 500);
   } else {
     setTimeout(onAppReady, 800);
@@ -7438,32 +8856,22 @@ function pickMomentSticker(fromTa){
 
 function taPostMoment(){
   var text = pickMomentText();
+  if(cards && cards.system && Array.isArray(cards.system.lifeMoments) && cards.system.lifeMoments.length > 0){
+    if(Math.random() < 0.7){
+      text = cards.system.lifeMoments[Math.floor(Math.random() * cards.system.lifeMoments.length)];
+    }
+  }
   var sticker = pickMomentSticker(true);
   if(!text && !sticker) return;
   var m = { id: uid('mo'), author: 'ta', text: text, sticker: sticker || '', time: Date.now(), likes: [], comments: [] };
   moments.push(m);
   saveMoments();
-  renderMoments();
-  /* 不在动态页时，弹通知横幅 */
-  var mp = $('momentsPage');
-  var onMoments = mp && mp.classList.contains('open');
-  if(!onMoments){
-    var banner = $('notificationBanner');
-    if(banner){
-      var avatarHTML = person.avatar ? '<img src="' + person.avatar + '" alt="">' : DEFAULT_AVATAR_SVG;
-      banner.innerHTML = '<div class="notification-avatar">' + avatarHTML + '</div>' +
-                         '<div class="notification-content">' +
-                           '<div class="notification-title">' + esc(person.name || 'TA') + ' 发了新动态</div>' +
-                           '<div class="notification-body">' + (text ? esc(text).slice(0, 40) : '[图片]') + '</div>' +
-                         '</div>';
-      banner.style.display = 'flex';
-      requestAnimationFrame(function(){ banner.classList.add('show'); });
-      playDing();
-      setTimeout(function(){
-        banner.classList.remove('show');
-        setTimeout(function(){ banner.style.display = 'none'; }, 300);
-      }, 3000);
-    }
+  var inMomentsPage = $('momentsPage') && $('momentsPage').classList.contains('open');
+  if(inMomentsPage){
+    renderMoments();
+  } else {
+    try{ localStorage.setItem('chat_unread_moments_v1', '1'); }catch(e){}
+    renderHome();
   }
 }
 
@@ -7473,7 +8881,7 @@ function maybeTaAutoPost(){
   var hours = person.momentAutoPostHours || 4;
   var now = Date.now();
   if(!lastTa || (now - lastTa.time) > hours * 3600 * 1000){
-    if(Math.random() * 100 < (person.momentAutoPostChance || 70)){
+    if(Math.random() * 100 < (person.momentAutoPostChance || 50)){
       setTimeout(taPostMoment, 800 + Math.random() * 1500);
     }
   }
@@ -7730,7 +9138,6 @@ function openMusicFromChat(){
   musicTimerStart = Date.now();
   renderMusicPage();
   $('musicPage').classList.add('open');
-  setTimeout(autoPlayIfIdle, 400);
 }
 
 if($('openMoreMenuBtn')){
@@ -7889,9 +9296,9 @@ function startIncomingCall(){
 
 /* 接通 */
 function connectCall(){
-  stopDialTone();
   if(callAutoHangTimer){ clearTimeout(callAutoHangTimer); callAutoHangTimer = null; }
   if(callIncomingTimeout){ clearTimeout(callIncomingTimeout); callIncomingTimeout = null; }
+  stopDialTone();
   callState = 'connected';
   $('callStatusText').textContent = '通话中';
   $('callSub').textContent = '已接通';
@@ -7962,8 +9369,8 @@ function rejectIncomingCall(){
 
 /* 结束通话 */
 function endCall(silent){
-  stopDialTone();
   callState = 'idle';
+  stopDialTone();
   if(callAutoHangTimer){ clearTimeout(callAutoHangTimer); callAutoHangTimer = null; }
   if(callIncomingTimeout){ clearTimeout(callIncomingTimeout); callIncomingTimeout = null; }
   
@@ -8575,14 +9982,6 @@ function refreshChatMusicBanner(){
   }
 }
 
-function autoPlayIfIdle(){
-  if(!musicPlaylist.length) return;
-  if(musicCurrentIndex === -1){
-    playMusicAtIndex(0);
-  } else if(musicAudio && musicAudio.paused && musicAudio.src && musicAudio.src.indexOf('blob:') !== 0 && musicAudio.currentTime === 0){
-    musicAudio.play().catch(function(e){});
-  }
-}
 function renderMusicPage(){
   var ha = $('musicMyAvatar');
   if(ha){ if(person.myAvatar){ ha.innerHTML = '<img src="' + person.myAvatar + '" alt="">'; ha.style.background = 'transparent'; } else { ha.innerHTML = DEFAULT_AVATAR_SVG; ha.style.background = 'none'; } }
@@ -9144,37 +10543,11 @@ else { wMe = 1.05; wOp = 1.0; noise = 30; }
     return best || cands[0];
   }
 
-  var _lastStoneSoundAt = 0;
-function playStoneSound(){
-  var t0 = Date.now();
-  if(t0 - _lastStoneSoundAt < 30) return;
-  _lastStoneSoundAt = t0;
-  try{
-    if(!audioCtx){ var AC = window.AudioContext || window.webkitAudioContext; if(!AC) return; audioCtx = new AC(); }
-    var doPlay = function(){
-      var now = audioCtx.currentTime;
-      var osc = audioCtx.createOscillator();
-      var g = audioCtx.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(900, now);
-      osc.frequency.linearRampToValueAtTime(500, now + 0.06);
-      g.gain.setValueAtTime(0, now);
-      g.gain.linearRampToValueAtTime(0.5, now + 0.004);
-      g.gain.linearRampToValueAtTime(0.5, now + 0.03);
-      g.gain.linearRampToValueAtTime(0, now + 0.09);
-      osc.connect(g); g.connect(audioCtx.destination);
-      osc.start(now); osc.stop(now + 0.1);
-    };
-    if(audioCtx.state === 'suspended') audioCtx.resume().then(doPlay).catch(function(e){});
-    else doPlay();
-  }catch(e){}
-}
-
-function place(x, y, role){
+  function place(x, y, role){
   board[y][x] = role;
   history.push({x:x, y:y, role:role});
   lastMove = {x:x, y:y, role:role};
-  playStoneSound();
+  playGameSound('place');
   drawBoard();
 }
 
@@ -9382,13 +10755,9 @@ function place(x, y, role){
   }
 
   function openDiffDialog(){
-Array.prototype.forEach.call(document.querySelectorAll('#gomokuDiffList .gomoku-diff-card'), function(c){ c.classList.remove('selected'); });
-difficulty = '';
-$('gomokuDiffConfirm').disabled = true;
-/* 新一轮开始，比分清零 */
-score.me = 0; score.ta = 0;
-saveScore();
-updateScoreChip();
+  Array.prototype.forEach.call(document.querySelectorAll('#gomokuDiffList .gomoku-diff-card'), function(c){ c.classList.remove('selected'); });
+  difficulty = '';
+  $('gomokuDiffConfirm').disabled = true;
   /* 重置局数选择，默认 1 局 */
   Array.prototype.forEach.call(document.querySelectorAll('#gomokuGamesGrid .font-chip'), function(b){
     b.classList.toggle('active', b.dataset.games === '1');
@@ -9396,6 +10765,7 @@ updateScoreChip();
   gamesTotal = 1;
   gamesPlayed = 0;
   roundWins = { me: 0, ta: 0 };
+  score = { me: 0, ta: 0 }; saveScore(); updateScoreChip();
   $('gomokuDiffBg').classList.add('open');
 }
 
@@ -9569,501 +10939,6 @@ if($('gomokuDiffConfirm')){
   newBoard();
 })();
 
-/* ============ 俄罗斯方块 ============ */
-(function(){
-  var canvas = document.getElementById('tetrisCanvas');
-  if(!canvas) return;
-  var ctx = canvas.getContext('2d');
-  var nextCanvas = document.getElementById('tetrisNextCanvas');
-  var nextCtx = nextCanvas ? nextCanvas.getContext('2d') : null;
-
-  var COLS = 10, ROWS = 20;
-  var DPR = Math.min(window.devicePixelRatio || 1, 2);
-  var cell = 20;
-
-  var board = [];
-  var current = null;
-  var nextType = null;
-  var score = 0, level = 1, totalLines = 0, bestScore = 0;
-  var dropInterval = 800, dropTimer = 0;
-  var lastTime = 0, rafId = null, running = false, gameOver = false;
-  var taChatTimer = null;
-
-  var _lastDropSoundAt = 0;
-function playDropSound(){
-  /* 防抖：50 毫秒内不重复触发，避免振荡器叠加导致声音忽大忽小 */
-  var t0 = Date.now();
-  if(t0 - _lastDropSoundAt < 50) return;
-  _lastDropSoundAt = t0;
-  try{
-    if(!audioCtx){ var AC = window.AudioContext || window.webkitAudioContext; if(!AC) return; audioCtx = new AC(); }
-    var doPlay = function(){
-      var now = audioCtx.currentTime;
-      var osc = audioCtx.createOscillator();
-      var g = audioCtx.createGain();
-      /* sine 比 triangle 更稳，不会相位抵消 */
-      osc.type = 'sine';
-      /* 频率下滑幅度收敛一点，音色更干净 */
-      osc.frequency.setValueAtTime(600, now);
-      osc.frequency.linearRampToValueAtTime(300, now + 0.1);
-      /* 音量用线性 ramp，比指数 ramp 更稳定 */
-      g.gain.setValueAtTime(0, now);
-      g.gain.linearRampToValueAtTime(0.55, now + 0.008);
-      g.gain.linearRampToValueAtTime(0.55, now + 0.06);
-      g.gain.linearRampToValueAtTime(0, now + 0.13);
-      osc.connect(g); g.connect(audioCtx.destination);
-      osc.start(now); osc.stop(now + 0.15);
-    };
-    if(audioCtx.state === 'suspended') audioCtx.resume().then(doPlay).catch(function(e){});
-    else doPlay();
-  }catch(e){}
-}
-function playClearSound(){
-  try{
-    if(!audioCtx){ var AC = window.AudioContext || window.webkitAudioContext; if(!AC) return; audioCtx = new AC(); }
-    var doPlay = function(){
-      var now = audioCtx.currentTime;
-      function tone(freq, start, dur, vol, freqEnd){
-        var osc = audioCtx.createOscillator();
-        var g = audioCtx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(freq, now + start);
-        if(freqEnd) osc.frequency.exponentialRampToValueAtTime(freqEnd, now + start + dur);
-        g.gain.setValueAtTime(0.0001, now + start);
-        g.gain.exponentialRampToValueAtTime(vol, now + start + 0.01);
-        g.gain.exponentialRampToValueAtTime(0.0001, now + start + dur);
-        osc.connect(g); g.connect(audioCtx.destination);
-        osc.start(now + start); osc.stop(now + start + dur + 0.05);
-      }
-      tone(1200, 0, 0.25, 0.4, 1800);
-      tone(1800, 0.06, 0.3, 0.3, 2400);
-    };
-    if(audioCtx.state === 'suspended') audioCtx.resume().then(doPlay).catch(function(e){});
-    else doPlay();
-  }catch(e){}
-}
-
-var COLORS = { I:'#5ac8e8', O:'#f5d84a', T:'#b48aeb', S:'#7dc97d', Z:'#e87878', J:'#5a7fc8', L:'#f0a055' };
-  var SHAPES = {
-    I:[[0,0,0,0],[1,1,1,1],[0,0,0,0],[0,0,0,0]],
-    O:[[1,1],[1,1]],
-    T:[[0,1,0],[1,1,1],[0,0,0]],
-    S:[[0,1,1],[1,1,0],[0,0,0]],
-    Z:[[1,1,0],[0,1,1],[0,0,0]],
-    J:[[1,0,0],[1,1,1],[0,0,0]],
-    L:[[0,0,1],[1,1,1],[0,0,0]]
-  };
-  var TYPES = ['I','O','T','S','Z','J','L'];
-
-  function newBoard(){
-    board = [];
-    for(var y=0;y<ROWS;y++){
-      var row = [];
-      for(var x=0;x<COLS;x++) row.push(null);
-      board.push(row);
-    }
-  }
-  newBoard();
-
-  function randType(){ return TYPES[Math.floor(Math.random()*TYPES.length)]; }
-
-  function makePiece(type){
-    var def = SHAPES[type] || SHAPES.O;
-    var shape = def.map(function(r){ return r.slice(); });
-    return {
-      type: type, shape: shape,
-      color: COLORS[type] || COLORS.O,
-      x: Math.floor((COLS - shape[0].length) / 2),
-      y: 0
-    };
-  }
-
-  function collide(piece, dx, dy, shape){
-    if(!piece) return false;
-    shape = shape || piece.shape;
-    if(!shape) return false;
-    for(var y=0;y<shape.length;y++){
-      for(var x=0;x<shape[y].length;x++){
-        if(!shape[y][x]) continue;
-        var nx = piece.x + x + dx;
-        var ny = piece.y + y + dy;
-        if(nx < 0 || nx >= COLS || ny >= ROWS) return true;
-        if(ny >= 0 && board[ny] && board[ny][nx]) return true;
-      }
-    }
-    return false;
-  }
-
-  function rotateShape(shape){
-    var n = shape.length, out = [];
-    for(var y=0;y<n;y++){
-      var row = [];
-      for(var x=0;x<n;x++) row.push(shape[n-1-x][y]);
-      out.push(row);
-    }
-    return out;
-  }
-
-  function spawn(){
-  try {
-    /* 先检查顶部两行是否还有空间，没有就结束 */
-    for(var yy=0;yy<2;yy++){
-      for(var xx=0;xx<COLS;xx++){
-        if(board[yy] && board[yy][xx]){ endGame(); return; }
-      }
-    }
-    current = makePiece(nextType || randType());
-    nextType = randType();
-    if(collide(current, 0, 0)){ endGame(); return; }
-    drawNext();
-  } catch(e){
-    current = makePiece('O');
-    nextType = 'O';
-    drawNext();
-  }
-}
-
-  function move(dx){
-    if(!current || gameOver) return;
-    if(!collide(current, dx, 0)) current.x += dx;
-  }
-
-  function rotate(){
-    if(!current || gameOver) return;
-    var ns = rotateShape(current.shape);
-    if(!collide(current, 0, 0, ns)) current.shape = ns;
-    else if(!collide(current, -1, 0, ns)){ current.shape = ns; current.x -= 1; }
-    else if(!collide(current, 1, 0, ns)){ current.shape = ns; current.x += 1; }
-  }
-
-  function softDrop(){
-    if(!current || gameOver) return;
-    if(!collide(current, 0, 1)){ current.y += 1; dropTimer = 0; }
-    else lock();
-  }
-
-  function hardDrop(){
-    if(!current || gameOver) return;
-    while(!collide(current, 0, 1)){ current.y += 1; score += 2; }
-    lock();
-  }
-
-  function lock(){
-  if(!current) return;
-  playDropSound();
-    for(var y=0;y<current.shape.length;y++){
-      for(var x=0;x<current.shape[y].length;x++){
-        if(current.shape[y][x]){
-          var ny = current.y + y, nx = current.x + x;
-          if(ny >= 0 && ny < ROWS && nx >= 0 && nx < COLS) board[ny][nx] = current.color;
-        }
-      }
-    }
-    current = null;
-    clearLines();
-    updateStats();
-    spawn();
-  }
-
-  function clearLines(){
-    var cleared = 0;
-    for(var y=ROWS-1;y>=0;y--){
-      var full = true;
-      for(var x=0;x<COLS;x++){ if(!board[y][x]){ full = false; break; } }
-      if(full){
-        board.splice(y, 1);
-        var row = [];
-        for(var i=0;i<COLS;i++) row.push(null);
-        board.unshift(row);
-        cleared++; y++;
-      }
-    }
-    if(cleared > 0){
-  playClearSound();
-  var pts = [0,100,300,500,800][cleared] || 800;
-  score += pts * level;
-      totalLines += cleared;
-      var nl = Math.floor(totalLines / 10) + 1;
-      if(nl > level){ level = nl; dropInterval = Math.max(100, 800 - (level-1)*70); }
-      if(Math.random() < 0.5) taSay('tip');
-    }
-  }
-
-  function updateStats(){
-    var el;
-    el = document.getElementById('tetrisScore'); if(el) el.textContent = score;
-    el = document.getElementById('tetrisLevel'); if(el) el.textContent = level;
-    el = document.getElementById('tetrisLines'); if(el) el.textContent = totalLines;
-  }
-
-  function drawCell(c, x, y, color, alpha){
-    var px = x*cell, py = y*cell;
-    c.globalAlpha = (alpha == null) ? 1 : alpha;
-    c.fillStyle = color;
-    c.fillRect(px+1, py+1, cell-2, cell-2);
-    c.fillStyle = 'rgba(255,255,255,.32)';
-    c.fillRect(px+1, py+1, cell-2, Math.max(2, cell*0.12));
-    c.globalAlpha = 1;
-  }
-
-  function draw(){
-    if(!ctx) return;
-    if(isNaN(cell) || cell < 4) cell = 20;
-    var W = cell*COLS, H = cell*ROWS;
-    ctx.fillStyle = '#f8fafb';
-    ctx.fillRect(0, 0, W, H);
-    ctx.strokeStyle = 'rgba(31,95,108,.05)';
-    ctx.lineWidth = 1;
-    for(var x=0;x<=COLS;x++){ ctx.beginPath(); ctx.moveTo(x*cell,0); ctx.lineTo(x*cell,H); ctx.stroke(); }
-    for(var y=0;y<=ROWS;y++){ ctx.beginPath(); ctx.moveTo(0,y*cell); ctx.lineTo(W,y*cell); ctx.stroke(); }
-    for(var yy=0;yy<ROWS;yy++){
-      for(var xx=0;xx<COLS;xx++){
-        if(board[yy] && board[yy][xx]) drawCell(ctx, xx, yy, board[yy][xx]);
-      }
-    }
-    if(current && current.shape){
-      var gy = current.y, safety = 0;
-      while(!collide(current, 0, gy - current.y + 1) && safety < ROWS){ gy++; safety++; }
-      for(var py=0;py<current.shape.length;py++){
-        for(var px=0;px<current.shape[py].length;px++){
-          if(current.shape[py][px]){
-            var yy2 = gy+py, xx2 = current.x+px;
-            if(yy2 >= 0) drawCell(ctx, xx2, yy2, current.color, 0.18);
-          }
-        }
-      }
-      for(var py2=0;py2<current.shape.length;py2++){
-        for(var px2=0;px2<current.shape[py2].length;px2++){
-          if(current.shape[py2][px2]){
-            var yyy = current.y+py2, xxx = current.x+px2;
-            if(yyy >= 0) drawCell(ctx, xxx, yyy, current.color);
-          }
-        }
-      }
-    }
-  }
-
-  function drawNext(){
-  if(!nextCtx || !nextCanvas) return;
-  if(isNaN(cell) || cell < 4) cell = 20;
-  var ncell = Math.max(8, Math.floor(cell * 0.7));
-  var W = ncell*4, H = ncell*4;
-    nextCtx.fillStyle = '#fff';
-    nextCtx.fillRect(0, 0, W, H);
-    if(!nextType) return;
-    var shape = SHAPES[nextType];
-    if(!shape) return;
-    var color = COLORS[nextType] || '#888';
-    var sh = shape.length, sw = shape[0].length;
-    var offX = Math.floor((4-sw)/2), offY = Math.floor((4-sh)/2);
-    for(var y=0;y<sh;y++){
-      for(var x=0;x<sw;x++){
-        if(shape[y][x]){
-          var px = (offX+x)*cell, py = (offY+y)*cell;
-          nextCtx.fillStyle = color;
-          nextCtx.fillRect(px+1, py+1, cell-2, cell-2);
-          nextCtx.fillStyle = 'rgba(255,255,255,.35)';
-          nextCtx.fillRect(px+1, py+1, cell-2, Math.max(2, cell*0.12));
-        }
-      }
-    }
-  }
-
-  function resize(){
-    var wrap = canvas.parentNode;
-    if(!wrap) return;
-    var availH = wrap.clientHeight;
-    var availW = wrap.clientWidth;
-    if(!availH || isNaN(availH) || availH < 100) availH = window.innerHeight - 260;
-    if(!availW || isNaN(availW) || availW < 120) availW = window.innerWidth - 100;
-    var maxCellH = Math.floor(availH / ROWS);
-/* 棋盘 + 「下一个」盒子一共需要 (COLS + 4) 格宽，再加上 10px 间距 */
-var maxCellW = Math.floor((availW - 10) / (COLS + 4));
-cell = Math.max(8, Math.min(maxCellH, maxCellW));
-if(isNaN(cell) || cell < 8) cell = 20;
-    var w = cell*COLS, h = cell*ROWS;
-    canvas.style.width = w + 'px';
-    canvas.style.height = h + 'px';
-    canvas.width = Math.round(w*DPR);
-    canvas.height = Math.round(h*DPR);
-    ctx.setTransform(DPR,0,0,DPR,0,0);
-    if(nextCanvas){
-  var ncell = Math.max(8, Math.floor(cell * 0.7));
-  var nw = ncell*4, nh = ncell*4;
-      nextCanvas.style.width = nw + 'px';
-      nextCanvas.style.height = nh + 'px';
-      nextCanvas.width = Math.round(nw*DPR);
-      nextCanvas.height = Math.round(nh*DPR);
-      nextCtx.setTransform(DPR,0,0,DPR,0,0);
-    }
-    draw();
-    drawNext();
-  }
-
-  function loadBest(){
-    try{
-      var v = parseInt(localStorage.getItem('tetris_best_v1') || '0', 10);
-      if(!isNaN(v)) bestScore = v;
-    }catch(e){}
-  }
-  function saveBest(){
-    try{ localStorage.setItem('tetris_best_v1', String(bestScore)); }catch(e){}
-  }
-
-  function updateTaAvatar(){
-    var av = document.getElementById('tetrisTaAvatar');
-    if(!av) return;
-    if(typeof person !== 'undefined' && person.avatar){
-      av.innerHTML = '<img src="' + person.avatar + '" alt="">';
-      av.style.background = 'transparent';
-    } else {
-      av.innerHTML = (typeof DEFAULT_AVATAR_SVG !== 'undefined') ? DEFAULT_AVATAR_SVG : '';
-      av.style.background = 'none';
-    }
-  }
-
-  function pickTaLine(){
-    var pool = [];
-    if(typeof cards !== 'undefined' && cards && Array.isArray(cards.text)){
-      cards.text.forEach(function(b){
-        if(b.enabled === false) return;
-        if(!Array.isArray(b.groups)) return;
-        b.groups.forEach(function(sg){
-          if(sg.enabled === false) return;
-          if(!Array.isArray(sg.items)) return;
-          sg.items.forEach(function(it){ if(it && String(it).trim()) pool.push(String(it).trim()); });
-        });
-      });
-    }
-    if(!pool.length) pool = ['你好厉害呀','加油加油','嗯嗯不错','继续！','棒棒哒'];
-    return pool[Math.floor(Math.random()*pool.length)];
-  }
-
-  function taSay(kind){
-    var el = document.getElementById('tetrisTaBubble');
-    if(!el) return;
-    var txt;
-    if(kind === 'start') txt = '开始了，加油～';
-    else if(kind === 'end') txt = score === 0 ? '没事没事，再来一次～' : '这局打得不错！';
-    else txt = pickTaLine();
-    el.textContent = txt;
-    el.style.animation = 'none';
-    void el.offsetWidth;
-    el.style.animation = 'gomokuBubbleIn .25s ease';
-  }
-
-  function startTaChat(){
-    if(taChatTimer) clearInterval(taChatTimer);
-    taChatTimer = setInterval(function(){
-      if(gameOver) return;
-      var page = document.getElementById('tetrisPage');
-      if(page && page.classList.contains('open')){
-        if(Math.random() < 0.5) taSay('tip');
-      }
-    }, 30000);
-  }
-
-  function loop(now){
-    if(!running) return;
-    if(!lastTime) lastTime = now;
-    var dt = now - lastTime;
-    lastTime = now;
-    if(!gameOver){
-      dropTimer += dt;
-      if(dropTimer >= dropInterval){ dropTimer = 0; softDrop(); }
-    }
-    draw();
-    rafId = requestAnimationFrame(loop);
-  }
-
-  function start(){
-    try{
-      newBoard();
-      score = 0; level = 1; totalLines = 0;
-      dropInterval = 800; dropTimer = 0;
-      gameOver = false;
-      current = null;
-      nextType = randType();
-      loadBest();
-      updateStats();
-      updateTaAvatar();
-      resize();
-      spawn();
-      draw();
-      drawNext();
-      running = true;
-      lastTime = 0;
-      if(rafId) cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(loop);
-      taSay('start');
-    }catch(e){
-      alert('俄罗斯方块出错：' + (e.message || e));
-    }
-  }
-
-  function stop(){
-    running = false;
-    if(rafId){ cancelAnimationFrame(rafId); rafId = null; }
-  }
-
-  function endGame(){
-    gameOver = true;
-    running = false;
-    if(score > bestScore){ bestScore = score; saveBest(); }
-    var bg = document.getElementById('tetrisResultBg');
-    var sub = document.getElementById('tetrisResultSub');
-    if(sub) sub.textContent = '本局分数 ' + score + ' · 最高 ' + bestScore;
-    if(bg) setTimeout(function(){ bg.classList.add('open'); }, 300);
-    taSay('end');
-  }
-
-  var leftBtn = document.getElementById('tetrisLeftBtn');
-  if(leftBtn) leftBtn.onclick = function(){ move(-1); draw(); };
-  var rightBtn = document.getElementById('tetrisRightBtn');
-  if(rightBtn) rightBtn.onclick = function(){ move(1); draw(); };
-  var rotateBtn = document.getElementById('tetrisRotateBtn');
-  if(rotateBtn) rotateBtn.onclick = function(){ rotate(); draw(); };
-  var downBtn = document.getElementById('tetrisDownBtn');
-  if(downBtn) downBtn.onclick = function(){ softDrop(); draw(); };
-  var dropBtn = document.getElementById('tetrisDropBtn');
-  if(dropBtn) dropBtn.onclick = function(){ hardDrop(); draw(); };
-
-  var backBtn = document.getElementById('tetrisBack');
-  if(backBtn) backBtn.onclick = function(){
-    var page = document.getElementById('tetrisPage');
-    if(page) page.classList.remove('open');
-    stop();
-  };
-  var rc = document.getElementById('tetrisResultClose');
-  if(rc) rc.onclick = function(){
-    var bg = document.getElementById('tetrisResultBg');
-    if(bg) bg.classList.remove('open');
-  };
-  var ra = document.getElementById('tetrisResultAgain');
-  if(ra) ra.onclick = function(){
-    var bg = document.getElementById('tetrisResultBg');
-    if(bg) bg.classList.remove('open');
-    setTimeout(start, 100);
-  };
-
-  window.addEventListener('resize', function(){
-    var page = document.getElementById('tetrisPage');
-    if(page && page.classList.contains('open')) resize();
-  });
-
-  window.__openTetris = function(){
-    var page = document.getElementById('tetrisPage');
-    if(page) page.classList.add('open');
-    startTaChat();
-    setTimeout(function(){
-      resize();
-      start();
-      setTimeout(resize, 150);
-    }, 350);
-  };
-})();
-
-
 /* ============ 跳一跳 ============ */
 (function(){
   var canvas = $('jumpCanvas');
@@ -10161,83 +11036,9 @@ if(isNaN(cell) || cell < 8) cell = 20;
     else sayTa('加油！', 2000);
   }
 
-  function playJumpSound(){
-  try{
-    if(!audioCtx){ var AC = window.AudioContext || window.webkitAudioContext; if(!AC) return; audioCtx = new AC(); }
-    var doPlay = function(){
-      var now = audioCtx.currentTime;
-      var osc = audioCtx.createOscillator();
-      var g = audioCtx.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(400, now);
-      osc.frequency.linearRampToValueAtTime(900, now + 0.12);
-      g.gain.setValueAtTime(0, now);
-      g.gain.linearRampToValueAtTime(0.45, now + 0.01);
-      g.gain.linearRampToValueAtTime(0.45, now + 0.08);
-      g.gain.linearRampToValueAtTime(0, now + 0.16);
-      osc.connect(g); g.connect(audioCtx.destination);
-      osc.start(now); osc.stop(now + 0.18);
-    };
-    if(audioCtx.state === 'suspended') audioCtx.resume().then(doPlay).catch(function(e){});
-    else doPlay();
-  }catch(e){}
-}
-
-var _lastLandSoundAt = 0;
-function playLandSound(){
-  var t0 = Date.now();
-  if(t0 - _lastLandSoundAt < 80) return;
-  _lastLandSoundAt = t0;
-  try{
-    if(!audioCtx){ var AC = window.AudioContext || window.webkitAudioContext; if(!AC) return; audioCtx = new AC(); }
-    var doPlay = function(){
-      var now = audioCtx.currentTime;
-      var osc = audioCtx.createOscillator();
-      var g = audioCtx.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(1200, now);
-      osc.frequency.linearRampToValueAtTime(900, now + 0.08);
-      g.gain.setValueAtTime(0, now);
-      g.gain.linearRampToValueAtTime(0.5, now + 0.006);
-      g.gain.linearRampToValueAtTime(0.5, now + 0.04);
-      g.gain.linearRampToValueAtTime(0, now + 0.12);
-      osc.connect(g); g.connect(audioCtx.destination);
-      osc.start(now); osc.stop(now + 0.14);
-    };
-    if(audioCtx.state === 'suspended') audioCtx.resume().then(doPlay).catch(function(e){});
-    else doPlay();
-  }catch(e){}
-}
-
-var _lastFallSoundAt = 0;
-function playFallSound(){
-  var t0 = Date.now();
-  if(t0 - _lastFallSoundAt < 200) return;
-  _lastFallSoundAt = t0;
-  try{
-    if(!audioCtx){ var AC = window.AudioContext || window.webkitAudioContext; if(!AC) return; audioCtx = new AC(); }
-    var doPlay = function(){
-      var now = audioCtx.currentTime;
-      var osc = audioCtx.createOscillator();
-      var g = audioCtx.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(500, now);
-      osc.frequency.linearRampToValueAtTime(120, now + 0.45);
-      g.gain.setValueAtTime(0, now);
-      g.gain.linearRampToValueAtTime(0.5, now + 0.02);
-      g.gain.linearRampToValueAtTime(0.5, now + 0.28);
-      g.gain.linearRampToValueAtTime(0, now + 0.5);
-      osc.connect(g); g.connect(audioCtx.destination);
-      osc.start(now); osc.stop(now + 0.52);
-    };
-    if(audioCtx.state === 'suspended') audioCtx.resume().then(doPlay).catch(function(e){});
-    else doPlay();
-  }catch(e){}
-}
-
-function handleJumpDown(e) {
-  if (e && e.preventDefault) e.preventDefault();
-  if (!mode) return;
+  function handleJumpDown(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    if (!mode) return;
     if (state === 'gameover') {
       $('jumpModeBg').classList.add('open');
       mode = null;
@@ -10252,13 +11053,12 @@ function handleJumpDown(e) {
   }
 
   function handleJumpUp(e) {
-  if (e && e.preventDefault) e.preventDefault();
-  if (state !== 'charging') return;
-  var dist = chargePower * MAX_JUMP;
-  playJumpSound();
-  startJump(dist, 'me');
-  chargePower = 0;
-}
+    if (e && e.preventDefault) e.preventDefault();
+    if (state !== 'charging') return;
+    var dist = chargePower * MAX_JUMP;
+    startJump(dist, 'me');
+    chargePower = 0;
+  }
 
   canvas.addEventListener('touchstart', handleJumpDown, { passive: false });
   canvas.addEventListener('touchend', handleJumpUp, { passive: false });
@@ -10266,16 +11066,17 @@ function handleJumpDown(e) {
   canvas.addEventListener('mouseup', handleJumpUp);
 
   function startJump(dist, by) {
-    state = 'jumping';
-    currentJumpBy = by || 'me';
-    jumpAnim = {
-      startX: playerX,
-      endX: playerX + dist,
-      startT: performance.now(),
-      duration: 380,
-      height: 90
-    };
-  }
+  state = 'jumping';
+  currentJumpBy = by || 'me';
+  playGameSound('jump');
+  jumpAnim = {
+    startX: playerX,
+    endX: playerX + dist,
+    startT: performance.now(),
+    duration: 380,
+    height: 90
+  };
+}
 
   function scheduleTaJump() {
     taThinking = true;
@@ -10306,31 +11107,31 @@ function handleJumpDown(e) {
   var next = blocks[currentIdx + 1];
   if (!next) { endGame(); return; }
   if (playerX >= next.x && playerX <= next.x + next.w) {
-    playLandSound();
     currentIdx++;
-      score++;
-      landBounce = 1;
-      blocks.push(makeBlock(blocks[blocks.length - 1]));
+    score++;
+    landBounce = 1;
+    playGameSound('land');
+    blocks.push(makeBlock(blocks[blocks.length - 1]));
 
-      if (currentJumpBy === 'me') mySteps++;
-      else if (currentJumpBy === 'ta') taSteps++;
+    if (currentJumpBy === 'me') mySteps++;
+    else if (currentJumpBy === 'ta') taSteps++;
 
-      if (mode === 'duo') {
-        turn = (turn === 'me') ? 'ta' : 'me';
-        state = 'idle';
-        if (turn === 'ta') scheduleTaJump();
-        else sayTa(pickPraise());
-      } else {
-        state = 'idle';
-        if (Math.random() < 0.25 && score > 0) sayTa(pickPraise());
-      }
+    if (mode === 'duo') {
+      turn = (turn === 'me') ? 'ta' : 'me';
+      state = 'idle';
+      if (turn === 'ta') scheduleTaJump();
+      else sayTa(pickPraise());
     } else {
-    playFallSound();
+      state = 'idle';
+      if (Math.random() < 0.25 && score > 0) sayTa(pickPraise());
+    }
+  } else {
+    playGameSound('fall');
     endGame();
   }
 }
 
-function pickPraise() {
+  function pickPraise() {
     var pool = ['好棒！', '稳住！', '好厉害～', '继续！', '手感不错嘛', '加油加油'];
     return pool[Math.floor(Math.random() * pool.length)];
   }
@@ -10691,41 +11492,394 @@ function pickPraise() {
     });
   }
 
-  /* 返回按钮 */
+ /* 返回按钮 */
 if ($('jumpBack')) {
   $('jumpBack').onclick = function(){
-    /* 双人模式 + 玩到一半（已跳过分 + 没结束），才提示 */
-    var midGame = (mode === 'duo') && (state !== 'gameover') && (score > 0);
-    if(midGame){
-      showDialog('要退出吗？', '这局还没跳完，退出的话就结束咯。', [
-        { text:'继续玩', primary:true },
+    var midDuo = (mode === 'duo') && (mySteps + taSteps > 0) && state !== 'gameover';
+    if(midDuo){
+      showDialog('要退出吗？', '这局还没跳完，退出的话这轮就结束了哦。', [
+        { text:'继续跳', primary:true },
         { text:'退出', danger:true, onClick:function(){
-          /* 从「中途退出」卡池抽一句 TA 的抱怨 */
           var pool = [];
           if(cards && cards.system && Array.isArray(cards.system.quitGame)){
             pool = cards.system.quitGame.filter(function(t){ return t && String(t).trim(); });
           }
-          if(!pool.length) pool = ['怎么玩到一半就跑啦？', '诶？人呢…', '好吧，那我自己练练。'];
+          if(!pool.length) pool = ['怎么下到一半就跑啦？', '诶？人呢…', '好吧，那我自己练练。', '哼，下次要陪我下完哦。'];
           var line = pool[Math.floor(Math.random() * pool.length)];
           var cm = { me:false, type:'text', text: line, time: Date.now(), id: uid('m') };
           messages.push(cm);
           saveMessages();
           if(typeof renderHome === 'function') renderHome();
-          if(!chatOpenNow && typeof showNotificationBanner === 'function') showNotificationBanner(cm);
-
+          if(typeof showNotificationBanner === 'function') showNotificationBanner(cm);
           $('jumpPage').classList.remove('open');
           if (taDelayTimer) { clearTimeout(taDelayTimer); taDelayTimer = null; }
           state = 'gameover';
-          mode = null;
         }}
       ]);
       return;
     }
-    /* 单人 / 没开始 / 已结束，直接关 */
     $('jumpPage').classList.remove('open');
     if (taDelayTimer) { clearTimeout(taDelayTimer); taDelayTimer = null; }
   };
 }
+})();
+/* ============ 俄罗斯方块 ============ */
+(function(){
+  var canvas = $('tetrisCanvas');
+  if(!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var COLS = 10, ROWS = 20;
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+  var cell = 0, boardW = 0, boardH = 0;
+
+  var SHAPES = [
+    [[1,1,1,1]],
+    [[1,1],[1,1]],
+    [[0,1,0],[1,1,1]],
+    [[0,1,1],[1,1,0]],
+    [[1,1,0],[0,1,1]],
+    [[1,0,0],[1,1,1]],
+    [[0,0,1],[1,1,1]]
+  ];
+  var COLORS = ['#4ac4d4','#f0c040','#b16bd4','#5cc46a','#e85a6a','#4a7ed4','#f09a40'];
+
+  var board = [];
+  var current = null;
+  var score = 0;
+  var linesCleared = 0;
+  var running = false;
+  var paused = false;
+  var dropTimer = null;
+  var dropInterval = 800;
+  var taTimer = null;
+  var taBubbleTimer = null;
+
+  function newBoard(){
+    board = [];
+    for(var y=0;y<ROWS;y++){
+      var row = [];
+      for(var x=0;x<COLS;x++) row.push(0);
+      board.push(row);
+    }
+  }
+
+  function resize(){
+    var wrap = canvas.parentNode;
+    var availW = wrap.clientWidth;
+    var availH = wrap.clientHeight;
+    if(availW <= 0 || availH <= 0) return;
+    var cellFromW = Math.floor(availW / (COLS + 1.2));
+    var cellFromH = Math.floor(availH / (ROWS + 1.2));
+    cell = Math.min(cellFromW, cellFromH);
+    boardW = cell * COLS;
+    boardH = cell * ROWS;
+    canvas.style.width = boardW + 'px';
+    canvas.style.height = boardH + 'px';
+    canvas.width = Math.round(boardW * dpr);
+    canvas.height = Math.round(boardH * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    render();
+  }
+
+  function drawCell(x, y, colorIdx){
+    var px = x * cell, py = y * cell;
+    var color = COLORS[colorIdx - 1] || '#888';
+    ctx.fillStyle = color;
+    ctx.fillRect(px + 1, py + 1, cell - 2, cell - 2);
+    ctx.fillStyle = 'rgba(255,255,255,.28)';
+    ctx.fillRect(px + 1, py + 1, cell - 2, Math.max(2, cell * 0.18));
+    ctx.fillStyle = 'rgba(0,0,0,.08)';
+    ctx.fillRect(px + 1, py + cell - Math.max(2, cell * 0.14), cell - 2, Math.max(2, cell * 0.14) - 1);
+  }
+
+  function render(){
+    if(!boardW) return;
+    ctx.fillStyle = '#f8fafb';
+    ctx.fillRect(0, 0, boardW, boardH);
+    ctx.strokeStyle = 'rgba(31,95,108,.05)';
+    ctx.lineWidth = 1;
+    for(var i=1;i<COLS;i++){ ctx.beginPath(); ctx.moveTo(i*cell, 0); ctx.lineTo(i*cell, boardH); ctx.stroke(); }
+    for(var j=1;j<ROWS;j++){ ctx.beginPath(); ctx.moveTo(0, j*cell); ctx.lineTo(boardW, j*cell); ctx.stroke(); }
+
+    for(var y=0;y<ROWS;y++){
+      for(var x=0;x<COLS;x++){
+        if(board[y][x]) drawCell(x, y, board[y][x]);
+      }
+    }
+    if(current){
+      for(var sy=0;sy<current.shape.length;sy++){
+        for(var sx=0;sx<current.shape[sy].length;sx++){
+          if(!current.shape[sy][sx]) continue;
+          var px = current.x + sx, py = current.y + sy;
+          if(py >= 0) drawCell(px, py, current.color);
+        }
+      }
+    }
+    if(!running && boardW){
+      ctx.fillStyle = 'rgba(255,255,255,.88)';
+      ctx.fillRect(0, 0, boardW, boardH);
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#1f5f6c';
+      ctx.font = 'bold 20px -apple-system, "PingFang SC", sans-serif';
+      ctx.fillText('俄罗斯方块', boardW/2, boardH/2 - 30);
+      ctx.font = '13px -apple-system, "PingFang SC", sans-serif';
+      ctx.fillStyle = '#8a8a8a';
+      ctx.fillText('点屏幕开始', boardW/2, boardH/2);
+      ctx.font = '12px -apple-system, "PingFang SC", sans-serif';
+      ctx.fillStyle = '#b8b8b8';
+      ctx.fillText('最高 ' + getHighScore(), boardW/2, boardH/2 + 30);
+    }
+  }
+
+  function getHighScore(){
+    try{ return parseInt(localStorage.getItem('tetris_high_v1') || '0', 10) || 0; }catch(e){ return 0; }
+  }
+  function setHighScore(v){
+    try{ localStorage.setItem('tetris_high_v1', String(v)); }catch(e){}
+  }
+
+  function randPiece(){
+    var idx = Math.floor(Math.random() * SHAPES.length);
+    var shape = SHAPES[idx].map(function(r){ return r.slice(); });
+    return { shape: shape, color: idx + 1, x: Math.floor((COLS - shape[0].length) / 2), y: 0 };
+  }
+
+  function canPlace(piece, dx, dy, newShape){
+    var shape = newShape || piece.shape;
+    for(var y=0;y<shape.length;y++){
+      for(var x=0;x<shape[y].length;x++){
+        if(!shape[y][x]) continue;
+        var nx = piece.x + x + (dx || 0);
+        var ny = piece.y + y + (dy || 0);
+        if(nx < 0 || nx >= COLS || ny >= ROWS) return false;
+        if(ny >= 0 && board[ny][nx]) return false;
+      }
+    }
+    return true;
+  }
+
+  function lockPiece(){
+    for(var y=0;y<current.shape.length;y++){
+      for(var x=0;x<current.shape[y].length;x++){
+        if(!current.shape[y][x]) continue;
+        var ny = current.y + y, nx = current.x + x;
+        if(ny >= 0 && ny < ROWS && nx >= 0 && nx < COLS) board[ny][nx] = current.color;
+      }
+    }
+  }
+
+  function clearLines(){
+    var n = 0;
+    for(var y=ROWS-1;y>=0;y--){
+      var full = true;
+      for(var x=0;x<COLS;x++){ if(!board[y][x]){ full = false; break; } }
+      if(full){
+        board.splice(y, 1);
+        var row = [];
+        for(var x2=0;x2<COLS;x2++) row.push(0);
+        board.unshift(row);
+        n++; y++;
+      }
+    }
+    return n;
+  }
+
+  function rotateShape(shape){
+    var h = shape.length, w = shape[0].length;
+    var out = [];
+    for(var x=0;x<w;x++){
+      var row = [];
+      for(var y=h-1;y>=0;y--) row.push(shape[y][x]);
+      out.push(row);
+    }
+    return out;
+  }
+
+  function updateScoreChip(){
+    var el = $('tetrisScoreChip');
+    if(el) el.textContent = score + ' 分';
+  }
+
+  function spawn(){
+    current = randPiece();
+    if(!canPlace(current, 0, 0)){
+      gameOver();
+      return false;
+    }
+    render();
+    return true;
+  }
+
+  function step(){
+    if(!running || paused) return;
+    if(canPlace(current, 0, 1)){
+      current.y++;
+      render();
+    } else {
+      lockPiece();
+      var n = clearLines();
+      if(n > 0){
+        linesCleared += n;
+        var add = [0, 100, 300, 500, 800][n] || 800;
+        score += add;
+        playGameSound('tetris_clear');
+        var newInterval = Math.max(120, 800 - Math.floor(linesCleared / 10) * 80);
+        if(newInterval !== dropInterval){
+          dropInterval = newInterval;
+          scheduleDrop();
+        }
+        updateScoreChip();
+      }
+      if(!spawn()) return;
+    }
+  }
+
+  function scheduleDrop(){
+    if(dropTimer) clearTimeout(dropTimer);
+    dropTimer = setTimeout(function tick(){
+      step();
+      if(running) scheduleDrop();
+    }, dropInterval);
+  }
+
+  function move(dx){
+    if(!running || paused || !current) return;
+    if(canPlace(current, dx, 0)){ current.x += dx; playGameSound('tetris_move'); render(); }
+  }
+  function rotate(){
+    if(!running || paused || !current) return;
+    var ns = rotateShape(current.shape);
+    if(canPlace(current, 0, 0, ns)){ current.shape = ns; playGameSound('tetris_move'); render(); }
+  }
+  function softDrop(){
+    if(!running || paused || !current) return;
+    if(canPlace(current, 0, 1)){ current.y++; render(); }
+  }
+  function hardDrop(){
+    if(!running || paused || !current) return;
+    while(canPlace(current, 0, 1)) current.y++;
+    playGameSound('tetris_move');
+    step();
+  }
+
+  function sayTa(text, dur){
+    var el = $('tetrisTaBubble');
+    if(!el) return;
+    el.classList.remove('thinking');
+    el.textContent = text;
+    el.style.animation = 'none';
+    void el.offsetWidth;
+    el.style.animation = 'gomokuBubbleIn .25s ease';
+    if(taBubbleTimer) clearTimeout(taBubbleTimer);
+    taBubbleTimer = setTimeout(function(){
+      if(running) el.textContent = '继续加油～';
+    }, dur || 3000);
+  }
+
+  function pickTaCheer(){
+    var pool = (typeof allTextCards === 'function') ? allTextCards() : [];
+    if(!pool.length) pool = ['加油！','好厉害～','稳住！','继续呀','手速不错嘛'];
+    return pool[Math.floor(Math.random() * pool.length)];
+  }
+
+  function startTaTimer(){
+    if(taTimer) clearInterval(taTimer);
+    taTimer = setInterval(function(){
+      if(!running || paused) return;
+      if(Math.random() < 0.5){
+        sayTa(pickTaCheer(), 3500);
+      }
+    }, 30000);
+  }
+
+  function startGame(){
+    if(running) return;
+    newBoard();
+    score = 0;
+    linesCleared = 0;
+    dropInterval = 800;
+    running = true;
+    paused = false;
+    updateScoreChip();
+    sayTa('开始啦，我在这里陪你～', 3000);
+    spawn();
+    scheduleDrop();
+    startTaTimer();
+  }
+
+  function gameOver(){
+    running = false;
+    if(dropTimer){ clearTimeout(dropTimer); dropTimer = null; }
+    if(taTimer){ clearInterval(taTimer); taTimer = null; }
+    playGameSound('tetris_over');
+    if(score > getHighScore()) setHighScore(score);
+    sayTa(score > 0 ? ('这局 ' + score + ' 分，已经很棒啦～') : '再来一次吧～', 5000);
+    render();
+  }
+
+  canvas.addEventListener('click', function(){
+    if(!running) startGame();
+  });
+
+  if($('tetrisLeftBtn')) $('tetrisLeftBtn').onclick = function(){ move(-1); };
+  if($('tetrisRightBtn')) $('tetrisRightBtn').onclick = function(){ move(1); };
+  if($('tetrisRotateBtn')) $('tetrisRotateBtn').onclick = rotate;
+  if($('tetrisDownBtn')) $('tetrisDownBtn').onclick = softDrop;
+  if($('tetrisDropBtn')) $('tetrisDropBtn').onclick = hardDrop;
+
+  document.addEventListener('keydown', function(e){
+    if(!$('tetrisPage') || !$('tetrisPage').classList.contains('open')) return;
+    if(!running) return;
+    if(e.key === 'ArrowLeft'){ e.preventDefault(); move(-1); }
+    else if(e.key === 'ArrowRight'){ e.preventDefault(); move(1); }
+    else if(e.key === 'ArrowUp'){ e.preventDefault(); rotate(); }
+    else if(e.key === 'ArrowDown'){ e.preventDefault(); softDrop(); }
+    else if(e.key === ' '){ e.preventDefault(); hardDrop(); }
+  });
+
+  function updateTaAvatar(){
+    var av = $('tetrisTaAvatar');
+    if(!av) return;
+    if(person.avatar){ av.innerHTML = '<img src="' + person.avatar + '" alt="">'; av.style.background = 'transparent'; }
+    else { av.innerHTML = DEFAULT_AVATAR_SVG; av.style.background = 'none'; }
+  }
+
+  window.__openTetris = function(){
+    $('tetrisPage').classList.add('open');
+    updateTaAvatar();
+    setTimeout(function(){
+      resize();
+      if(!running) startGame();
+    }, 340);
+  };
+
+  if($('tetrisBack')){
+    $('tetrisBack').onclick = function(){
+      var mid = running && score > 0;
+      if(mid){
+        showDialog('要退出吗？', '这局还没结束，退出就作废啦。', [
+          { text:'继续玩', primary:true },
+          { text:'退出', danger:true, onClick:function(){
+            running = false;
+            if(dropTimer){ clearTimeout(dropTimer); dropTimer = null; }
+            if(taTimer){ clearInterval(taTimer); taTimer = null; }
+            $('tetrisPage').classList.remove('open');
+          }}
+        ]);
+        return;
+      }
+      running = false;
+      if(dropTimer){ clearTimeout(dropTimer); dropTimer = null; }
+      if(taTimer){ clearInterval(taTimer); taTimer = null; }
+      $('tetrisPage').classList.remove('open');
+    };
+  }
+
+  window.addEventListener('resize', function(){
+    if($('tetrisPage') && $('tetrisPage').classList.contains('open')) resize();
+  });
+
+  newBoard();
 })();
 
 })();
@@ -10733,14 +11887,39 @@ if ($('jumpBack')) {
 /* ============ 更新提示 ============ */
 (function(){
   /* ========================================================
-     📝 每次发新版，改两处就行：
-     ① 修改下面的 APP_VERSION（版本号 +1）
-     ② 往 UPDATE_LOGS 里加一条，格式见下面
+     📝 往 UPDATE_LOGS 里加一条就行，版本号改文件最上面那个
      ======================================================== */
-var APP_VERSION = '1.0.5';
 
   var UPDATE_LOGS = {
-    /* 版本号要和上面 APP_VERSION 一致，才会显示 */
+/* 版本号要和上面 APP_VERSION 一致，才会显示 */
+'1.0.8': [
+  '🌱 新增「生活碎片」，TA 会在动态页发自己的生活日常',
+  '🫳 新增「触感回应」，长按聊天空白处，TA 会有反应',
+  '🤫 埋了一个小彩蛋，不告诉你在哪，自己玩着就会发现（提示：有些话，撤回也没用哦）',
+  '🎁 公告里新增了防撤回的小字提醒',
+  '🐛 修复了一些小问题'
+],
+'1.0.7': [
+    '🛍️ 新增「商城」，可以买礼物送给 TA，TA 也会主动送你',
+    '🎁 礼物卡片会在聊天里居中显示，自带祝福语',
+    '💌 系统预设新增「礼物」分类，可自定义 TA 收礼和送礼时说的话',
+    '🐰 新增俄罗斯方块，TA 会在旁边陪你玩',
+    '🎮 小游戏优化：五子棋落子音效、跳一跳三个音效、通话拨号音',
+    '👁️ 字卡库大分组、小分组都能关闭，不参与抽卡',
+    '🐛 修复了多处小问题，体验更顺滑'
+  ],
+
+  /* 旧版本记录保留，方便以后翻看 */
+  '1.0.6': [
+    '🌙 新增「跨桌面梦角切换」，每个梦角拥有独立的聊天、字卡、钱包、动态',
+    '💬 新增「群聊」，所有梦角可以聚在一个群里聊天',
+    '✨ 群聊里每个梦角用自己的字卡说话，各自的性格不串味',
+    '🎨 切换梦角时新增过渡动画，切换过程更顺滑',
+    '🐛 修复了 App 图标偶尔变白块的问题',
+    '🔧 优化了一些细节体验'
+  ],
+
+    /* 旧版本记录保留，方便以后翻看 */
     '1.0.5': [
       '🐰 新增跳一跳，可以一个人玩，也可以和 TA 轮流跳',
       '🎮 游戏大厅新增入口，五子棋 + 跳一跳',
@@ -10748,23 +11927,25 @@ var APP_VERSION = '1.0.5';
       '🧧 五子棋本轮结算后，奖励直接进钱包',
       '🔧 修复了一些小问题'
     ],
-
-    /* 下面是示例，以后想加旧版记录就照这个格式加 */
-    // '1.0.4': ['xxx', 'yyy'],
   };
 
   var VERSION_KEY = 'chat_app_version_v1';
-  var lastSeen = '';
-  try{ lastSeen = localStorage.getItem(VERSION_KEY) || ''; }catch(e){}
+var lastSeen = '';
+try{ lastSeen = localStorage.getItem(VERSION_KEY) || ''; }catch(e){}
 
-  /* 如果是第一次打开（没有记录过版本），直接静默记录，不弹窗 */
-  if(!lastSeen){
-    try{ localStorage.setItem(VERSION_KEY, APP_VERSION); }catch(e){}
-    return;
-  }
+/* 如果公告还没看过当前版本，就不弹更新提示（公告会承担更新说明的作用） */
+var welcomeSeen = '';
+try{ welcomeSeen = localStorage.getItem('chat_welcome_shown_v1') || ''; }catch(e){}
+if(welcomeSeen !== APP_VERSION) return;
 
-  /* 版本号一致，说明没更新，什么都不做 */
-  if(lastSeen === APP_VERSION) return;
+/* 如果是第一次打开（没有记录过版本），直接静默记录，不弹窗 */
+if(!lastSeen){
+  try{ localStorage.setItem(VERSION_KEY, APP_VERSION); }catch(e){}
+  return;
+}
+
+/* 版本号一致，说明没更新，什么都不做 */
+if(lastSeen === APP_VERSION) return;
 
   /* 版本号不一致，弹更新提示 */
   var bg = document.getElementById('updateBg');
@@ -10804,6 +11985,49 @@ bg.classList.add('show');
     };
   }
 })();
+
+/* ============ 新功能更新提示 ============ */
+// 以后有新功能，直接往这里加 { id: 'xxx', title: 'xxx', text: 'xxx' } 即可
+var FEATURE_HINTS = [
+  { 
+    id: 'longpress_modal_v1', 
+    title: '💡 小彩蛋', 
+    text: '试试长按聊天页的空白处，会有惊喜哦～' 
+  }
+];
+
+function showFeatureHint(){
+  if(!FEATURE_HINTS.length) return;
+  
+  // 找出第一个没看过的提示
+  var hint = null;
+  for(var i=0; i<FEATURE_HINTS.length; i++){
+    var h = FEATURE_HINTS[i];
+    try{
+      if(localStorage.getItem('feature_hint_' + h.id) !== 'seen'){
+        hint = h;
+        break;
+      }
+    }catch(e){ hint = h; break; }
+  }
+  
+  if(!hint) return;
+  
+  // 弹出系统弹窗
+  showDialog(hint.title, hint.text, [
+    { 
+      text: '我知道啦', 
+      primary: true, 
+      onClick: function(){
+        try{ localStorage.setItem('feature_hint_' + hint.id, 'seen'); }catch(e){}
+      }
+    }
+  ]);
+  
+  // 防止用户点外部关闭导致没记录，提前记录一下
+  try{ localStorage.setItem('feature_hint_' + hint.id, 'seen'); }catch(e){}
+}
+/* ======================================= */
 
 /* ============ 备份提醒 ============ */
 (function(){
